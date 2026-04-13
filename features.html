@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VOYAGE — Premium Travel Tracker for iOS 26</title>
+<title>Inside Voyage — Premium Travel Tracker for iOS 26</title>
 <meta name="description" content="Voyage turns your travels into a living world map. Track flights, countries, cities, and memories — with the depth they deserve.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -635,13 +635,13 @@ s { text-decoration: line-through; opacity: 0.4; }
 /* Stacked card grid — full width */
 .life-grid {
   display: flex; flex-direction: column;
-  gap: 12px; max-width: 1100px; margin: 40px auto 0; padding: 0 24px;
+  gap: 20px; max-width: 1100px; margin: 60px auto 0; padding: 0 24px;
 }
 
 /* Each trip card — full photo */
 .lc {
   border-radius: 28px; overflow: hidden; position: relative;
-  min-height: 320px;
+  min-height: 400px;
   background-size: cover; background-position: center;
   transition: transform 0.6s cubic-bezier(0.22,1,0.36,1), box-shadow 0.6s;
   cursor: pointer;
@@ -981,7 +981,7 @@ s { text-decoration: line-through; opacity: 0.4; }
 .feature-section {
   padding: 0; position: relative; overflow: hidden;
   min-height: 600px; display: flex; align-items: center;
-  margin-top: 60px; margin-bottom: 60px;
+  margin-top: 0; margin-bottom: 4px;
 }
 /* Full-bleed background photo per feature */
 .feature-bg {
@@ -992,14 +992,14 @@ s { text-decoration: line-through; opacity: 0.4; }
 .feature-bg::after {
   content: ''; position: absolute; inset: 0;
   background: linear-gradient(90deg,
-    rgba(5,5,8,0.92) 0%, rgba(5,5,8,0.8) 35%,
-    rgba(5,5,8,0.4) 60%, rgba(5,5,8,0.2) 100%
+    rgba(5,5,8,0.85) 0%, rgba(5,5,8,0.65) 35%,
+    rgba(5,5,8,0.3) 60%, rgba(5,5,8,0.1) 100%
   );
 }
 .feature-section.reverse .feature-bg::after {
   background: linear-gradient(270deg,
-    rgba(5,5,8,0.92) 0%, rgba(5,5,8,0.8) 35%,
-    rgba(5,5,8,0.4) 60%, rgba(5,5,8,0.2) 100%
+    rgba(5,5,8,0.85) 0%, rgba(5,5,8,0.65) 35%,
+    rgba(5,5,8,0.3) 60%, rgba(5,5,8,0.1) 100%
   );
 }
 .feature-inner {
@@ -1024,7 +1024,7 @@ s { text-decoration: line-through; opacity: 0.4; }
   perspective: 1200px; position: relative;
   display: flex; justify-content: center;
 }
-.feature-phone.device { width: 300px; height: 610px; }
+.feature-phone.device { width: 320px; height: 650px; }
 .feature-phone .device-inner { height: 100%; }
 .feature-phone-screen {
   width: 100%; height: 100%; overflow: hidden;
@@ -1542,7 +1542,6 @@ s { text-decoration: line-through; opacity: 0.4; }
   .store-badges { flex-direction: column; align-items: center; }
 }
 </style>
-</head>
 <body class="mode-night">
 
 <!-- Early Access Modal -->
@@ -1581,696 +1580,636 @@ s { text-decoration: line-through; opacity: 0.4; }
 <nav class="nav" id="nav">
   <div class="nav-logo">V<span class="o">O</span>YAGE</div>
   <div class="nav-links">
-    <a href="#life">Your Trips</a>
+    <a href="index.html#life">Your Trips</a>
     <a href="features.html">Inside Voyage</a>
-    <a href="#download">Download</a>
+    <a href="index.html#download">Download</a>
   </div>
   <div class="nav-right">
-    <button class="btn-gold" onclick="document.getElementById('eaOverlay').classList.add('open')">Get Early Access</button>
+    <a href="index.html#download" class="btn-gold" style="text-decoration:none">Get Early Access</a>
   </div>
 </nav>
 
-<!-- ═══════════════════════════════════════════════════
-     HERO
-     ═══════════════════════════════════════════════════ -->
-<section class="hero" id="hero">
-  <div class="hero-photo"></div>
-
-  <div class="hero-content">
-    <div class="hero-eyebrow">iOS 26 &middot; PREMIUM TRAVEL COMPANION</div>
-    <h1 class="hero-h1">Plan less.<br><em>Travel more.</em></h1>
-    <p class="hero-p">Flights, hotels, cruises, daily diaries, expenses &mdash; all in one beautiful app. Stop juggling ten apps. Start living your trip.</p>
-    <div class="hero-buttons">
-      <button class="btn-gold" onclick="document.getElementById('eaOverlay').classList.add('open')">Get Early Access</button>
-      <a href="#life" class="btn-ghost">See your trips &darr;</a>
-    </div>
+<section class="hero" style="min-height:70vh">
+  <div class="hero-photo" style="background-image:url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1800&q=80')"></div>
+  <div class="hero-content" style="position:relative;z-index:2">
+    <div class="hero-eyebrow">INSIDE VOYAGE</div>
+    <h1 class="hero-h1">Every screen.<br><em>Every detail.</em></h1>
+    <p class="hero-p">Six powerful screens built for travelers who want more than a checklist. Explore each one below.</p>
   </div>
-
   <div class="hero-scroll-hint">
     <span>Scroll</span>
     <div class="hero-scroll-line"></div>
   </div>
 </section>
 
-
 <!-- ═══════════════════════════════════════════════════
-     YOUR LIFE IN TRIPS
+     FEATURE 1 — TRIPS
      ═══════════════════════════════════════════════════ -->
-<section class="life-section" id="life">
-  <h2 class="section-title reveal">Your life, <em>one trip at a time</em></h2>
-  <div class="section-sub reveal reveal-delay-1">Every family vacation, every solo adventure, every cruise &mdash; gathered in one beautiful place. Go back years later and relive every moment.</div>
-
-  <div class="life-grid">
-
-    <!-- FEATURED: Santorini -->
-    <div class="lc lc-featured reveal" style="background-image:url('https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=1400&q=85')">
-      <div class="lc-top">
-        <span class="lc-year">2026</span>
-        <span class="lc-photos">&#x1F4F7; 86 photos</span>
+<section class="feature-section reveal">
+  <div class="feature-bg" style="background-image:url('https://images.unsplash.com/photo-1488646472419-a6a23bbfa7d3?w=1600&q=80')"></div>
+  <div class="feature-inner">
+    <div class="feature-row">
+      <div class="feature-text">
+        <div class="feature-tag" style="color:var(--coral)">&#x1F9F3; YOUR TRIPS</div>
+        <h3 class="feature-title">Your trips, <em>all in one place</em></h3>
+        <ul class="feature-list">
+          <li>Every trip organized with cities, dates, and routes</li>
+          <li>Hero photos and day-by-day city breakdowns</li>
+          <li>Step-by-step trip wizard for new adventures</li>
+          <li>Family trips, solo escapes, cruises &mdash; all beautifully tracked</li>
+        </ul>
       </div>
-      <div class="lc-body">
-        <div class="lc-name">Mediterranean Cruise</div>
-        <div class="lc-route">Barcelona &rarr; Marseille &rarr; Rome &rarr; Santorini &rarr; Dubrovnik</div>
-        <div class="lc-details">
-          <span class="lc-chip">&#x1F6A2; 7 ports</span>
-          <span class="lc-chip">&#x1F4C5; Jun 1 – 14</span>
-          <span class="lc-chip">&#x1F468;&#x200D;&#x1F469;&#x200D;&#x1F467;&#x200D;&#x1F466; Family</span>
-          <span class="lc-chip">&#x1F3E8; 14 nights</span>
-          <span class="lc-chip lc-chip-cost">$6,200</span>
+      <!-- Phone: Trips screen -->
+      <div class="feature-phone-wrap tilt-left">
+        <div class="feature-glow glow-gold"></div>
+        <div class="device feature-phone">
+          <div class="device-edge-r"></div>
+          <div class="device-edge-l"></div>
+          <div class="device-btn device-btn-power"></div>
+          <div class="device-btn device-btn-vol1"></div>
+          <div class="device-btn device-btn-vol2"></div>
+          <div class="device-btn device-btn-action"></div>
+          <div class="device-inner">
+            <div class="device-di device-di-sm"></div>
+            <div class="device-screen">
+              <div class="mock-screen">
+                <div class="mock-status"><span>4:40</span><div class="mock-status-icons"><span>&#x25CF;&#x25CF;&#x25CF;&#x25CF;</span> <span>&#x1F50B;</span></div></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:4px 14px 4px">
+                  <div style="font-size:24px;font-weight:700;color:#1c1c1e">Trips</div>
+                  <div style="display:flex;gap:6px;align-items:center">
+                    <span style="font-size:10px;color:#8e8e93;padding:4px 10px;border:0.5px solid #d1d1d6;border-radius:8px">All &#x25BE;</span>
+                    <span style="font-size:16px;color:#8e8e93;font-weight:300">+</span>
+                  </div>
+                </div>
+                <div class="mock-scroll" style="background:#f5f5f7;padding:4px 10px;gap:6px;display:flex;flex-direction:column">
+                  <!-- Trip 1 -->
+                  <div style="border-radius:16px;overflow:hidden;position:relative;height:100px;flex-shrink:0;background:url('https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=400&q=70') center/cover">
+                    <div style="position:absolute;inset:0;background:linear-gradient(transparent 30%,rgba(0,0,0,0.6))"></div>
+                    <div style="position:absolute;bottom:8px;left:10px;right:10px">
+                      <div style="font-size:14px;font-weight:700;color:#fff">Mediterranean Cruise</div>
+                      <div style="font-size:7px;color:#b08d57;margin:1px 0">Barcelona &rarr; Rome &rarr; Santorini &rarr; Dubrovnik</div>
+                      <div style="font-size:7px;color:rgba(255,255,255,0.75);display:flex;gap:8px">
+                        <span>&#x1F4C5; Jun 1 &ndash; Jun 14</span><span>&#x23F1; 14 days</span><span>&#x1F6A2; 7 ports</span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Trip 2 -->
+                  <div style="border-radius:16px;overflow:hidden;position:relative;height:100px;flex-shrink:0;background:url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=400&q=70') center/cover">
+                    <div style="position:absolute;inset:0;background:linear-gradient(transparent 30%,rgba(0,0,0,0.6))"></div>
+                    <div style="position:absolute;bottom:8px;left:10px;right:10px">
+                      <div style="font-size:14px;font-weight:700;color:#fff">Tokyo &amp; Kyoto</div>
+                      <div style="font-size:7px;color:#b08d57;margin:1px 0">JFK &rarr; NRT &rarr; KIX &rarr; JFK</div>
+                      <div style="font-size:7px;color:rgba(255,255,255,0.75);display:flex;gap:8px">
+                        <span>&#x1F4C5; Mar 8 &ndash; Mar 22</span><span>&#x23F1; 15 days</span><span>&#x2708; 3 flights</span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Trip 3 -->
+                  <div style="border-radius:16px;overflow:hidden;position:relative;height:100px;flex-shrink:0;background:url('https://images.unsplash.com/photo-1476610182048-b716b8518aae?w=400&q=70') center/cover">
+                    <div style="position:absolute;inset:0;background:linear-gradient(transparent 30%,rgba(0,0,0,0.6))"></div>
+                    <div style="position:absolute;bottom:8px;left:10px;right:10px">
+                      <div style="font-size:14px;font-weight:700;color:#fff">Iceland Ring Road</div>
+                      <div style="font-size:7px;color:#b08d57;margin:1px 0">Reykjavik &rarr; Akureyri &rarr; Vik</div>
+                      <div style="font-size:7px;color:rgba(255,255,255,0.75);display:flex;gap:8px">
+                        <span>&#x1F4C5; Aug 10 &ndash; Aug 20</span><span>&#x23F1; 10 days</span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Trip 4 (peeking) -->
+                  <div style="border-radius:16px;overflow:hidden;position:relative;height:100px;flex-shrink:0;background:url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=400&q=70') center/cover">
+                    <div style="position:absolute;inset:0;background:linear-gradient(transparent 30%,rgba(0,0,0,0.6))"></div>
+                    <div style="position:absolute;bottom:8px;left:10px;right:10px">
+                      <div style="font-size:14px;font-weight:700;color:#fff">Paris</div>
+                      <div style="font-size:7px;color:#b08d57;margin:1px 0">JFK &rarr; CDG &rarr; JFK</div>
+                      <div style="font-size:7px;color:rgba(255,255,255,0.75);display:flex;gap:8px">
+                        <span>&#x1F4C5; Feb 14 &ndash; Feb 21</span><span>&#x23F1; 7 days</span><span>&#x2764; Anniversary</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="glass-tabbar">
+                  <div class="glass-tab active"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M17 6h-2V4c0-1.1-.9-2-2-2H11C9.9 2 9 2.9 9 4v2H7C5.9 6 5 6.9 5 8v11c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM11 4h2v2h-2V4z"/></svg></div></div>Trips</div>
+                  <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM10 5.47l4 1.4v11.66l-4-1.4V5.47zm-5 .99l3-1.01v11.7l-3 1.16V6.46zm14 11.08l-3 1.01V6.86l3-1.16v11.84z"/></svg></div></div>Map</div>
+                  <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></div></div>Flights</div>
+                  <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><rect x="4" y="12" width="4" height="8" rx="1"/><rect x="10" y="7" width="4" height="13" rx="1"/><rect x="16" y="4" width="4" height="16" rx="1"/></svg></div></div>Stats</div>
+                  <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.31.06-.63.06-.94s-.02-.63-.06-.94l2.03-1.58a.49.49 0 00.12-.61l-1.92-3.32a.49.49 0 00-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 00-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.49.49 0 00-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94l-2.03 1.58a.49.49 0 00-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1112 8.4a3.6 3.6 0 010 7.2z"/></svg></div></div>Settings</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-
-    <!-- Tokyo -->
-    <div class="lc reveal" style="background-image:url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&q=85')">
-      <div class="lc-top">
-        <span class="lc-year">2026</span>
-        <span class="lc-photos">&#x1F4F7; 64 photos</span>
-      </div>
-      <div class="lc-body">
-        <div class="lc-name">Tokyo &amp; Kyoto</div>
-        <div class="lc-route">JFK &rarr; NRT &rarr; KIX &rarr; JFK</div>
-        <div class="lc-details">
-          <span class="lc-chip">&#x2708;&#xFE0F; 3 flights</span>
-          <span class="lc-chip">&#x1F4C5; Mar 8 – 22</span>
-          <span class="lc-chip">&#x1F3D9; 6 cities</span>
-          <span class="lc-chip lc-chip-cost">$4,280</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Bali -->
-    <div class="lc reveal" style="background-image:url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=85')">
-      <div class="lc-top">
-        <span class="lc-year">2025</span>
-        <span class="lc-photos">&#x1F4F7; 78 photos</span>
-      </div>
-      <div class="lc-body">
-        <div class="lc-name">Bali &amp; Lombok</div>
-        <div class="lc-route">SIN &rarr; DPS &rarr; LOP &rarr; SIN</div>
-        <div class="lc-details">
-          <span class="lc-chip">&#x2708;&#xFE0F; 3 flights</span>
-          <span class="lc-chip">&#x1F4C5; Jul 5 – 19</span>
-          <span class="lc-chip">&#x1F468;&#x200D;&#x1F469;&#x200D;&#x1F467;&#x200D;&#x1F466; Family</span>
-          <span class="lc-chip lc-chip-cost">$5,800</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- FEATURED: Iceland -->
-    <div class="lc lc-featured reveal" style="background-image:url('https://images.unsplash.com/photo-1476610182048-b716b8518aae?w=1400&q=85')">
-      <div class="lc-top">
-        <span class="lc-year">2025</span>
-        <span class="lc-photos">&#x1F4F7; 52 photos</span>
-      </div>
-      <div class="lc-body">
-        <div class="lc-name">Iceland Ring Road</div>
-        <div class="lc-route">KEF &rarr; Akureyri &rarr; Vik &rarr; Reykjavik &rarr; KEF</div>
-        <div class="lc-details">
-          <span class="lc-chip">&#x1F697; Road trip</span>
-          <span class="lc-chip">&#x1F4C5; Aug 10 – 20</span>
-          <span class="lc-chip">&#x1F6E3;&#xFE0F; 1,800 km</span>
-          <span class="lc-chip">&#x1F3E8; 8 hotels</span>
-          <span class="lc-chip lc-chip-cost">$2,900</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Paris -->
-    <div class="lc reveal" style="background-image:url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&q=85')">
-      <div class="lc-top">
-        <span class="lc-year">2025</span>
-        <span class="lc-photos">&#x1F4F7; 43 photos</span>
-      </div>
-      <div class="lc-body">
-        <div class="lc-name">Paris</div>
-        <div class="lc-route">JFK &rarr; CDG &rarr; JFK</div>
-        <div class="lc-details">
-          <span class="lc-chip">&#x2764;&#xFE0F; Anniversary</span>
-          <span class="lc-chip">&#x1F4C5; Feb 14 – 21</span>
-          <span class="lc-chip">&#x1F37D;&#xFE0F; 14 meals</span>
-          <span class="lc-chip lc-chip-cost">$3,100</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Maldives -->
-    <div class="lc reveal" style="background-image:url('https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800&q=85')">
-      <div class="lc-top">
-        <span class="lc-year">2024</span>
-        <span class="lc-photos">&#x1F4F7; 91 photos</span>
-      </div>
-      <div class="lc-body">
-        <div class="lc-name">Maldives</div>
-        <div class="lc-route">DXB &rarr; MLE &rarr; DXB</div>
-        <div class="lc-details">
-          <span class="lc-chip">&#x1F3D6;&#xFE0F; Overwater villa</span>
-          <span class="lc-chip">&#x1F4C5; Dec 20 – 28</span>
-          <span class="lc-chip">&#x1F3CA; Snorkelling</span>
-          <span class="lc-chip lc-chip-cost">$7,200</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Rome -->
-    <div class="lc reveal" style="background-image:url('https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800&q=85')">
-      <div class="lc-top">
-        <span class="lc-year">2024</span>
-        <span class="lc-photos">&#x1F4F7; 58 photos</span>
-      </div>
-      <div class="lc-body">
-        <div class="lc-name">Rome &amp; Amalfi Coast</div>
-        <div class="lc-route">JFK &rarr; FCO &rarr; NAP &rarr; JFK</div>
-        <div class="lc-details">
-          <span class="lc-chip">&#x2708;&#xFE0F; 3 flights</span>
-          <span class="lc-chip">&#x1F4C5; Apr 10 – 24</span>
-          <span class="lc-chip">&#x1F37D;&#xFE0F; 22 meals</span>
-          <span class="lc-chip lc-chip-cost">$4,500</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Dubai -->
-    <div class="lc reveal" style="background-image:url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=85')">
-      <div class="lc-top">
-        <span class="lc-year">2024</span>
-        <span class="lc-photos">&#x1F4F7; 37 photos</span>
-      </div>
-      <div class="lc-body">
-        <div class="lc-name">Dubai &amp; Abu Dhabi</div>
-        <div class="lc-route">LHR &rarr; DXB &rarr; AUH &rarr; LHR</div>
-        <div class="lc-details">
-          <span class="lc-chip">&#x2708;&#xFE0F; 2 flights</span>
-          <span class="lc-chip">&#x1F4C5; Nov 15 – 23</span>
-          <span class="lc-chip">&#x1F3E8; 2 hotels</span>
-          <span class="lc-chip lc-chip-cost">$3,400</span>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- Emotional tagline -->
-  <div class="life-tagline reveal">
-    <strong>Track it. Share it. Remember it.</strong><br>
-    Upload your favorite moments. Go back in years and relive each trip. Watch your family grow, your world expand, your story unfold.
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════
-     ONE PLACE FOR EVERYTHING
-     ═══════════════════════════════════════════════════ -->
-<section class="oneplace-section">
-  <div class="oneplace-glow"></div>
-  <h2 class="section-title reveal">Your entire trip, <em>in one place</em></h2>
-  <div class="section-sub reveal reveal-delay-1">Flights, hotels, cruise ports, restaurants, car rentals, daily plans &mdash; stop switching between apps. Scroll through every piece of your trip like flipping through a photo book.</div>
-
-  <div class="op-track reveal reveal-delay-2">
-    <div class="op-scroll" data-drag-scroll>
-
-      <!-- 1: Santorini sunset -->
-      <div class="op-card" data-category="cruise">
-        <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=900&q=85')"></div>
-        <div class="op-card-border"></div>
-        <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--coral)">&#x1F6A2; CRUISE PORT</div>
-          <div class="op-card-title">Santorini</div>
-          <div class="op-card-sub">Port 4 of 7 &middot; Jun 8 &middot; 8 hours ashore<br>Oia sunset walk &middot; Wine tasting &middot; Fira cable car</div>
-        </div>
-      </div>
-
-      <!-- 2: Flight over clouds -->
-      <div class="op-card op-card-wide" data-category="flight">
-        <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?w=1000&q=85')"></div>
-        <div class="op-card-border"></div>
-        <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--sky)">&#x2708;&#xFE0F; FLIGHT</div>
-          <div class="op-card-title">JFK &rarr; NRT</div>
-          <div class="op-card-sub">Turkish Airlines TK 2 &middot; Gate B42 &middot; Seat 14A<br>Economy Plus &middot; 13h 45m &middot; Boeing 787-9 &middot; $1,840</div>
-        </div>
-      </div>
-
-      <!-- 3: Luxury hotel pool -->
-      <div class="op-card" data-category="hotel">
-        <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1582719508461-905c673771fd?w=900&q=85')"></div>
-        <div class="op-card-border"></div>
-        <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--purple)">&#x1F3E8; HOTEL</div>
-          <div class="op-card-title">Park Hyatt Tokyo</div>
-          <div class="op-card-sub">Mar 8–12 &middot; Deluxe King &middot; Floor 47<br>4 nights &middot; $1,200 &middot; &#x2B50; 4.8</div>
-        </div>
-      </div>
-
-      <!-- 4: Sushi restaurant -->
-      <div class="op-card" data-category="restaurant">
-        <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1553621042-f6e147245754?w=900&q=85')"></div>
-        <div class="op-card-border"></div>
-        <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--coral)">&#x1F37D;&#xFE0F; DINNER</div>
-          <div class="op-card-title">Sukiyabashi Jiro</div>
-          <div class="op-card-sub">Omakase &middot; &#x2B50; 4.9 &middot; $$$$ &middot; Day 3<br>Reservation 7:30 PM &middot; 20 courses</div>
-        </div>
-      </div>
-
-      <!-- 5: Torii gates -->
-      <div class="op-card op-card-wide" data-category="place">
-        <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1478436127897-769e1b3f0f36?w=1000&q=85')"></div>
-        <div class="op-card-border"></div>
-        <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--gold)">&#x26E9;&#xFE0F; PLACE</div>
-          <div class="op-card-title">Fushimi Inari Shrine</div>
-          <div class="op-card-sub">10,000 torii gates &middot; Kyoto &middot; 2 hours<br>Day 5 &middot; Morning hike &middot; 86 photos taken</div>
-        </div>
-      </div>
-
-      <!-- 6: Cruise ship -->
-      <div class="op-card" data-category="cruise">
-        <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1548574505-5e239809ee19?w=900&q=85')"></div>
-        <div class="op-card-border"></div>
-        <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--teal)">&#x1F6A2; CRUISE</div>
-          <div class="op-card-title">Mediterranean &middot; 7 Ports</div>
-          <div class="op-card-sub">Barcelona &rarr; Marseille &rarr; Rome &rarr; Santorini<br>Jun 1–14 &middot; Royal Caribbean &middot; $6,200</div>
-        </div>
-      </div>
-
-      <!-- 7: Iceland road -->
-      <div class="op-card op-card-wide" data-category="car">
-        <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1476610182048-b716b8518aae?w=1000&q=85')"></div>
-        <div class="op-card-border"></div>
-        <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--gold)">&#x1F697; ROAD TRIP</div>
-          <div class="op-card-title">Iceland Ring Road</div>
-          <div class="op-card-sub">Hertz &middot; Dacia Duster &middot; 10 days &middot; 1,800 km<br>Pickup KEF Aug 10 &middot; Drop-off KEF Aug 20 &middot; $890</div>
-        </div>
-      </div>
-
-      <!-- 8: Paris -->
-      <div class="op-card" data-category="place">
-        <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=900&q=85')"></div>
-        <div class="op-card-border"></div>
-        <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--gold)">&#x1F4D6; DAY 3</div>
-          <div class="op-card-title">Montmartre &amp; Sacr&eacute;-C&oelig;ur</div>
-          <div class="op-card-sub">3 places &middot; 2 meals &middot; &euro;180 spent<br>42 photos &middot; 12,400 steps</div>
-        </div>
-      </div>
-
-      <!-- 9: Maldives -->
-      <div class="op-card" data-category="hotel">
-        <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=900&q=85')"></div>
-        <div class="op-card-border"></div>
-        <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--sky)">&#x1F3D6;&#xFE0F; RESORT</div>
-          <div class="op-card-title">Maldives &middot; Overwater Villa</div>
-          <div class="op-card-sub">Dec 20–28 &middot; Soneva Fushi &middot; $7,200<br>Snorkelling &middot; Spa &middot; Sunset dolphin cruise</div>
-        </div>
-      </div>
-
-      <!-- 10: Street food -->
-      <div class="op-card" data-category="expense">
-        <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=900&q=85')"></div>
-        <div class="op-card-border"></div>
-        <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--teal)">&#x1F4B0; EXPENSE</div>
-          <div class="op-card-title">Street Food Tour</div>
-          <div class="op-card-sub">Bangkok &middot; Day 2 &middot; Food<br>6 stalls &middot; &yen;4,200 (~$28) &middot; Worth every baht</div>
-        </div>
-      </div>
-
-      <!-- 11: Flight LAX→LHR -->
-      <div class="op-card op-card-wide" data-category="flight">
-        <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=1000&q=85')"></div>
-        <div class="op-card-border"></div>
-        <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--sky)">&#x2708;&#xFE0F; FLIGHT</div>
-          <div class="op-card-title">LAX &rarr; LHR</div>
-          <div class="op-card-sub">British Airways BA 268 &middot; Gate 42 &middot; Seat 7K<br>Business &middot; 10h 30m &middot; Boeing 777-300ER &middot; $3,200</div>
-        </div>
-      </div>
-
-      <!-- 12: Flight SFO→CDG -->
-      <div class="op-card" data-category="flight">
-        <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1500835556837-99ac94a94552?w=900&q=85')"></div>
-        <div class="op-card-border"></div>
-        <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--sky)">&#x2708;&#xFE0F; FLIGHT</div>
-          <div class="op-card-title">SFO &rarr; CDG</div>
-          <div class="op-card-sub">Air France AF 85 &middot; Gate D7 &middot; Seat 22A<br>Premium Economy &middot; 11h 15m &middot; A350 &middot; $2,100</div>
-        </div>
-      </div>
-
-      <!-- 13: Flight MIA→CUN -->
-      <div class="op-card" data-category="flight">
-        <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1556388158-158ea5ccacbd?w=900&q=85')"></div>
-        <div class="op-card-border"></div>
-        <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--sky)">&#x2708;&#xFE0F; FLIGHT</div>
-          <div class="op-card-title">MIA &rarr; CUN</div>
-          <div class="op-card-sub">American AA 1547 &middot; Gate C12 &middot; Seat 3F<br>First &middot; 2h 20m &middot; Boeing 737 MAX &middot; $680</div>
-        </div>
-      </div>
-
-      <!-- 14: Hotel Amalfi -->
-      <div class="op-card" data-category="hotel">
-        <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=900&q=85')"></div>
-        <div class="op-card-border"></div>
-        <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--purple)">&#x1F3E8; HOTEL</div>
-          <div class="op-card-title">Hotel Santa Caterina</div>
-          <div class="op-card-sub">Jun 5&ndash;8 &middot; Sea View Suite &middot; Floor 3<br>3 nights &middot; $2,400 &middot; &#x2B50; 4.9</div>
-        </div>
-      </div>
-
-      <!-- 15: Hotel Bali -->
-      <div class="op-card" data-category="hotel">
-        <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=900&q=85')"></div>
-        <div class="op-card-border"></div>
-        <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--purple)">&#x1F3E8; HOTEL</div>
-          <div class="op-card-title">Four Seasons Bali</div>
-          <div class="op-card-sub">Nov 1&ndash;7 &middot; Garden Villa &middot; Pool access<br>6 nights &middot; $4,800 &middot; &#x2B50; 4.9</div>
-        </div>
-      </div>
-
-      <!-- 16: Cruise Alaska -->
-      <div class="op-card op-card-wide" data-category="cruise">
-        <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1000&q=85')"></div>
-        <div class="op-card-border"></div>
-        <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--teal)">&#x1F6A2; CRUISE</div>
-          <div class="op-card-title">Alaska Inside Passage</div>
-          <div class="op-card-sub">Seattle &rarr; Juneau &rarr; Skagway &rarr; Glacier Bay<br>Jul 15&ndash;22 &middot; Holland America &middot; $4,500</div>
-        </div>
-      </div>
-
-      <!-- 17: Cruise Caribbean -->
-      <div class="op-card" data-category="cruise">
-        <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1559599238-308793637427?w=900&q=85')"></div>
-        <div class="op-card-border"></div>
-        <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--teal)">&#x1F6A2; CRUISE PORT</div>
-          <div class="op-card-title">St. Maarten</div>
-          <div class="op-card-sub">Port 3 of 5 &middot; Feb 18 &middot; 10 hours ashore<br>Maho Beach &middot; Snorkelling &middot; French side lunch</div>
-        </div>
-      </div>
-
-      <!-- 18: Car rental Tuscany -->
-      <div class="op-card" data-category="car">
-        <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=900&q=85')"></div>
-        <div class="op-card-border"></div>
-        <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--gold)">&#x1F697; ROAD TRIP</div>
-          <div class="op-card-title">Tuscany Wine Route</div>
-          <div class="op-card-sub">Europcar &middot; Fiat 500 &middot; 5 days &middot; 620 km<br>Pickup Florence &middot; Drop-off Rome &middot; $340</div>
-        </div>
-      </div>
-
-      <!-- 19: Car rental Pacific Coast -->
-      <div class="op-card op-card-wide" data-category="car">
-        <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1000&q=85')"></div>
-        <div class="op-card-border"></div>
-        <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--gold)">&#x1F697; ROAD TRIP</div>
-          <div class="op-card-title">Pacific Coast Highway</div>
-          <div class="op-card-sub">Enterprise &middot; Mustang Convertible &middot; 7 days<br>LA &rarr; SF &middot; 950 km &middot; $720</div>
-        </div>
-      </div>
-
-      <!-- 20: Restaurant Paris -->
-      <div class="op-card" data-category="restaurant">
-        <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=85')"></div>
-        <div class="op-card-border"></div>
-        <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--coral)">&#x1F37D;&#xFE0F; DINNER</div>
-          <div class="op-card-title">Le Comptoir du Panth&eacute;on</div>
-          <div class="op-card-sub">French Bistro &middot; &#x2B50; 4.7 &middot; $$$ &middot; Day 4<br>Reservation 8:00 PM &middot; Duck confit &amp; cr&egrave;me br&ucirc;l&eacute;e</div>
-        </div>
-      </div>
-
-      <!-- 21: Restaurant Rome -->
-      <div class="op-card" data-category="restaurant">
-        <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=900&q=85')"></div>
-        <div class="op-card-border"></div>
-        <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--coral)">&#x1F37D;&#xFE0F; LUNCH</div>
-          <div class="op-card-title">Roscioli</div>
-          <div class="op-card-sub">Italian &middot; &#x2B50; 4.8 &middot; $$ &middot; Day 6<br>Cacio e pepe &middot; Supplì &middot; House wine</div>
-        </div>
-      </div>
-
-      <!-- 22: Restaurant Barcelona -->
-      <div class="op-card" data-category="restaurant">
-        <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1559339352-11d035aa65de?w=900&q=85')"></div>
-        <div class="op-card-border"></div>
-        <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--coral)">&#x1F37D;&#xFE0F; DINNER</div>
-          <div class="op-card-title">Tickets Barcelona</div>
-          <div class="op-card-sub">Tapas &middot; &#x2B50; 4.9 &middot; $$$$ &middot; Day 1<br>Reservation 9:30 PM &middot; 14 small plates</div>
-        </div>
-      </div>
-
-      <!-- 23: Place Colosseum -->
-      <div class="op-card" data-category="place">
-        <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=900&q=85')"></div>
-        <div class="op-card-border"></div>
-        <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--gold)">&#x26E9;&#xFE0F; PLACE</div>
-          <div class="op-card-title">Colosseum</div>
-          <div class="op-card-sub">Rome &middot; Underground tour &middot; 2.5 hours<br>Day 7 &middot; Morning visit &middot; Skip-the-line tickets</div>
-        </div>
-      </div>
-
-      <!-- 24: Place Machu Picchu -->
-      <div class="op-card op-card-wide" data-category="place">
-        <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1526392060635-9d6019884377?w=1000&q=85')"></div>
-        <div class="op-card-border"></div>
-        <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--gold)">&#x26E9;&#xFE0F; PLACE</div>
-          <div class="op-card-title">Machu Picchu</div>
-          <div class="op-card-sub">Cusco &middot; Sunrise hike &middot; 4 hours<br>Day 9 &middot; Inca Trail finish &middot; 124 photos taken</div>
-        </div>
-      </div>
-
-      <!-- 25: Expense shopping -->
-      <div class="op-card" data-category="expense">
-        <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1483985988355-763728e1935b?w=900&q=85')"></div>
-        <div class="op-card-border"></div>
-        <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--teal)">&#x1F4B0; EXPENSE</div>
-          <div class="op-card-title">Milan Shopping</div>
-          <div class="op-card-sub">Galleria Vittorio Emanuele &middot; Day 4<br>3 stores &middot; &euro;640 &middot; Fashion &amp; leather goods</div>
-        </div>
-      </div>
-
-      <!-- 26: Expense spa -->
-      <div class="op-card" data-category="expense">
-        <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=900&q=85')"></div>
-        <div class="op-card-border"></div>
-        <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--teal)">&#x1F4B0; EXPENSE</div>
-          <div class="op-card-title">Onsen &amp; Spa Day</div>
-          <div class="op-card-sub">Hakone &middot; Day 6 &middot; Wellness<br>Hot springs &middot; Massage &middot; &yen;18,000 (~$120)</div>
-        </div>
-      </div>
-
-      <!-- 27: Expense taxi -->
-      <div class="op-card" data-category="expense">
-        <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=900&q=85')"></div>
-        <div class="op-card-border"></div>
-        <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--teal)">&#x1F4B0; EXPENSE</div>
-          <div class="op-card-title">Transport &middot; Day 3</div>
-          <div class="op-card-sub">Tokyo &middot; Uber &amp; Metro &middot; 6 rides<br>&yen;8,400 (~$56) &middot; Shibuya to Asakusa</div>
-        </div>
-      </div>
-
-      <!-- 28: Car rental New Zealand -->
-      <div class="op-card" data-category="car">
-        <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=900&q=85')"></div>
-        <div class="op-card-border"></div>
-        <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--gold)">&#x1F697; ROAD TRIP</div>
-          <div class="op-card-title">New Zealand South Island</div>
-          <div class="op-card-sub">Jucy &middot; Campervan &middot; 14 days &middot; 2,300 km<br>Christchurch loop &middot; $1,150</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="oneplace-bottom reveal">
-    <p><strong>Stop digging through emails.</strong> Every confirmation, every reservation, every plan &mdash; organized by trip, by day, by city. Open Voyage and know exactly what's next.</p>
-    <div class="oneplace-pills" id="opPills">
-      <span class="oneplace-pill active" data-filter="all">All</span>
-      <span class="oneplace-pill" data-filter="flight">&#x2708;&#xFE0F; Flights</span>
-      <span class="oneplace-pill" data-filter="hotel">&#x1F3E8; Hotels</span>
-      <span class="oneplace-pill" data-filter="cruise">&#x1F6A2; Cruises</span>
-      <span class="oneplace-pill" data-filter="car">&#x1F697; Car Rentals</span>
-      <span class="oneplace-pill" data-filter="restaurant">&#x1F37D;&#xFE0F; Restaurants</span>
-      <span class="oneplace-pill" data-filter="place">&#x1F4CD; Places</span>
-      <span class="oneplace-pill" data-filter="expense">&#x1F4B0; Expenses</span>
     </div>
   </div>
 </section>
 
 <!-- ═══════════════════════════════════════════════════
-     PROBLEM
+     FEATURE 2 — DAILY DIARY
      ═══════════════════════════════════════════════════ -->
-<section class="section problem-section">
-  <div class="problem-photo-wrap"><img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=1600&q=80" alt="" loading="lazy"></div>
-  <div class="problem-glow"></div>
-  <h2 class="section-title reveal">Travel apps treat your journeys <em>like grocery lists</em></h2>
-  <div class="section-sub reveal reveal-delay-1">There's a better way to remember where you've been.</div>
-  <div class="problem-grid">
-    <div class="problem-card reveal reveal-delay-1">
-      <div class="problem-icon">&#x1F5FA;&#xFE0F;</div>
-      <h3>No visual record</h3>
-      <p>Your world map should light up gold. Instead you&rsquo;re <s>manually updating a spreadsheet</s>.</p>
-    </div>
-    <div class="problem-card reveal reveal-delay-2">
-      <div class="problem-icon">&#x2708;&#xFE0F;</div>
-      <h3>Flights disappear</h3>
-      <p>Every flight is a story. All of it <s>lost in your email inbox</s>.</p>
-    </div>
-    <div class="problem-card reveal reveal-delay-3">
-      <div class="problem-icon">&#x1F4CA;</div>
-      <h3>Stats mean nothing</h3>
-      <p>Most apps give you a number. You want airline breakdowns, routes, and spending per country.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════
-     HOW IT WORKS
-     ═══════════════════════════════════════════════════ -->
-<section class="section" id="features">
-  <div class="section-photo-wrap"><img src="https://images.unsplash.com/photo-1488646472419-a6a23bbfa7d3?w=1600&q=80" alt="" loading="lazy"></div>
-  <h2 class="section-title reveal">Log once. <em>Remember everything.</em></h2>
-  <div class="section-sub reveal reveal-delay-1">Four steps between you and a complete travel history.</div>
-  <div class="how-grid">
-    <div class="how-line"></div>
-    <div class="how-step reveal reveal-delay-1">
-      <div class="how-dot">&#x1F9F3;</div>
-      <h3>Create a trip</h3>
-      <p>Step-by-step wizard: cities, flights, hotels, car rentals &mdash; all in one flow.</p>
-    </div>
-    <div class="how-step reveal reveal-delay-2">
-      <div class="how-dot">&#x2708;&#xFE0F;</div>
-      <h3>Add flights</h3>
-      <p>Search by flight number. Real gates, delays, weather, and seat info pulled instantly.</p>
-    </div>
-    <div class="how-step reveal reveal-delay-3">
-      <div class="how-dot">&#x1F4D6;</div>
-      <h3>Live your trip</h3>
-      <p>Daily diary with places, meals, and expenses. AI suggests where to eat and what to see.</p>
-    </div>
-    <div class="how-step reveal reveal-delay-4">
-      <div class="how-dot">&#x1F30D;</div>
-      <h3>See your world</h3>
-      <p>3D globe lights up with every country. Flight arcs trace your routes.</p>
-    </div>
-  </div>
-</section>
-
-
-<!-- ═══════════════════════════════════════════════════
-     STATS BAR
-     ═══════════════════════════════════════════════════ -->
-<section class="section" id="stats">
-  <div class="section-photo-wrap"><img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1600&q=80" alt="" loading="lazy"></div>
-  <h2 class="section-title reveal">Built for <em>serious travelers</em></h2>
-  <div class="section-sub reveal reveal-delay-1">Numbers that speak for themselves.</div>
-  <div class="stats-bar reveal reveal-delay-2">
-    <div class="stat-item">
-      <div class="stat-number" data-target="195">0</div>
-      <div class="stat-label">Countries to discover</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number" data-target="10">0</div>
-      <div class="stat-label">Place categories to log</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number" data-target="6">0</div>
-      <div class="stat-label">Expense categories tracked</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">&infin;</div>
-      <div class="stat-label">Journeys worth remembering</div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ═══════════════════════════════════════════════════
-     DIVE DEEP — INSIDE VOYAGE
-     ═══════════════════════════════════════════════════ -->
-<section class="feature-section reveal" style="min-height:500px">
-  <div class="feature-bg" style="background-image:url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1800&q=80')"></div>
-  <div class="feature-inner" style="text-align:center;max-width:700px">
-    <div class="feature-row" style="display:block">
-      <div class="feature-text" style="text-align:center">
-        <div class="feature-tag" style="color:var(--sky);justify-content:center">🤿 INSIDE VOYAGE</div>
-        <h3 class="feature-title" style="text-align:center">Dive deep into <em>every screen</em></h3>
-        <p style="font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:32px">Six screens. Trips, daily diaries, flights, a 3D world map, travel stats, and personalized settings &mdash; each one designed to make your journeys unforgettable.</p>
-        <a href="features.html" class="btn-gold" style="display:inline-block;text-decoration:none">Explore the App &rarr;</a>
+<section class="feature-section reverse reveal">
+  <div class="feature-bg" style="background-image:url('https://images.unsplash.com/photo-1528164344705-47542687000d?w=1600&q=80')"></div>
+  <div class="feature-inner">
+    <div class="feature-row">
+      <!-- Phone: Diary screen -->
+      <div class="feature-phone-wrap tilt-right">
+        <div class="feature-glow glow-teal"></div>
+        <div class="device feature-phone">
+          <div class="device-edge-r"></div>
+          <div class="device-edge-l"></div>
+          <div class="device-btn device-btn-power"></div>
+          <div class="device-btn device-btn-vol1"></div>
+          <div class="device-btn device-btn-vol2"></div>
+          <div class="device-btn device-btn-action"></div>
+          <div class="device-inner">
+            <div class="device-di device-di-sm"></div>
+            <div class="device-screen">
+              <div class="mock-screen">
+                <div class="mock-status" style="position:absolute;top:0;left:0;right:0;z-index:2;color:#fff"><span>4:40</span><div class="mock-status-icons"><span>&#x25CF;&#x25CF;&#x25CF;&#x25CF;</span> <span>&#x1F50B;</span></div></div>
+                <!-- Hero -->
+                <div style="height:80px;position:relative;overflow:hidden;flex-shrink:0">
+                  <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=500&q=70" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover">
+                  <div style="position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(0,0,0,0.5))"></div>
+                  <div style="position:absolute;top:10px;left:10px"><span style="font-size:10px;color:#fff;opacity:0.8">&lsaquo;</span></div>
+                  <div style="position:absolute;bottom:6px;left:10px">
+                    <div style="font-size:15px;font-weight:700;color:#fff">Rome &amp; Amalfi</div>
+                    <div style="font-size:7px;color:#b08d57">Rome &rarr; Positano &rarr; Amalfi &rarr; Capri</div>
+                  </div>
+                </div>
+                <!-- Content -->
+                <div class="mock-scroll" style="background:#fff;padding:0">
+                  <!-- City: Rome -->
+                  <div style="padding:8px 14px 3px;display:flex;justify-content:space-between;align-items:flex-start">
+                    <div><div style="font-size:14px;font-weight:700;color:#1c1c1e;text-align:left">Rome</div><div style="font-size:8px;color:#8e8e93;text-align:left">Italy &middot; Apr 10</div></div>
+                    <span style="font-size:10px;color:#b08d57">&#x270E;</span>
+                  </div>
+                  <!-- Day 1 -->
+                  <div style="display:flex;padding:3px 14px;align-items:center">
+                    <div style="width:28px;flex-shrink:0;text-align:left"><div style="font-size:7px;color:#8e8e93">FRI</div><div style="font-size:13px;font-weight:700;color:#1c1c1e">10</div></div>
+                    <div style="flex:1;display:flex;justify-content:space-between;align-items:center;padding:6px 0;margin-left:8px;border-bottom:0.5px solid #f0f0f0">
+                      <span style="font-size:11px;font-weight:600;text-align:left">Day 1</span>
+                      <span style="font-size:10px;color:#8e8e93">&rsaquo;</span>
+                    </div>
+                  </div>
+                  <!-- Day 2 expanded -->
+                  <div style="display:flex;padding:3px 14px 0;align-items:flex-start">
+                    <div style="width:28px;flex-shrink:0;text-align:left">
+                      <div style="font-size:7px;color:#8e8e93">SAT</div>
+                      <div style="font-size:13px;font-weight:700;color:#1c1c1e">11</div>
+                      <div style="width:2px;background:#b08d57;margin:4px 6px 0;height:200px;border-radius:1px"></div>
+                    </div>
+                    <div style="flex:1;margin-left:8px">
+                      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+                        <span style="font-size:11px;font-weight:600;text-align:left">Day 2</span>
+                        <span style="font-size:10px;color:#34c759;font-weight:600">$210 &rsaquo;</span>
+                      </div>
+                      <!-- 9 AM: Colosseum -->
+                      <div style="font-size:7px;color:#8e8e93;padding:2px 0;text-align:left;letter-spacing:0.3px">9:00 AM</div>
+                      <div style="border-radius:12px;overflow:hidden;margin-bottom:5px;border:0.5px solid #e8e8e8">
+                        <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=200&q=60" alt="" loading="lazy" style="width:100%;height:42px;object-fit:cover">
+                        <div style="padding:5px 8px;display:flex;justify-content:space-between;align-items:center">
+                          <div style="text-align:left"><div style="font-size:9px;font-weight:600;color:#1c1c1e">Colosseum</div><div style="font-size:7px;color:#8e8e93">&#x2B50; Attraction &middot; 2.5 hrs</div></div>
+                          <span style="font-size:9px;color:#b08d57">&#x270E;</span>
+                        </div>
+                      </div>
+                      <!-- 12 PM: Restaurant -->
+                      <div style="font-size:7px;color:#8e8e93;padding:2px 0;text-align:left;letter-spacing:0.3px">12:00 PM</div>
+                      <div style="border-radius:12px;overflow:hidden;margin-bottom:5px;border:0.5px solid #e8e8e8">
+                        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=200&q=60" alt="" loading="lazy" style="width:100%;height:42px;object-fit:cover">
+                        <div style="padding:5px 8px;display:flex;justify-content:space-between;align-items:center">
+                          <div style="text-align:left"><div style="font-size:9px;font-weight:600;color:#1c1c1e">Trattoria da Enzo</div><div style="font-size:7px;color:#8e8e93">&#x2B50; Restaurant &middot; $$</div></div>
+                          <div style="text-align:left"><div style="font-size:8px;color:#34c759;font-weight:600">$68</div></div>
+                        </div>
+                      </div>
+                      <!-- 3 PM: Trevi -->
+                      <div style="font-size:7px;color:#8e8e93;padding:2px 0;text-align:left;letter-spacing:0.3px">3:00 PM</div>
+                      <div style="border-radius:12px;overflow:hidden;margin-bottom:5px;border:0.5px solid #e8e8e8">
+                        <img src="https://images.unsplash.com/photo-1525874684015-58379d421a52?w=200&q=60" alt="" loading="lazy" style="width:100%;height:42px;object-fit:cover">
+                        <div style="padding:5px 8px;display:flex;justify-content:space-between;align-items:center">
+                          <div style="text-align:left"><div style="font-size:9px;font-weight:600;color:#1c1c1e">Trevi Fountain</div><div style="font-size:7px;color:#8e8e93">&#x2B50; Landmark &middot; 45 min</div></div>
+                          <span style="font-size:9px;color:#b08d57">&#x270E;</span>
+                        </div>
+                      </div>
+                      <!-- 7 PM: Dinner -->
+                      <div style="font-size:7px;color:#8e8e93;padding:2px 0;text-align:left;letter-spacing:0.3px">7:00 PM</div>
+                      <div style="border-radius:12px;overflow:hidden;margin-bottom:5px;border:0.5px solid #e8e8e8">
+                        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=200&q=60" alt="" loading="lazy" style="width:100%;height:42px;object-fit:cover">
+                        <div style="padding:5px 8px;display:flex;justify-content:space-between;align-items:center">
+                          <div style="text-align:left"><div style="font-size:9px;font-weight:600;color:#1c1c1e">Da Baffetto</div><div style="font-size:7px;color:#8e8e93">&#x2B50; Restaurant &middot; $</div></div>
+                          <div style="text-align:left"><div style="font-size:8px;color:#34c759;font-weight:600">$42</div></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- TABBAR -->
+                <div class="glass-tabbar">
+                  <div class="glass-tab active"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M17 6h-2V4c0-1.1-.9-2-2-2H11C9.9 2 9 2.9 9 4v2H7C5.9 6 5 6.9 5 8v11c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM11 4h2v2h-2V4z"/></svg></div></div>Trips</div>
+                  <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM10 5.47l4 1.4v11.66l-4-1.4V5.47zm-5 .99l3-1.01v11.7l-3 1.16V6.46zm14 11.08l-3 1.01V6.86l3-1.16v11.84z"/></svg></div></div>Map</div>
+                  <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></div></div>Flights</div>
+                  <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><rect x="4" y="12" width="4" height="8" rx="1"/><rect x="10" y="7" width="4" height="13" rx="1"/><rect x="16" y="4" width="4" height="16" rx="1"/></svg></div></div>Stats</div>
+                  <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.31.06-.63.06-.94s-.02-.63-.06-.94l2.03-1.58a.49.49 0 00.12-.61l-1.92-3.32a.49.49 0 00-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 00-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.49.49 0 00-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94l-2.03 1.58a.49.49 0 00-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1112 8.4a3.6 3.6 0 010 7.2z"/></svg></div></div>Settings</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="feature-text" style="text-align:left">
+        <div class="feature-tag" style="color:var(--teal);justify-content:flex-start">&#x1F4D6; DAILY DIARY</div>
+        <h3 class="feature-title">Every day, <em>beautifully logged</em></h3>
+        <ul class="feature-list" style="align-items:flex-start">
+          <li>Day-by-day timeline with gold sidebar organized by city</li>
+          <li>Log places, restaurants, and attractions with photos</li>
+          <li>AI suggests must-visit restaurants, attractions, and hidden gems for each city and cruise port</li>
+          <li>Multi-currency expense tracking per day</li>
+          <li>AI writes your trip story in your voice</li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
 
-
 <!-- ═══════════════════════════════════════════════════
-     TIERS
+     FEATURE 3 — WORLD MAP
      ═══════════════════════════════════════════════════ -->
-<section class="section">
-  <h2 class="section-title reveal">Start free. <em>Go deeper.</em></h2>
-  <div class="section-sub reveal reveal-delay-1">Three tiers designed for every kind of traveler.</div>
-  <div class="tiers-grid">
-    <div class="tier-card tier-free reveal reveal-delay-1">
-      <div class="tier-name">Free</div>
-      <div class="tier-price">Forever free</div>
-      <ul class="tier-features">
-        <li><span class="check">&#x2713;</span> 3 trips</li>
-        <li><span class="check">&#x2713;</span> 7 days per trip</li>
-        <li><span class="check">&#x2713;</span> 5 photos per trip</li>
-        <li><span class="check">&#x2713;</span> 3D World Map</li>
-        <li><span class="cross">&#x2717;</span> Expense tracking</li>
-        <li><span class="cross">&#x2717;</span> AI recommendations</li>
-        <li><span class="cross">&#x2717;</span> Live flight tracking</li>
-      </ul>
-    </div>
-    <div class="tier-card tier-premium reveal reveal-delay-2">
-      <div class="tier-badge">Most Popular</div>
-      <div class="tier-name">Premium</div>
-      <div class="tier-price">$4.99/month</div>
-      <ul class="tier-features">
-        <li><span class="check">&#x2713;</span> Unlimited trips &amp; days</li>
-        <li><span class="check">&#x2713;</span> Unlimited photos</li>
-        <li><span class="check">&#x2713;</span> Advanced flight data</li>
-        <li><span class="check">&#x2713;</span> Live flight tracking</li>
-        <li><span class="check">&#x2713;</span> Expense tracking</li>
-        <li><span class="check">&#x2713;</span> AI concierge &amp; stories</li>
-        <li><span class="check">&#x2713;</span> Detailed stats &amp; export</li>
-      </ul>
-    </div>
-    <div class="tier-card tier-lifetime reveal reveal-delay-3">
-      <div class="tier-badge">Best Value</div>
-      <div class="tier-name">Lifetime</div>
-      <div class="tier-price">$79.99 one-time</div>
-      <ul class="tier-features">
-        <li><span class="check">&#x2713;</span> Everything in Premium</li>
-        <li><span class="check">&#x2713;</span> All future features</li>
-        <li><span class="check">&#x2713;</span> Priority support</li>
-        <li><span class="check">&#x2713;</span> Early access to beta</li>
-        <li><span class="check">&#x2713;</span> Yours forever</li>
-        <li><span class="check">&#x2713;</span> One-time payment</li>
-        <li><span class="check">&#x2713;</span> No subscriptions</li>
-      </ul>
+<section class="feature-section reveal">
+  <div class="feature-bg" style="background-image:url('https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=1600&q=80')"></div>
+  <div class="feature-inner">
+    <div class="feature-row">
+      <div class="feature-text">
+        <div class="feature-tag" style="color:var(--gold)">&#x1F30D; WORLD MAP</div>
+        <h3 class="feature-title">Your world, <em>lit up in gold</em></h3>
+        <ul class="feature-list">
+          <li>Countries and cities light up as you add trips and flights</li>
+          <li>3D globe with flight arcs connecting your destinations</li>
+          <li>Continent-by-continent coverage stats</li>
+          <li>Tap any country to see all your trips there</li>
+        </ul>
+      </div>
+      <!-- Phone: Map screen -->
+      <div class="feature-phone-wrap tilt-left">
+        <div class="feature-glow glow-gold"></div>
+        <div class="device feature-phone">
+          <div class="device-edge-r"></div>
+          <div class="device-edge-l"></div>
+          <div class="device-btn device-btn-power"></div>
+          <div class="device-btn device-btn-vol1"></div>
+          <div class="device-btn device-btn-vol2"></div>
+          <div class="device-btn device-btn-action"></div>
+          <div class="device-inner">
+            <div class="device-di device-di-sm"></div>
+            <div class="device-screen">
+              <div class="mock-screen">
+                <div class="mock-status"><span>2:49</span><div class="mock-status-icons"><span>&#x25CF;&#x25CF;&#x25CF;&#x25CF;</span> <span>&#x1F50B;</span></div></div>
+                <div class="mock-title">Map</div>
+                <div class="mock-map-stats"><strong>7</strong> visited &nbsp;<strong>3</strong> lived &nbsp;<strong>24</strong> cities &nbsp;<strong>3</strong> flights</div>
+                <div class="mock-map-area" style="background:#eaeaf0">
+                  <svg viewBox="0 0 400 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="400" height="260" fill="#eaeaf0"/>
+                    <!-- North America -->
+                    <path d="M30 50 L50 35 L80 30 L110 35 L120 50 L115 65 L100 80 L90 100 L80 110 L70 105 L55 90 L35 80 L25 65Z" fill="#d1d1d6"/>
+                    <!-- Central America -->
+                    <path d="M80 110 L85 120 L82 130 L78 135 L75 128 L72 115Z" fill="#d1d1d6"/>
+                    <!-- South America -->
+                    <path d="M85 140 L100 135 L115 145 L120 165 L115 190 L105 210 L95 215 L85 200 L80 175 L78 155Z" fill="#d1d1d6"/>
+                    <!-- Europe -->
+                    <path d="M170 30 L185 25 L200 28 L210 35 L215 50 L210 60 L200 65 L190 60 L180 55 L172 45Z" fill="#d1d1d6"/>
+                    <!-- UK/Ireland -->
+                    <path d="M165 35 L170 32 L172 40 L168 43Z" fill="#d1d1d6"/>
+                    <!-- Africa -->
+                    <path d="M175 75 L200 70 L215 80 L220 100 L215 130 L205 155 L195 160 L185 150 L178 125 L175 100Z" fill="#d1d1d6"/>
+                    <!-- Middle East -->
+                    <path d="M220 60 L240 55 L250 65 L245 80 L235 85 L220 80Z" fill="#d1d1d6"/>
+                    <!-- Russia/Asia -->
+                    <path d="M220 25 L260 18 L300 15 L340 20 L360 30 L365 45 L350 55 L320 50 L290 45 L260 40 L240 35 L225 30Z" fill="#d1d1d6"/>
+                    <!-- India -->
+                    <path d="M260 65 L275 60 L285 70 L280 90 L270 100 L260 95 L255 80Z" fill="#d1d1d6"/>
+                    <!-- Southeast Asia -->
+                    <path d="M290 60 L310 55 L320 65 L315 80 L305 85 L295 75Z" fill="#d1d1d6"/>
+                    <!-- China/Japan -->
+                    <path d="M300 30 L330 25 L345 35 L340 50 L325 55 L310 50 L300 40Z" fill="#d1d1d6"/>
+                    <!-- Japan -->
+                    <path d="M348 35 L355 30 L358 40 L355 50 L350 48Z" fill="#d1d1d6"/>
+                    <!-- Australia -->
+                    <path d="M310 140 L340 135 L360 145 L365 160 L355 175 L335 180 L315 170 L308 155Z" fill="#d1d1d6"/>
+                    <!-- Greenland -->
+                    <path d="M120 15 L140 10 L150 18 L145 28 L130 30 L118 25Z" fill="#d1d1d6"/>
+
+                    <!-- Visited countries highlighted in gold/tan -->
+                    <!-- USA -->
+                    <path d="M35 50 L75 40 L110 45 L115 55 L100 70 L80 75 L55 70 L35 60Z" fill="#b08d57" opacity="0.3"/>
+                    <!-- Italy/Europe -->
+                    <path d="M185 35 L200 32 L208 42 L205 55 L195 58 L185 50Z" fill="#b08d57" opacity="0.3"/>
+                    <!-- Japan -->
+                    <path d="M348 35 L355 30 L358 40 L355 50 L350 48Z" fill="#b08d57" opacity="0.3"/>
+                    <!-- Thailand/SE Asia -->
+                    <path d="M295 65 L310 60 L315 72 L308 80 L298 75Z" fill="#b08d57" opacity="0.3"/>
+
+                    <!-- Flight arcs -->
+                    <path d="M75 55 Q140 15 195 45" stroke="#b08d57" stroke-width="1" fill="none" stroke-dasharray="3 2" opacity="0.6"/>
+                    <path d="M195 45 Q280 10 352 40" stroke="#b08d57" stroke-width="1" fill="none" stroke-dasharray="3 2" opacity="0.6"/>
+                    <path d="M352 40 Q330 50 305 70" stroke="#b08d57" stroke-width="1" fill="none" stroke-dasharray="3 2" opacity="0.6"/>
+
+                    <!-- City dots -->
+                    <circle cx="75" cy="55" r="2.5" fill="#34c759"/><!-- NYC -->
+                    <circle cx="195" cy="45" r="2.5" fill="#34c759"/><!-- Rome -->
+                    <circle cx="352" cy="40" r="2.5" fill="#34c759"/><!-- Tokyo -->
+                    <circle cx="305" cy="70" r="2.5" fill="#34c759"/><!-- Bangkok -->
+                    <circle cx="50" cy="58" r="2" fill="#34c759"/><!-- LA -->
+                    <circle cx="200" cy="55" r="2" fill="#34c759"/><!-- Naples -->
+
+                    <!-- Plane on arc -->
+                    <text x="140" y="25" font-size="7" fill="#b08d57">&#x2708;</text>
+                  </svg>
+                </div>
+                <div class="glass-tabbar">
+                  <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M17 6h-2V4c0-1.1-.9-2-2-2H11C9.9 2 9 2.9 9 4v2H7C5.9 6 5 6.9 5 8v11c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM11 4h2v2h-2V4z"/></svg></div></div>Trips</div>
+                  <div class="glass-tab active"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM10 5.47l4 1.4v11.66l-4-1.4V5.47zm-5 .99l3-1.01v11.7l-3 1.16V6.46zm14 11.08l-3 1.01V6.86l3-1.16v11.84z"/></svg></div></div>Map</div>
+                  <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></div></div>Flights</div>
+                  <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><rect x="4" y="12" width="4" height="8" rx="1"/><rect x="10" y="7" width="4" height="13" rx="1"/><rect x="16" y="4" width="4" height="16" rx="1"/></svg></div></div>Stats</div>
+                  <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.31.06-.63.06-.94s-.02-.63-.06-.94l2.03-1.58a.49.49 0 00.12-.61l-1.92-3.32a.49.49 0 00-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 00-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.49.49 0 00-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94l-2.03 1.58a.49.49 0 00-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1112 8.4a3.6 3.6 0 010 7.2z"/></svg></div></div>Settings</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- ═══════════════════════════════════════════════════
+     FEATURE 4 — FLIGHTS
+     ═══════════════════════════════════════════════════ -->
+<section class="feature-section reverse reveal">
+  <div class="feature-bg" style="background-image:url('https://images.unsplash.com/photo-1569154941061-e231b4725ef1?w=1600&q=80')"></div>
+  <div class="feature-inner">
+    <div class="feature-row">
+      <!-- Phone: Flights screen -->
+      <div class="feature-phone-wrap tilt-right">
+        <div class="feature-glow glow-sky"></div>
+        <div class="device feature-phone">
+          <div class="device-edge-r"></div>
+          <div class="device-edge-l"></div>
+          <div class="device-btn device-btn-power"></div>
+          <div class="device-btn device-btn-vol1"></div>
+          <div class="device-btn device-btn-vol2"></div>
+          <div class="device-btn device-btn-action"></div>
+          <div class="device-inner">
+            <div class="device-di device-di-sm"></div>
+            <div class="device-screen">
+              <div class="mock-screen">
+                <div class="mock-status"><span>4:40</span><div class="mock-status-icons"><span>&#x25CF;&#x25CF;&#x25CF;&#x25CF;</span> <span>&#x1F50B;</span></div></div>
+                <div style="font-size:24px;font-weight:700;color:#1c1c1e;padding:4px 14px 4px;text-align:left">Flights</div>
+                <div class="mock-pills" style="padding:2px 14px 4px">
+                  <div class="mock-pill"><div class="mock-pill-num">12</div><div class="mock-pill-label">Flights</div></div>
+                  <div class="mock-pill"><div class="mock-pill-num">48,200</div><div class="mock-pill-label">Miles</div></div>
+                  <div class="mock-pill"><div class="mock-pill-num">9</div><div class="mock-pill-label">Airports</div></div>
+                  <div class="mock-pill"><div class="mock-pill-num">5</div><div class="mock-pill-label">Airlines</div></div>
+                </div>
+                <div class="mock-search" style="margin:0 14px 4px">&#x1F50D; Search flights</div>
+                <div style="font-size:9px;font-weight:600;letter-spacing:1px;color:#8e8e93;padding:3px 14px 2px;text-align:left">ALL</div>
+                <div class="mock-scroll" style="padding:0 10px;gap:5px;display:flex;flex-direction:column">
+                  <div class="mock-flight-card" style="height:65px">
+                    <img src="https://images.unsplash.com/photo-1534430480872-3498386e7856?w=400&q=70" alt="" loading="lazy">
+                    <div class="mock-flight-overlay"><div class="mock-flight-route">JFK &rarr; FCO</div><div class="mock-flight-detail"><span class="mock-flight-airline"><span class="mock-flight-dot" style="background:#003580">AZ</span> Alitalia 610</span><span>8:30 PM &rarr; 10:15 AM &middot; 8h 45m</span></div></div>
+                  </div>
+                  <div class="mock-flight-card" style="height:65px">
+                    <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=400&q=70" alt="" loading="lazy">
+                    <div class="mock-flight-overlay"><div class="mock-flight-route">LAX &rarr; NRT</div><div class="mock-flight-detail"><span class="mock-flight-airline"><span class="mock-flight-dot" style="background:#e60020">JL</span> JAL 62</span><span>1:15 PM &rarr; 5:30 PM &middot; 11h 15m</span></div></div>
+                  </div>
+                  <div class="mock-flight-card" style="height:65px">
+                    <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=400&q=70" alt="" loading="lazy">
+                    <div class="mock-flight-overlay"><div class="mock-flight-route">CDG &rarr; BCN</div><div class="mock-flight-detail"><span class="mock-flight-airline"><span class="mock-flight-dot" style="background:#002157">AF</span> Air France 1148</span><span>6:00 AM &rarr; 7:45 AM &middot; 1h 45m</span></div></div>
+                  </div>
+                  <div class="mock-flight-card" style="height:65px">
+                    <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=400&q=70" alt="" loading="lazy">
+                    <div class="mock-flight-overlay"><div class="mock-flight-route">ATH &rarr; JFK</div><div class="mock-flight-detail"><span class="mock-flight-airline"><span class="mock-flight-dot" style="background:#00247d">DL</span> Delta 411</span><span>11:20 AM &rarr; 4:10 PM &middot; 10h 50m</span></div></div>
+                  </div>
+                  <div class="mock-flight-card" style="height:65px">
+                    <img src="https://images.unsplash.com/photo-1476610182048-b716b8518aae?w=400&q=70" alt="" loading="lazy">
+                    <div class="mock-flight-overlay"><div class="mock-flight-route">KEF &rarr; LHR</div><div class="mock-flight-detail"><span class="mock-flight-airline"><span class="mock-flight-dot" style="background:#003580">BA</span> British Airways 662</span><span>2:45 PM &rarr; 6:30 PM &middot; 2h 45m</span></div></div>
+                  </div>
+                  <div class="mock-flight-card" style="height:65px">
+                    <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=400&q=70" alt="" loading="lazy">
+                    <div class="mock-flight-overlay"><div class="mock-flight-route">DXB &rarr; MLE</div><div class="mock-flight-detail"><span class="mock-flight-airline"><span class="mock-flight-dot" style="background:#d71921">EK</span> Emirates 652</span><span>9:00 AM &rarr; 2:15 PM &middot; 4h 15m</span></div></div>
+                  </div>
+                </div>
+                <div class="glass-tabbar">
+                  <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M17 6h-2V4c0-1.1-.9-2-2-2H11C9.9 2 9 2.9 9 4v2H7C5.9 6 5 6.9 5 8v11c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM11 4h2v2h-2V4z"/></svg></div></div>Trips</div>
+                  <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM10 5.47l4 1.4v11.66l-4-1.4V5.47zm-5 .99l3-1.01v11.7l-3 1.16V6.46zm14 11.08l-3 1.01V6.86l3-1.16v11.84z"/></svg></div></div>Map</div>
+                  <div class="glass-tab active"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></div></div>Flights</div>
+                  <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><rect x="4" y="12" width="4" height="8" rx="1"/><rect x="10" y="7" width="4" height="13" rx="1"/><rect x="16" y="4" width="4" height="16" rx="1"/></svg></div></div>Stats</div>
+                  <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.31.06-.63.06-.94s-.02-.63-.06-.94l2.03-1.58a.49.49 0 00.12-.61l-1.92-3.32a.49.49 0 00-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 00-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.49.49 0 00-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94l-2.03 1.58a.49.49 0 00-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1112 8.4a3.6 3.6 0 010 7.2z"/></svg></div></div>Settings</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="feature-text" style="text-align:left">
+        <div class="feature-tag" style="color:var(--sky);justify-content:flex-start">&#x2708;&#xFE0F; FLIGHT INTELLIGENCE</div>
+        <h3 class="feature-title">Every flight, <em>in full detail</em></h3>
+        <ul class="feature-list" style="align-items:flex-start">
+          <li>Search by flight number &mdash; real data pulled instantly</li>
+          <li>Live gates, delays, and weather at both airports</li>
+          <li>On-time performance, aircraft type, seat class</li>
+          <li>3D route maps with animated flight arcs</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     FEATURE 5 — STATS
+     ═══════════════════════════════════════════════════ -->
+<section class="feature-section reveal">
+  <div class="feature-bg" style="background-image:url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1600&q=80')"></div>
+  <div class="feature-inner">
+    <div class="feature-row">
+      <div class="feature-text">
+        <div class="feature-tag" style="color:var(--purple)">&#x1F4CA; STATS</div>
+        <h3 class="feature-title">Your travel story, <em>in numbers</em></h3>
+        <ul class="feature-list">
+          <li>Lifetime flight count, total miles, and hours in the air</li>
+          <li>Airline breakdown with your most-flown carriers</li>
+          <li>Spending by country and category</li>
+          <li>Monthly travel trends and year-over-year growth</li>
+        </ul>
+      </div>
+      <!-- Phone: Stats screen -->
+      <div class="feature-phone-wrap tilt-left">
+        <div class="feature-glow glow-purple"></div>
+        <div class="device feature-phone">
+          <div class="device-edge-r"></div>
+          <div class="device-edge-l"></div>
+          <div class="device-btn device-btn-power"></div>
+          <div class="device-btn device-btn-vol1"></div>
+          <div class="device-btn device-btn-vol2"></div>
+          <div class="device-btn device-btn-action"></div>
+          <div class="device-inner">
+            <div class="device-di device-di-sm"></div>
+            <div class="device-screen">
+              <div class="mock-screen">
+                <div class="mock-status"><span>4:40</span><div class="mock-status-icons"><span>&#x25CF;&#x25CF;&#x25CF;&#x25CF;</span> <span>&#x1F50B;</span></div></div>
+                <div style="font-size:24px;font-weight:700;color:#1c1c1e;padding:4px 14px 2px;text-align:left">Stats</div>
+                <!-- Filter pills -->
+                <div style="display:flex;gap:4px;padding:2px 14px 6px;font-size:8px">
+                  <span style="padding:4px 10px;border-radius:12px;background:rgba(0,0,0,0.06);font-weight:600;color:#1c1c1e">All-time</span>
+                  <span style="padding:4px 10px;color:#8e8e93">2026</span>
+                  <span style="padding:4px 10px;color:#8e8e93">2025</span>
+                  <span style="padding:4px 10px;color:#8e8e93">2024</span>
+                </div>
+                <div class="mock-scroll" style="background:#fff">
+                  <div style="font-size:9px;font-weight:600;letter-spacing:1px;color:#8e8e93;padding:6px 14px 3px;text-align:left">OVERVIEW</div>
+                  <div class="mock-stat-row"><div class="mock-stat-dot" style="background:#b08d57"></div><span style="text-align:left">Trips</span><span class="mock-stat-val" style="color:#b08d57">10</span><span class="mock-stat-chev">&rsaquo;</span></div>
+                  <div class="mock-stat-row"><div class="mock-stat-dot" style="background:#4a9eff"></div><span style="text-align:left">Flights</span><span class="mock-stat-val" style="color:#4a9eff">12</span><span class="mock-stat-chev">&rsaquo;</span></div>
+                  <div class="mock-stat-row"><div class="mock-stat-dot" style="background:#34c759"></div><span style="text-align:left">Countries</span><span class="mock-stat-val" style="color:#34c759">9</span><span class="mock-stat-chev">&rsaquo;</span></div>
+                  <div class="mock-stat-row"><div class="mock-stat-dot" style="background:#ff2d55"></div><span style="text-align:left">Cities</span><span class="mock-stat-val" style="color:#ff2d55">23</span><span class="mock-stat-chev">&rsaquo;</span></div>
+                  <div class="mock-stat-row"><div class="mock-stat-dot" style="background:#af52de"></div><span style="text-align:left">km flown</span><span class="mock-stat-val" style="color:#af52de">42k</span><span class="mock-stat-chev">&rsaquo;</span></div>
+                  <div class="mock-stat-row"><div class="mock-stat-dot" style="background:#ff3b30"></div><span style="text-align:left">Hours in air</span><span class="mock-stat-val" style="color:#ff3b30">52h 30m</span><span class="mock-stat-chev">&rsaquo;</span></div>
+                  <div class="mock-stat-row"><div class="mock-stat-dot" style="background:#ffcc00"></div><span style="text-align:left">Nights away</span><span class="mock-stat-val" style="color:#ffcc00">87</span><span class="mock-stat-chev">&rsaquo;</span></div>
+                  <div class="mock-stat-row"><div class="mock-stat-dot" style="background:#34c759"></div><span style="text-align:left">Total spent</span><span class="mock-stat-val" style="color:#34c759">$17k</span><span class="mock-stat-chev">&rsaquo;</span></div>
+                  <div style="font-size:9px;font-weight:600;letter-spacing:1px;color:#8e8e93;padding:8px 14px 3px;text-align:left">FLIGHT ANALYTICS</div>
+                  <div style="padding:6px 14px;display:flex;align-items:center;gap:8px;border-bottom:0.5px solid #e5e5ea;font-size:9px">
+                    <span style="font-size:12px">&#x2708;&#xFE0F;</span><span style="flex:1;text-align:left">Most flown airline</span><span style="color:#8e8e93;font-size:8px">Delta &middot; 4&times; &rsaquo;</span>
+                  </div>
+                  <div style="padding:6px 14px;display:flex;align-items:center;gap:8px;border-bottom:0.5px solid #e5e5ea;font-size:9px">
+                    <span style="font-size:12px">&#x1F504;</span><span style="flex:1;text-align:left">Most flown route</span><span style="color:#8e8e93;font-size:8px">JFK &rarr; FCO &middot; 2&times; &rsaquo;</span>
+                  </div>
+                  <div style="padding:6px 14px;display:flex;align-items:center;gap:8px;border-bottom:0.5px solid #e5e5ea;font-size:9px">
+                    <span style="font-size:12px">&#x2708;&#xFE0F;</span><span style="flex:1;text-align:left">Top aircraft</span><span style="color:#8e8e93;font-size:8px">Boeing 787 &middot; 3&times; &rsaquo;</span>
+                  </div>
+                  <div style="padding:6px 14px;display:flex;align-items:center;gap:8px;border-bottom:0.5px solid #e5e5ea;font-size:9px">
+                    <span style="font-size:12px">&#x1F3D7;&#xFE0F;</span><span style="flex:1;text-align:left">Most visited airport</span><span style="color:#8e8e93;font-size:8px">JFK &middot; 5&times; &rsaquo;</span>
+                  </div>
+                  <div style="font-size:9px;font-weight:600;letter-spacing:1px;color:#8e8e93;padding:8px 14px 3px;text-align:left">SPENDING</div>
+                  <div style="padding:6px 14px;display:flex;align-items:center;gap:8px;border-bottom:0.5px solid #e5e5ea;font-size:9px">
+                    <span style="font-size:12px">&#x1F6A2;</span><span style="flex:1;text-align:left">Cruises</span><span style="color:#8e8e93;font-size:8px">$9k &rsaquo;</span>
+                  </div>
+                  <div style="padding:6px 14px;display:flex;align-items:center;gap:8px;border-bottom:0.5px solid #e5e5ea;font-size:9px">
+                    <span style="font-size:12px">&#x2708;&#xFE0F;</span><span style="flex:1;text-align:left">Flights</span><span style="color:#8e8e93;font-size:8px">$4.2k &rsaquo;</span>
+                  </div>
+                  <div style="padding:6px 14px;display:flex;align-items:center;gap:8px;font-size:9px">
+                    <span style="font-size:12px">&#x1F3E8;</span><span style="flex:1;text-align:left">Hotels</span><span style="color:#8e8e93;font-size:8px">$3.8k &rsaquo;</span>
+                  </div>
+                </div>
+                <!-- TABBAR -->
+                <div class="glass-tabbar">
+                  <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M17 6h-2V4c0-1.1-.9-2-2-2H11C9.9 2 9 2.9 9 4v2H7C5.9 6 5 6.9 5 8v11c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM11 4h2v2h-2V4z"/></svg></div></div>Trips</div>
+                  <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM10 5.47l4 1.4v11.66l-4-1.4V5.47zm-5 .99l3-1.01v11.7l-3 1.16V6.46zm14 11.08l-3 1.01V6.86l3-1.16v11.84z"/></svg></div></div>Map</div>
+                  <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></div></div>Flights</div>
+                  <div class="glass-tab active"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><rect x="4" y="12" width="4" height="8" rx="1"/><rect x="10" y="7" width="4" height="13" rx="1"/><rect x="16" y="4" width="4" height="16" rx="1"/></svg></div></div>Stats</div>
+                  <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.31.06-.63.06-.94s-.02-.63-.06-.94l2.03-1.58a.49.49 0 00.12-.61l-1.92-3.32a.49.49 0 00-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 00-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.49.49 0 00-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94l-2.03 1.58a.49.49 0 00-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1112 8.4a3.6 3.6 0 010 7.2z"/></svg></div></div>Settings</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     FEATURE 6 — SETTINGS
+     ═══════════════════════════════════════════════════ -->
+<section class="feature-section reverse reveal">
+  <div class="feature-bg" style="background-image:url('https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1600&q=80')"></div>
+  <div class="feature-inner">
+    <div class="feature-row">
+      <!-- Phone: Settings screen -->
+      <div class="feature-phone-wrap tilt-right">
+        <div class="feature-glow glow-gold"></div>
+        <div class="device feature-phone">
+          <div class="device-edge-r"></div>
+          <div class="device-edge-l"></div>
+          <div class="device-btn device-btn-power"></div>
+          <div class="device-btn device-btn-vol1"></div>
+          <div class="device-btn device-btn-vol2"></div>
+          <div class="device-btn device-btn-action"></div>
+          <div class="device-inner">
+            <div class="device-di device-di-sm"></div>
+            <div class="device-screen">
+              <div class="mock-screen">
+                <div class="mock-status"><span>4:40</span><div class="mock-status-icons"><span>&#x25CF;&#x25CF;&#x25CF;&#x25CF;</span> <span>&#x1F50B;</span></div></div>
+                <div style="font-size:24px;font-weight:700;color:#1c1c1e;padding:4px 14px 6px;text-align:left">Settings</div>
+                <div class="mock-scroll" style="background:#fff">
+                  <!-- Profile card -->
+                  <div style="background:#f9f9fb;border-radius:14px;padding:10px 12px;margin:0 12px 4px;display:flex;gap:10px;align-items:center;border:0.5px solid #e5e5ea">
+                    <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#b08d57,#d4af37);display:flex;align-items:center;justify-content:center;font-size:13px;color:#fff;font-weight:700;flex-shrink:0">T</div>
+                    <div style="text-align:left">
+                      <div style="font-size:12px;font-weight:600;color:#1c1c1e">Traveler &#x270E;</div>
+                      <div style="display:inline-flex;align-items:center;gap:2px;font-size:7px;color:#b08d57;background:rgba(176,141,87,0.1);padding:2px 8px;border-radius:8px;margin-top:2px">&#x1F451; Voyage Lifetime</div>
+                    </div>
+                  </div>
+                  <!-- Stats row -->
+                  <div style="display:flex;justify-content:space-around;padding:8px 12px;border-bottom:0.5px solid #e5e5ea;margin:0 12px 4px">
+                    <div style="text-align:center"><div style="font-size:14px;font-weight:700;color:#b08d57">10</div><div style="font-size:7px;color:#8e8e93">Trips</div></div>
+                    <div style="text-align:center"><div style="font-size:14px;font-weight:700;color:#b08d57">12</div><div style="font-size:7px;color:#8e8e93">Flights</div></div>
+                    <div style="text-align:center"><div style="font-size:14px;font-weight:700;color:#b08d57">9</div><div style="font-size:7px;color:#8e8e93">Countries</div></div>
+                  </div>
+                  <!-- PREFERENCES -->
+                  <div style="font-size:9px;font-weight:600;letter-spacing:1px;color:#8e8e93;padding:6px 14px 3px;text-align:left">PREFERENCES</div>
+                  <div style="padding:7px 14px;display:flex;align-items:center;gap:8px;border-bottom:0.5px solid #e5e5ea;font-size:10px">
+                    <span style="font-size:12px;width:18px;text-align:center">&#x1F4B3;</span><span style="flex:1;text-align:left">Home Currency</span><span style="font-size:9px;color:#b08d57">USD &#x25BE;</span>
+                  </div>
+                  <div style="padding:7px 14px;display:flex;align-items:center;gap:8px;border-bottom:0.5px solid #e5e5ea;font-size:10px">
+                    <span style="font-size:12px;width:18px;text-align:center">&#x1F6A9;</span><span style="flex:1;text-align:left">Home Country</span><span style="font-size:9px;color:#b08d57">USA</span>
+                  </div>
+                  <div style="padding:7px 14px;display:flex;align-items:center;gap:8px;border-bottom:0.5px solid #e5e5ea;font-size:10px">
+                    <span style="font-size:12px;width:18px;text-align:center">&#x1F4CF;</span><span style="flex:1;text-align:left">Distance</span><div style="display:flex;background:#e5e5ea;border-radius:6px;font-size:7px"><span style="padding:2px 6px">km</span><span style="padding:2px 6px;background:#fff;border-radius:5px;box-shadow:0 1px 2px rgba(0,0,0,0.1)">mi</span></div>
+                  </div>
+                  <div style="padding:7px 14px;display:flex;align-items:center;gap:8px;border-bottom:0.5px solid #e5e5ea;font-size:10px">
+                    <span style="font-size:12px;width:18px;text-align:center">&#x1F321;&#xFE0F;</span><span style="flex:1;text-align:left">Temperature</span><div style="display:flex;background:#e5e5ea;border-radius:6px;font-size:7px"><span style="padding:2px 6px">&deg;C</span><span style="padding:2px 6px;background:#fff;border-radius:5px;box-shadow:0 1px 2px rgba(0,0,0,0.1)">&deg;F</span></div>
+                  </div>
+                  <div style="padding:7px 14px;display:flex;align-items:center;gap:8px;border-bottom:0.5px solid #e5e5ea;font-size:10px">
+                    <span style="font-size:12px;width:18px;text-align:center">&#x1F3A8;</span><span style="flex:1;text-align:left">Appearance</span><div style="display:flex;background:#e5e5ea;border-radius:6px;font-size:7px"><span style="padding:2px 6px;background:#fff;border-radius:5px;box-shadow:0 1px 2px rgba(0,0,0,0.1)">System</span><span style="padding:2px 6px">Light</span><span style="padding:2px 6px">Dark</span></div>
+                  </div>
+                  <!-- ACCOUNT -->
+                  <div style="font-size:9px;font-weight:600;letter-spacing:1px;color:#8e8e93;padding:8px 14px 3px;text-align:left">ACCOUNT</div>
+                  <div style="padding:7px 14px;display:flex;align-items:center;gap:8px;border-bottom:0.5px solid #e5e5ea;font-size:10px">
+                    <span style="font-size:12px;width:18px;text-align:center">&#x2601;&#xFE0F;</span><span style="flex:1;text-align:left">iCloud Sync</span><span style="font-size:8px;color:#34c759">On &#x2705;</span>
+                  </div>
+                  <div style="padding:7px 14px;display:flex;align-items:center;gap:8px;border-bottom:0.5px solid #e5e5ea;font-size:10px">
+                    <span style="font-size:12px;width:18px;text-align:center">&#x1F451;</span><span style="flex:1;text-align:left">Manage Subscription</span><span style="font-size:8px;color:#b08d57">Lifetime &rsaquo;</span>
+                  </div>
+                  <div style="padding:7px 14px;display:flex;align-items:center;gap:8px;border-bottom:0.5px solid #e5e5ea;font-size:10px">
+                    <span style="font-size:12px;width:18px;text-align:center">&#x1F6AA;</span><span style="flex:1;text-align:left">Sign Out</span><span style="font-size:9px;color:#8e8e93">&rsaquo;</span>
+                  </div>
+                  <!-- FRIENDS -->
+                  <div style="font-size:9px;font-weight:600;letter-spacing:1px;color:#8e8e93;padding:8px 14px 3px;text-align:left">FRIENDS</div>
+                  <div style="padding:7px 14px;display:flex;align-items:center;gap:8px;font-size:10px">
+                    <span style="font-size:12px;width:18px;text-align:center">&#x1F465;</span><span style="flex:1;text-align:left;color:#8e8e93">No friends yet</span>
+                  </div>
+                </div>
+                <!-- TABBAR -->
+                <div class="glass-tabbar">
+                  <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M17 6h-2V4c0-1.1-.9-2-2-2H11C9.9 2 9 2.9 9 4v2H7C5.9 6 5 6.9 5 8v11c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM11 4h2v2h-2V4z"/></svg></div></div>Trips</div>
+                  <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM10 5.47l4 1.4v11.66l-4-1.4V5.47zm-5 .99l3-1.01v11.7l-3 1.16V6.46zm14 11.08l-3 1.01V6.86l3-1.16v11.84z"/></svg></div></div>Map</div>
+                  <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></div></div>Flights</div>
+                  <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><rect x="4" y="12" width="4" height="8" rx="1"/><rect x="10" y="7" width="4" height="13" rx="1"/><rect x="16" y="4" width="4" height="16" rx="1"/></svg></div></div>Stats</div>
+                  <div class="glass-tab active"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.31.06-.63.06-.94s-.02-.63-.06-.94l2.03-1.58a.49.49 0 00.12-.61l-1.92-3.32a.49.49 0 00-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 00-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.49.49 0 00-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94l-2.03 1.58a.49.49 0 00-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1112 8.4a3.6 3.6 0 010 7.2z"/></svg></div></div>Settings</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="feature-text" style="text-align:left">
+        <div class="feature-tag" style="color:var(--gold);justify-content:flex-start">&#x2699;&#xFE0F; SETTINGS</div>
+        <h3 class="feature-title">Make it <em>yours</em></h3>
+        <ul class="feature-list" style="align-items:flex-start">
+          <li>Customize your traveler profile and avatar</li>
+          <li>Track your milestone tier from First Steps to Orbital</li>
+          <li>Multi-currency support and notification preferences</li>
+          <li>Export your travel data and share your stats</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ═══════════════════════════════════════════════════
      CTA
@@ -2299,9 +2238,6 @@ s { text-decoration: line-through; opacity: 0.4; }
   <div class="cta-fine reveal reveal-delay-3" style="position:relative;z-index:1">iOS 26 &middot; Free &middot; No ads &middot; Your data stays yours</div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════
-     FOOTER
-     ═══════════════════════════════════════════════════ -->
 <footer class="footer">
   <div class="footer-logo">V<span class="o">O</span>YAGE</div>
   <div class="footer-links">
@@ -2313,9 +2249,6 @@ s { text-decoration: line-through; opacity: 0.4; }
   <div class="footer-copy">&copy; 2026 Voyage. All journeys reserved.</div>
 </footer>
 
-<!-- ═══════════════════════════════════════════════════
-     JAVASCRIPT
-     ═══════════════════════════════════════════════════ -->
 <script>
 (function() {
   'use strict';
@@ -2608,5 +2541,6 @@ s { text-decoration: line-through; opacity: 0.4; }
 
 })();
 </script>
+
 </body>
 </html>
