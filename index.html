@@ -633,6 +633,136 @@ s { text-decoration: line-through; opacity: 0.4; }
 }
 
 /* ═══════════════════════════════════════════════════
+   YOUR LIFE IN TRIPS — the emotional core
+   ═══════════════════════════════════════════════════ */
+.life-section {
+  position: relative; padding: 100px 0 120px; overflow: hidden;
+}
+.life-section .section-title,
+.life-section .section-sub { max-width: 700px; margin-left: auto; margin-right: auto; padding: 0 24px; }
+
+/* Year timeline */
+.life-timeline {
+  position: relative; padding: 60px 0 20px;
+}
+.life-year-label {
+  font-size: 13px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gold); text-align: center; margin-bottom: 24px;
+  position: relative;
+}
+.life-year-label::before, .life-year-label::after {
+  content: ''; position: absolute; top: 50%; height: 1px; width: 80px;
+  background: linear-gradient(90deg, transparent, rgba(201,169,110,0.3));
+}
+.life-year-label::before { right: calc(50% + 40px); background: linear-gradient(90deg, transparent, rgba(201,169,110,0.3)); }
+.life-year-label::after { left: calc(50% + 40px); background: linear-gradient(270deg, transparent, rgba(201,169,110,0.3)); }
+
+/* Trip cards row — horizontal scroll */
+.life-cards-row {
+  display: flex; gap: 20px; padding: 0 48px 32px;
+  overflow-x: auto; scroll-snap-type: x mandatory;
+  scrollbar-width: none; -ms-overflow-style: none;
+  cursor: grab;
+}
+.life-cards-row::-webkit-scrollbar { display: none; }
+.life-cards-row:active { cursor: grabbing; }
+
+/* Individual trip card */
+.life-card {
+  flex-shrink: 0; width: 300px; height: 400px;
+  border-radius: 24px; overflow: hidden; position: relative;
+  scroll-snap-align: start;
+  transition: transform 0.5s cubic-bezier(0.22,1,0.36,1), box-shadow 0.5s;
+  cursor: none;
+}
+.life-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 0 40px rgba(201,169,110,0.08);
+}
+
+/* Card photo background */
+.life-card-bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+}
+/* Gradient scrim */
+.life-card-bg::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 0%, transparent 30%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.85) 100%);
+}
+
+/* Card content overlay */
+.life-card-content {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 24px; z-index: 2;
+}
+.life-card-destination {
+  font-size: 22px; font-weight: 700; margin-bottom: 4px; line-height: 1.2;
+}
+.life-card-route {
+  font-size: 12px; color: var(--gold); font-weight: 600; margin-bottom: 10px;
+  display: flex; align-items: center; gap: 6px;
+}
+.life-card-meta {
+  display: flex; gap: 12px; font-size: 11px; color: rgba(255,255,255,0.6);
+}
+.life-card-meta span { display: flex; align-items: center; gap: 4px; }
+
+/* Card top badges */
+.life-card-badges {
+  position: absolute; top: 16px; left: 16px; right: 16px; z-index: 2;
+  display: flex; justify-content: space-between; align-items: flex-start;
+}
+.life-card-type {
+  padding: 5px 12px; border-radius: 100px; font-size: 10px; font-weight: 600;
+  background: rgba(0,0,0,0.5); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.1); letter-spacing: 0.5px;
+}
+.life-card-cost {
+  padding: 5px 12px; border-radius: 100px; font-size: 11px; font-weight: 700;
+  background: rgba(0,0,0,0.5); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(28,200,160,0.3); color: var(--teal);
+}
+
+/* Photo placeholder patterns (until real screenshots) */
+.life-bg-tokyo { background: linear-gradient(135deg, #1a1028, #2d1f3d, #1a2535); }
+.life-bg-paris { background: linear-gradient(135deg, #2a1f1a, #3d2d1f, #1a1a2a); }
+.life-bg-bali { background: linear-gradient(135deg, #0a2520, #1a3530, #0c1a2a); }
+.life-bg-nyc { background: linear-gradient(135deg, #1a1a2a, #2a2030, #1a2535); }
+.life-bg-rome { background: linear-gradient(135deg, #2a1a18, #3d2a1f, #2a1a2a); }
+.life-bg-iceland { background: linear-gradient(135deg, #0c1a2a, #1a2a3a, #0c2020); }
+.life-bg-dubai { background: linear-gradient(135deg, #2a2010, #3d3020, #2a1a10); }
+.life-bg-cruise { background: linear-gradient(135deg, #0a1520, #1a2535, #0c2530); }
+.life-bg-maldives { background: linear-gradient(135deg, #0a2028, #1a3038, #0c1a2a); }
+.life-bg-london { background: linear-gradient(135deg, #1a1a20, #28282e, #1a2028); }
+
+/* Big tagline */
+.life-tagline {
+  text-align: center; padding: 40px 24px 0;
+  font-size: clamp(18px, 2.5vw, 24px); color: var(--muted); line-height: 1.7;
+  max-width: 600px; margin: 0 auto;
+}
+.life-tagline strong { color: var(--text); font-weight: 600; }
+
+/* Memory photo grid (small circle avatars showing "people growing") */
+.life-memories {
+  display: flex; justify-content: center; gap: 8px; padding-top: 32px;
+}
+.life-memory {
+  width: 48px; height: 48px; border-radius: 50%;
+  border: 2px solid rgba(201,169,110,0.3);
+  display: flex; align-items: center; justify-content: center; font-size: 20px;
+  background: rgba(255,255,255,0.04);
+  transition: transform 0.3s, border-color 0.3s;
+}
+.life-memory:hover { transform: scale(1.15); border-color: var(--gold); }
+
+@media (max-width: 900px) {
+  .life-cards-row { padding: 0 24px 32px; }
+  .life-card { width: 260px; height: 360px; }
+}
+
+/* ═══════════════════════════════════════════════════
    PROBLEM SECTION
    ═══════════════════════════════════════════════════ */
 .problem-section { position: relative; }
@@ -1146,8 +1276,8 @@ s { text-decoration: line-through; opacity: 0.4; }
 <nav class="nav" id="nav">
   <div class="nav-logo">V<span class="o">O</span>YAGE</div>
   <div class="nav-links">
+    <a href="#life">Your Trips</a>
     <a href="#features">Features</a>
-    <a href="#stats">Stats</a>
     <a href="#milestones">Milestones</a>
     <a href="#download">Download</a>
   </div>
@@ -1370,6 +1500,212 @@ s { text-decoration: line-through; opacity: 0.4; }
       </div>
     </div>
 
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     YOUR LIFE IN TRIPS
+     ═══════════════════════════════════════════════════ -->
+<section class="life-section" id="life">
+  <h2 class="section-title reveal">Your life, <em>one trip at a time</em></h2>
+  <div class="section-sub reveal reveal-delay-1">Every family vacation, every solo adventure, every cruise &mdash; gathered in one beautiful timeline. Go back years later and see how your world expanded.</div>
+
+  <!-- 2026 -->
+  <div class="life-timeline reveal reveal-delay-2">
+    <div class="life-year-label">2026</div>
+    <div class="life-cards-row" data-drag-scroll>
+      <div class="life-card">
+        <div class="life-card-bg life-bg-tokyo"></div>
+        <div class="life-card-badges">
+          <span class="life-card-type">&#x2708;&#xFE0F; Flight + Hotel</span>
+          <span class="life-card-cost">$4,280</span>
+        </div>
+        <div class="life-card-content">
+          <div class="life-card-destination">Tokyo &amp; Kyoto</div>
+          <div class="life-card-route">JFK &rarr; NRT &rarr; KIX &rarr; JFK</div>
+          <div class="life-card-meta">
+            <span>&#x1F4C5; Mar 8 – 22</span>
+            <span>&#x2708;&#xFE0F; 3 flights</span>
+            <span>&#x1F3D9; 6 cities</span>
+          </div>
+        </div>
+      </div>
+      <div class="life-card">
+        <div class="life-card-bg life-bg-cruise"></div>
+        <div class="life-card-badges">
+          <span class="life-card-type">&#x1F6A2; Cruise</span>
+          <span class="life-card-cost">$6,200</span>
+        </div>
+        <div class="life-card-content">
+          <div class="life-card-destination">Mediterranean Cruise</div>
+          <div class="life-card-route">Barcelona &rarr; Rome &rarr; Santorini &rarr; Dubrovnik</div>
+          <div class="life-card-meta">
+            <span>&#x1F4C5; Jun 1 – 14</span>
+            <span>&#x1F6A2; 7 ports</span>
+            <span>&#x1F468;&#x200D;&#x1F469;&#x200D;&#x1F467;&#x200D;&#x1F466; Family</span>
+          </div>
+        </div>
+      </div>
+      <div class="life-card">
+        <div class="life-card-bg life-bg-iceland"></div>
+        <div class="life-card-badges">
+          <span class="life-card-type">&#x1F697; Road Trip</span>
+          <span class="life-card-cost">$2,900</span>
+        </div>
+        <div class="life-card-content">
+          <div class="life-card-destination">Iceland Ring Road</div>
+          <div class="life-card-route">KEF &rarr; Akureyri &rarr; Vik &rarr; KEF</div>
+          <div class="life-card-meta">
+            <span>&#x1F4C5; Aug 10 – 20</span>
+            <span>&#x1F697; 1,800 km</span>
+            <span>&#x1F4F7; 342 photos</span>
+          </div>
+        </div>
+      </div>
+      <div class="life-card">
+        <div class="life-card-bg life-bg-dubai"></div>
+        <div class="life-card-badges">
+          <span class="life-card-type">&#x2708;&#xFE0F; Flight + Hotel</span>
+          <span class="life-card-cost">$3,400</span>
+        </div>
+        <div class="life-card-content">
+          <div class="life-card-destination">Dubai &amp; Abu Dhabi</div>
+          <div class="life-card-route">LHR &rarr; DXB &rarr; AUH &rarr; LHR</div>
+          <div class="life-card-meta">
+            <span>&#x1F4C5; Nov 15 – 23</span>
+            <span>&#x2708;&#xFE0F; 2 flights</span>
+            <span>&#x1F3E8; 2 hotels</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2025 -->
+  <div class="life-timeline reveal">
+    <div class="life-year-label">2025</div>
+    <div class="life-cards-row" data-drag-scroll>
+      <div class="life-card">
+        <div class="life-card-bg life-bg-paris"></div>
+        <div class="life-card-badges">
+          <span class="life-card-type">&#x2708;&#xFE0F; Flight + Hotel</span>
+          <span class="life-card-cost">$3,100</span>
+        </div>
+        <div class="life-card-content">
+          <div class="life-card-destination">Paris</div>
+          <div class="life-card-route">JFK &rarr; CDG &rarr; JFK</div>
+          <div class="life-card-meta">
+            <span>&#x1F4C5; Feb 14 – 21</span>
+            <span>&#x2708;&#xFE0F; 2 flights</span>
+            <span>&#x2764;&#xFE0F; Anniversary</span>
+          </div>
+        </div>
+      </div>
+      <div class="life-card">
+        <div class="life-card-bg life-bg-bali"></div>
+        <div class="life-card-badges">
+          <span class="life-card-type">&#x2708;&#xFE0F; Flight + Villa</span>
+          <span class="life-card-cost">$5,800</span>
+        </div>
+        <div class="life-card-content">
+          <div class="life-card-destination">Bali &amp; Lombok</div>
+          <div class="life-card-route">SIN &rarr; DPS &rarr; LOP &rarr; SIN</div>
+          <div class="life-card-meta">
+            <span>&#x1F4C5; Jul 5 – 19</span>
+            <span>&#x1F3D6; 3 beaches</span>
+            <span>&#x1F468;&#x200D;&#x1F469;&#x200D;&#x1F467;&#x200D;&#x1F466; Family</span>
+          </div>
+        </div>
+      </div>
+      <div class="life-card">
+        <div class="life-card-bg life-bg-nyc"></div>
+        <div class="life-card-badges">
+          <span class="life-card-type">&#x1F686; Train</span>
+          <span class="life-card-cost">$1,200</span>
+        </div>
+        <div class="life-card-content">
+          <div class="life-card-destination">New York Weekend</div>
+          <div class="life-card-route">BOS &rarr; NYC &rarr; BOS</div>
+          <div class="life-card-meta">
+            <span>&#x1F4C5; Oct 3 – 5</span>
+            <span>&#x1F37D; 8 restaurants</span>
+            <span>&#x1F3AD; 2 shows</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2024 -->
+  <div class="life-timeline reveal">
+    <div class="life-year-label">2024</div>
+    <div class="life-cards-row" data-drag-scroll>
+      <div class="life-card">
+        <div class="life-card-bg life-bg-rome"></div>
+        <div class="life-card-badges">
+          <span class="life-card-type">&#x2708;&#xFE0F; Flight + Hotel</span>
+          <span class="life-card-cost">$4,500</span>
+        </div>
+        <div class="life-card-content">
+          <div class="life-card-destination">Rome &amp; Amalfi Coast</div>
+          <div class="life-card-route">JFK &rarr; FCO &rarr; NAP &rarr; JFK</div>
+          <div class="life-card-meta">
+            <span>&#x1F4C5; Apr 10 – 24</span>
+            <span>&#x2708;&#xFE0F; 3 flights</span>
+            <span>&#x1F37D; 22 meals logged</span>
+          </div>
+        </div>
+      </div>
+      <div class="life-card">
+        <div class="life-card-bg life-bg-maldives"></div>
+        <div class="life-card-badges">
+          <span class="life-card-type">&#x2708;&#xFE0F; Resort</span>
+          <span class="life-card-cost">$7,200</span>
+        </div>
+        <div class="life-card-content">
+          <div class="life-card-destination">Maldives</div>
+          <div class="life-card-route">DXB &rarr; MLE &rarr; DXB</div>
+          <div class="life-card-meta">
+            <span>&#x1F4C5; Dec 20 – 28</span>
+            <span>&#x1F3D6; Overwater villa</span>
+            <span>&#x1F4F7; 580 photos</span>
+          </div>
+        </div>
+      </div>
+      <div class="life-card">
+        <div class="life-card-bg life-bg-london"></div>
+        <div class="life-card-badges">
+          <span class="life-card-type">&#x2708;&#xFE0F; Business</span>
+          <span class="life-card-cost">$1,800</span>
+        </div>
+        <div class="life-card-content">
+          <div class="life-card-destination">London</div>
+          <div class="life-card-route">JFK &rarr; LHR &rarr; JFK</div>
+          <div class="life-card-meta">
+            <span>&#x1F4C5; Sep 5 – 9</span>
+            <span>&#x1F4BC; Work trip</span>
+            <span>&#x1F3D9; +1 day exploring</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Emotional tagline -->
+  <div class="life-tagline reveal">
+    <strong>Track it. Share it. Remember it.</strong><br>
+    Upload your favorite moments. Go back in years and relive each trip. Watch your family grow, your world expand, your story unfold.
+  </div>
+
+  <!-- Memory avatars -->
+  <div class="life-memories reveal reveal-delay-1">
+    <div class="life-memory">&#x1F30D;</div>
+    <div class="life-memory">&#x1F4F7;</div>
+    <div class="life-memory">&#x2708;&#xFE0F;</div>
+    <div class="life-memory">&#x1F468;&#x200D;&#x1F469;&#x200D;&#x1F467;</div>
+    <div class="life-memory">&#x1F3D6;</div>
+    <div class="life-memory">&#x1F697;</div>
+    <div class="life-memory">&#x1F6A2;</div>
   </div>
 </section>
 
@@ -2134,6 +2470,15 @@ s { text-decoration: line-through; opacity: 0.4; }
       });
     }
   }, { passive: true });
+
+  // ─── LIFE CARDS DRAG SCROLL ─────────────────────
+  document.querySelectorAll('[data-drag-scroll]').forEach(row => {
+    let isDown = false, startX, sl;
+    row.addEventListener('mousedown', e => { isDown = true; startX = e.pageX - row.offsetLeft; sl = row.scrollLeft; row.style.cursor = 'grabbing'; });
+    row.addEventListener('mouseleave', () => { isDown = false; row.style.cursor = 'grab'; });
+    row.addEventListener('mouseup', () => { isDown = false; row.style.cursor = 'grab'; });
+    row.addEventListener('mousemove', e => { if (!isDown) return; e.preventDefault(); row.scrollLeft = sl - (e.pageX - row.offsetLeft - startX) * 1.5; });
+  });
 
   // ─── EARLY ACCESS FORM ──────────────────────────
   const eaOverlay = document.getElementById('eaOverlay');
