@@ -38,45 +38,30 @@
   --tod-glass-border: rgba(201,169,110,0.15);
 }
 
+/* TOD modes — gold accent ALWAYS stays, only atmosphere shifts */
 body.mode-morning {
   --tod-bg: #0e0b06;
-  --tod-accent: #E8A840;
-  --tod-accent-light: #F0C060;
   --tod-orb1: rgba(255,180,60,0.22);
   --tod-orb2: rgba(255,140,40,0.12);
   --tod-orb3: rgba(200,160,60,0.10);
-  --tod-grid: rgba(232,168,64,0.04);
-  --tod-glass-border: rgba(232,168,64,0.15);
 }
 body.mode-noon {
   --tod-bg: #08080e;
-  --tod-accent: #7AB8FF;
-  --tod-accent-light: #A0D0FF;
-  --tod-orb1: rgba(100,180,255,0.20);
-  --tod-orb2: rgba(80,140,255,0.14);
+  --tod-orb1: rgba(100,180,255,0.18);
+  --tod-orb2: rgba(80,140,255,0.12);
   --tod-orb3: rgba(28,200,160,0.10);
-  --tod-grid: rgba(122,184,255,0.04);
-  --tod-glass-border: rgba(122,184,255,0.15);
 }
 body.mode-dusk {
   --tod-bg: #0c0608;
-  --tod-accent: #FF8C6E;
-  --tod-accent-light: #FFAB96;
-  --tod-orb1: rgba(255,120,80,0.22);
+  --tod-orb1: rgba(255,120,80,0.20);
   --tod-orb2: rgba(255,100,100,0.12);
   --tod-orb3: rgba(200,80,120,0.10);
-  --tod-grid: rgba(255,140,110,0.04);
-  --tod-glass-border: rgba(255,140,110,0.15);
 }
 body.mode-night {
   --tod-bg: #050508;
-  --tod-accent: #C9A96E;
-  --tod-accent-light: #E8C98A;
   --tod-orb1: rgba(201,169,110,0.18);
   --tod-orb2: rgba(74,158,255,0.12);
   --tod-orb3: rgba(28,200,160,0.10);
-  --tod-grid: rgba(201,169,110,0.04);
-  --tod-glass-border: rgba(201,169,110,0.15);
 }
 
 /* ═══════════════════════════════════════════════════
@@ -264,162 +249,27 @@ s { text-decoration: line-through; opacity: 0.4; }
 }
 
 /* ═══════════════════════════════════════════════════
-   TRUE 3D iPHONE — visible chassis depth
+   3D iPHONE — Sketchfab embed
    ═══════════════════════════════════════════════════ */
-
-/* 3-phone hero scene */
 .phone-scene {
-  perspective: 1800px; position: relative; z-index: 2;
-  margin-top: 60px; width: 100%;
-  display: flex; justify-content: center; align-items: flex-end;
-  gap: 0; padding: 0 24px;
+  position: relative; z-index: 2;
+  margin-top: 40px; width: 100%; max-width: 1000px; margin-left: auto; margin-right: auto;
+  height: 620px;
   opacity: 0; animation: fadeUp 1s 1s forwards;
 }
-
-/* Individual phone wrapper */
-.phone-3d {
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 0.5s cubic-bezier(0.22,1,0.36,1);
+.sketchfab-wrap {
+  width: 100%; height: 100%; position: relative;
+  border-radius: 20px; overflow: hidden;
 }
-
-/* Center phone — largest, facing forward */
-.phone-center {
-  width: 280px; height: 570px; z-index: 3;
+.sketchfab-wrap iframe {
+  width: 100%; height: 100%; border: none; display: block;
 }
-.phone-center .iphone { width: 280px; height: 570px; }
-
-/* Side phones — angled, slightly smaller */
-.phone-left {
-  width: 240px; height: 490px; z-index: 2;
-  transform: rotateY(28deg) rotateX(2deg) translateX(30px) translateZ(-40px);
-  margin-right: -30px;
-}
-.phone-left .iphone { width: 240px; height: 490px; }
-
-.phone-right {
-  width: 240px; height: 490px; z-index: 2;
-  transform: rotateY(-28deg) rotateX(2deg) translateX(-30px) translateZ(-40px);
-  margin-left: -30px;
-}
-.phone-right .iphone { width: 240px; height: 490px; }
-
-/* The actual 3D iPhone — preserve-3d box */
-.iphone {
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 0.12s ease-out;
-}
-
-/* ── FRONT FACE ── the screen side */
-.iphone-front {
-  position: absolute; inset: 0;
-  border-radius: 44px;
-  background: #000;
-  border: 1px solid rgba(255,255,255,0.08);
-  overflow: hidden;
-  transform: translateZ(5px); /* half of phone thickness */
-  backface-visibility: hidden;
-}
-/* Bezel inner screen area */
-.iphone-bezel {
-  position: absolute; top: 4px; left: 4px; right: 4px; bottom: 4px;
-  border-radius: 40px; overflow: hidden;
-  background: #080a14;
-  display: flex; flex-direction: column;
-}
-/* Glass reflection on front */
-.iphone-front::after {
-  content: ''; position: absolute; inset: 0; border-radius: 44px;
-  background: linear-gradient(165deg, rgba(255,255,255,0.08) 0%, transparent 25%, transparent 60%, rgba(255,255,255,0.02) 100%);
-  pointer-events: none; z-index: 20;
-}
-
-/* ── BACK FACE ── */
-.iphone-back {
-  position: absolute; inset: 0;
-  border-radius: 44px;
-  background: linear-gradient(180deg, #2a2a30, #1a1a20);
-  transform: translateZ(-5px) rotateY(180deg);
-  backface-visibility: hidden;
-}
-
-/* ── SIDE EDGES — the visible 3D chassis ── */
-.iphone-edge-right {
-  position: absolute; top: 0; right: 0; width: 10px; height: 100%;
-  transform: rotateY(90deg) translateZ(5px);
-  transform-origin: right center;
-  background: linear-gradient(180deg, #58585e 0%, #3a3a40 10%, #48484e 25%, #2e2e34 50%, #44444a 75%, #3a3a40 90%, #58585e 100%);
-  border-radius: 0;
-}
-/* Titanium brushed texture on right edge */
-.iphone-edge-right::after {
-  content: ''; position: absolute; inset: 0;
-  background: repeating-linear-gradient(180deg, transparent, transparent 1px, rgba(255,255,255,0.03) 1px, rgba(255,255,255,0.03) 2px);
-}
-.iphone-edge-left {
-  position: absolute; top: 0; left: 0; width: 10px; height: 100%;
-  transform: rotateY(-90deg) translateZ(5px);
-  transform-origin: left center;
-  background: linear-gradient(180deg, #58585e 0%, #3a3a40 10%, #48484e 25%, #2e2e34 50%, #44444a 75%, #3a3a40 90%, #58585e 100%);
-}
-.iphone-edge-left::after {
-  content: ''; position: absolute; inset: 0;
-  background: repeating-linear-gradient(180deg, transparent, transparent 1px, rgba(255,255,255,0.03) 1px, rgba(255,255,255,0.03) 2px);
-}
-.iphone-edge-top {
-  position: absolute; top: 0; left: 0; width: 100%; height: 10px;
-  transform: rotateX(90deg) translateZ(5px);
-  transform-origin: top center;
-  background: linear-gradient(90deg, #4a4a50, #3a3a40, #4a4a50);
-}
-.iphone-edge-bottom {
-  position: absolute; bottom: 0; left: 0; width: 100%; height: 10px;
-  transform: rotateX(-90deg) translateZ(5px);
-  transform-origin: bottom center;
-  background: linear-gradient(90deg, #3a3a40, #2e2e34, #3a3a40);
-}
-
-/* Side buttons on edges */
-.iphone-btn {
-  position: absolute; z-index: 2;
-  background: linear-gradient(90deg, #5a5a60, #48484e, #5a5a60);
-  border-radius: 1px;
-}
-.iphone-btn-power { right: -1px; top: 26%; width: 2px; height: 9%; }
-.iphone-btn-vol1 { left: -1px; top: 22%; width: 2px; height: 6%; }
-.iphone-btn-vol2 { left: -1px; top: 30%; width: 2px; height: 6%; }
-.iphone-btn-action { left: -1px; top: 16%; width: 2px; height: 3.5%; }
-
-/* Dynamic Island */
-.di {
-  position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
-  width: 80px; height: 24px; border-radius: 16px;
-  background: #000; z-index: 15;
-}
-.di::after {
-  content: ''; position: absolute; top: 7px; right: 12px;
-  width: 7px; height: 7px; border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #1a1a2e, #080810);
-  box-shadow: inset 0 0 2px rgba(255,255,255,0.08);
-}
-/* Small phone dynamic island */
-.di-sm { width: 66px; height: 20px; border-radius: 14px; top: 8px; }
-.di-sm::after { top: 5px; right: 10px; width: 6px; height: 6px; }
-
-/* Massive shadows for depth */
-.phone-center .iphone {
-  filter: drop-shadow(0 40px 80px rgba(0,0,0,0.6)) drop-shadow(0 10px 20px rgba(0,0,0,0.4));
-}
-.phone-left .iphone, .phone-right .iphone {
-  filter: drop-shadow(0 30px 60px rgba(0,0,0,0.5)) drop-shadow(0 8px 16px rgba(0,0,0,0.3));
-}
-/* Gold ambient glow under center phone */
-.phone-center::after {
-  content: ''; position: absolute; bottom: -40px; left: 50%; transform: translateX(-50%);
-  width: 200px; height: 100px; border-radius: 50%;
-  background: radial-gradient(ellipse, rgba(201,169,110,0.15), transparent 70%);
-  filter: blur(30px); pointer-events: none; z-index: -1;
+/* Gold ambient glow under phone scene */
+.phone-scene::after {
+  content: ''; position: absolute; bottom: -60px; left: 50%; transform: translateX(-50%);
+  width: 500px; height: 150px; border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(201,169,110,0.12), transparent 70%);
+  filter: blur(40px); pointer-events: none; z-index: -1;
 }
 
 /* Phone status bar */
@@ -1036,10 +886,7 @@ s { text-decoration: line-through; opacity: 0.4; }
   .orbit { display: none; }
   .floating-passport { display: none; }
   .flag-carousel { display: none; }
-  .phone-left, .phone-right { display: none; }
-  .phone-scene { perspective: none; }
-  .phone-center { width: 240px; height: 490px; }
-  .phone-center .iphone { width: 240px; height: 490px; }
+  .phone-scene { height: 400px; }
   .problem-grid { grid-template-columns: 1fr; }
   .how-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
   .how-line { display: none; }
@@ -1162,149 +1009,16 @@ s { text-decoration: line-through; opacity: 0.4; }
   </div>
 
   <!-- 3D Phone -->
-  <!-- 3-PHONE HERO ARRANGEMENT -->
+  <!-- REAL 3D iPHONE — Sketchfab embed -->
   <div class="phone-scene" id="heroPhones">
-
-    <!-- LEFT PHONE — World Map -->
-    <div class="phone-3d phone-left">
-      <div class="iphone">
-        <div class="iphone-front">
-          <div class="iphone-bezel">
-            <div class="di di-sm"></div>
-            <div style="padding:32px 8px 0;font-size:8px;font-weight:700;letter-spacing:2px;color:var(--gold)">WORLD MAP</div>
-            <div style="flex:1;margin:6px;border-radius:12px;background:linear-gradient(180deg,#0c1425,#0a1020);position:relative;overflow:hidden">
-              <div class="phone-map-grid"></div>
-              <div class="phone-map-land land-eu" style="width:30px;height:18px;top:20px;left:88px;opacity:0.7"></div>
-              <div class="phone-map-land land-na" style="width:45px;height:30px;top:22px;left:15px"></div>
-              <div class="phone-map-land land-af" style="width:25px;height:32px;top:38px;left:85px"></div>
-              <div class="phone-map-land land-as" style="width:48px;height:28px;top:18px;left:115px"></div>
-            </div>
-            <div style="padding:6px 10px;display:flex;gap:4px">
-              <div style="flex:1;background:rgba(255,255,255,0.04);border-radius:8px;padding:5px;text-align:center">
-                <div style="font-size:13px;font-weight:800;color:var(--teal)">47</div>
-                <div style="font-size:6px;color:var(--muted)">Countries</div>
-              </div>
-              <div style="flex:1;background:rgba(255,255,255,0.04);border-radius:8px;padding:5px;text-align:center">
-                <div style="font-size:13px;font-weight:800;color:var(--pink)">138</div>
-                <div style="font-size:6px;color:var(--muted)">Cities</div>
-              </div>
-              <div style="flex:1;background:rgba(255,255,255,0.04);border-radius:8px;padding:5px;text-align:center">
-                <div style="font-size:13px;font-weight:800;color:var(--gold)">24%</div>
-                <div style="font-size:6px;color:var(--muted)">Coverage</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="iphone-edge-right"></div>
-        <div class="iphone-edge-left"></div>
-        <div class="iphone-edge-top"></div>
-        <div class="iphone-edge-bottom"></div>
-        <div class="iphone-btn iphone-btn-power"></div>
-        <div class="iphone-btn iphone-btn-vol1"></div>
-        <div class="iphone-btn iphone-btn-vol2"></div>
-      </div>
+    <div class="sketchfab-wrap">
+      <iframe title="iPhone 16 Pro Max 3D"
+        src="https://sketchfab.com/models/41a071ae12794b668502f58d1e0fd1a3/embed?autospin=0.3&autostart=1&transparent=1&ui_animations=0&ui_infos=0&ui_stop=0&ui_inspector=0&ui_watermark_link=0&ui_watermark=0&ui_ar=0&ui_help=0&ui_settings=0&ui_vr=0&ui_fullscreen=0&ui_annotations=0&ui_hint=0&ui_controls=0&camera=0&preload=1&dnt=1"
+        allow="autoplay; fullscreen; xr-spatial-tracking"
+        allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true"
+        style="pointer-events:auto">
+      </iframe>
     </div>
-
-    <!-- CENTER PHONE — Stats Overview (main) -->
-    <div class="phone-3d phone-center" id="heroPhone">
-      <div class="iphone">
-        <div class="iphone-front">
-          <div class="iphone-bezel">
-            <div class="di"></div>
-            <div class="phone-status" style="padding-top:38px">
-              <span>9:41</span>
-              <span class="phone-status-right">&bull;&bull;&bull; &#9632;&#9632;</span>
-            </div>
-            <div class="phone-map">
-              <div class="phone-map-grid"></div>
-              <div class="phone-map-land land-na"></div>
-              <div class="phone-map-land land-sa"></div>
-              <div class="phone-map-land land-eu"></div>
-              <div class="phone-map-land land-af"></div>
-              <div class="phone-map-land land-as"></div>
-              <div class="phone-map-land land-au"></div>
-              <div class="phone-arc">
-                <svg viewBox="0 0 160 60"><path class="phone-arc-path" d="M10,50 Q80,-10 150,50"/></svg>
-                <div class="phone-arc-plane">&#x2708;&#xFE0F;</div>
-              </div>
-            </div>
-            <div class="phone-handle"></div>
-            <div class="phone-label">OVERVIEW</div>
-            <div class="phone-stats">
-              <div class="phone-stats-spine">
-                <div class="spine-dot" style="background:var(--gold)"></div>
-                <div class="spine-line" style="--from-color:var(--gold);--to-color:var(--sky)"></div>
-                <div class="spine-dot" style="background:var(--sky)"></div>
-                <div class="spine-line" style="--from-color:var(--sky);--to-color:var(--teal)"></div>
-                <div class="spine-dot" style="background:var(--teal)"></div>
-                <div class="spine-line" style="--from-color:var(--teal);--to-color:var(--pink)"></div>
-                <div class="spine-dot" style="background:var(--pink)"></div>
-                <div class="spine-line" style="--from-color:var(--pink);--to-color:var(--purple)"></div>
-                <div class="spine-dot" style="background:var(--purple)"></div>
-                <div class="spine-line" style="--from-color:var(--purple);--to-color:var(--coral)"></div>
-                <div class="spine-dot" style="background:var(--coral)"></div>
-                <div class="spine-line" style="--from-color:var(--coral);--to-color:var(--gold)"></div>
-                <div class="spine-dot" style="background:var(--gold)"></div>
-                <div class="spine-line" style="--from-color:var(--gold);--to-color:var(--teal)"></div>
-                <div class="spine-dot" style="background:var(--teal)"></div>
-              </div>
-              <div class="phone-stats-list">
-                <div class="phone-stat-row"><span class="phone-stat-label">Trips</span><span class="phone-stat-value" style="color:var(--gold)">24</span></div>
-                <div class="phone-stat-row"><span class="phone-stat-label">Flights</span><span class="phone-stat-value" style="color:var(--sky)">82</span></div>
-                <div class="phone-stat-row"><span class="phone-stat-label">Countries</span><span class="phone-stat-value" style="color:var(--teal)">47</span></div>
-                <div class="phone-stat-row"><span class="phone-stat-label">Cities</span><span class="phone-stat-value" style="color:var(--pink)">138</span></div>
-                <div class="phone-stat-row"><span class="phone-stat-label">km flown</span><span class="phone-stat-value" style="color:var(--purple)">312k</span></div>
-                <div class="phone-stat-row"><span class="phone-stat-label">Hours in air</span><span class="phone-stat-value" style="color:var(--coral)">614h</span></div>
-                <div class="phone-stat-row"><span class="phone-stat-label">Nights away</span><span class="phone-stat-value" style="color:var(--gold)">198</span></div>
-                <div class="phone-stat-row"><span class="phone-stat-label">Total spent</span><span class="phone-stat-value" style="color:var(--teal)">$42k</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="iphone-edge-right"></div>
-        <div class="iphone-edge-left"></div>
-        <div class="iphone-edge-top"></div>
-        <div class="iphone-edge-bottom"></div>
-        <div class="iphone-btn iphone-btn-power"></div>
-        <div class="iphone-btn iphone-btn-vol1"></div>
-        <div class="iphone-btn iphone-btn-vol2"></div>
-        <div class="iphone-btn iphone-btn-action"></div>
-      </div>
-    </div>
-
-    <!-- RIGHT PHONE — Flight Detail -->
-    <div class="phone-3d phone-right">
-      <div class="iphone">
-        <div class="iphone-front">
-          <div class="iphone-bezel">
-            <div class="di di-sm"></div>
-            <div style="padding:32px 8px 0;font-size:8px;font-weight:700;letter-spacing:2px;color:var(--sky)">FLIGHT DETAIL</div>
-            <div style="margin:6px 8px;background:rgba(255,255,255,0.04);border-radius:10px;padding:10px">
-              <div style="font-size:14px;font-weight:800;color:var(--sky);margin-bottom:4px">TK 2</div>
-              <div style="font-size:9px;color:var(--muted);margin-bottom:2px">JFK &rarr; IST</div>
-              <div style="font-size:9px;color:var(--muted);margin-bottom:2px">7:50 PM &rarr; 1:00 PM +1</div>
-              <div style="font-size:9px;color:var(--muted)">$1,840 &middot; Economy Plus</div>
-              <div style="margin-top:6px;height:4px;border-radius:2px;background:rgba(255,255,255,0.06);overflow:hidden">
-                <div style="width:72%;height:100%;background:var(--teal);border-radius:2px"></div>
-              </div>
-              <div style="font-size:7px;color:var(--muted);margin-top:2px">72% on-time rate</div>
-            </div>
-            <div style="margin:4px 8px;background:rgba(255,255,255,0.04);border-radius:10px;padding:8px">
-              <div style="font-size:8px;color:var(--muted);margin-bottom:4px">WEATHER AT ARRIVAL</div>
-              <div style="font-size:18px">&#x1F324;&#xFE0F; <span style="font-size:13px;font-weight:700">24&deg;C</span></div>
-            </div>
-          </div>
-        </div>
-        <div class="iphone-edge-right"></div>
-        <div class="iphone-edge-left"></div>
-        <div class="iphone-edge-top"></div>
-        <div class="iphone-edge-bottom"></div>
-        <div class="iphone-btn iphone-btn-power"></div>
-        <div class="iphone-btn iphone-btn-vol1"></div>
-        <div class="iphone-btn iphone-btn-vol2"></div>
-      </div>
-    </div>
-
   </div>
 </section>
 
@@ -1869,46 +1583,17 @@ s { text-decoration: line-through; opacity: 0.4; }
     nav.classList.toggle('scrolled', window.scrollY > 40);
   }, { passive: true });
 
-  // ─── 3D HERO PHONES — mouse rotate all 3 ─────────
+  // ─── SCROLL ZOOM — hero 3D scene scale on scroll ──
   const heroPhones = document.getElementById('heroPhones');
-  const allHeroIphones = heroPhones ? heroPhones.querySelectorAll('.iphone') : [];
-  const phoneLeft = heroPhones ? heroPhones.querySelector('.phone-left') : null;
-  const phoneCenter = heroPhones ? heroPhones.querySelector('.phone-center') : null;
-  const phoneRight = heroPhones ? heroPhones.querySelector('.phone-right') : null;
-
-  document.addEventListener('mousemove', e => {
-    if (!heroPhones || window.innerWidth < 900) return;
-    const cx = window.innerWidth / 2;
-    const cy = window.innerHeight / 2;
-    const dx = (e.clientX - cx) / (window.innerWidth / 2);
-    const dy = (e.clientY - cy) / (window.innerHeight / 2);
-    // Center phone subtle tilt
-    if (phoneCenter) {
-      const ci = phoneCenter.querySelector('.iphone');
-      if (ci) ci.style.transform = 'rotateX(' + (-dy * 8) + 'deg) rotateY(' + (dx * 12) + 'deg)';
-    }
-    // Side phones adjust slightly
-    if (phoneLeft) {
-      phoneLeft.style.transform = 'rotateY(' + (28 + dx * 6) + 'deg) rotateX(' + (2 - dy * 4) + 'deg) translateX(30px) translateZ(-40px)';
-    }
-    if (phoneRight) {
-      phoneRight.style.transform = 'rotateY(' + (-28 + dx * 6) + 'deg) rotateX(' + (2 - dy * 4) + 'deg) translateX(-30px) translateZ(-40px)';
-    }
-  });
-
-  // ─── SCROLL ZOOM — hero phones scale up on scroll ──
-  const phoneScene = heroPhones;
-  let lastScrollY = 0;
   function updatePhoneScroll() {
     const sy = window.scrollY;
-    if (phoneScene && sy < window.innerHeight * 1.2) {
+    if (heroPhones && sy < window.innerHeight * 1.2) {
       const progress = Math.min(sy / (window.innerHeight * 0.5), 1);
-      const scale = 1 + progress * 0.12;
-      const translateY = -sy * 0.06;
-      phoneScene.style.transform = 'scale(' + scale + ') translateY(' + translateY + 'px)';
-      phoneScene.style.opacity = Math.max(1 - progress * 0.5, 0.5);
+      const scale = 1 + progress * 0.08;
+      const translateY = -sy * 0.05;
+      heroPhones.style.transform = 'scale(' + scale + ') translateY(' + translateY + 'px)';
+      heroPhones.style.opacity = Math.max(1 - progress * 0.4, 0.6);
     }
-    lastScrollY = sy;
   }
   window.addEventListener('scroll', updatePhoneScroll, { passive: true });
 
