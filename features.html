@@ -1115,15 +1115,15 @@ s { text-decoration: line-through; opacity: 0.4; }
   padding: 4px 18px 8px; flex-shrink: 0;
 }
 
-/* Liquid glass tab bar */
+/* Liquid glass tab bar — in-flow, not absolute, respects screen radius */
 .glass-tabbar {
   display: flex; justify-content: space-around; align-items: center;
-  padding: 4px 6px 6px; flex-shrink: 0;
-  position: absolute; bottom: 5px; left: 8px; right: 8px; z-index: 10;
-  border-radius: 18px;
-  background: rgba(245,245,247,0.72);
-  backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
-  box-shadow: 0 1px 8px rgba(0,0,0,0.06), inset 0 0.5px 0 rgba(255,255,255,0.7);
+  padding: 4px 8px 12px; flex-shrink: 0;
+  margin: 0 8px 4px; z-index: 10;
+  border-radius: 20px;
+  background: rgba(240,240,245,0.85);
+  backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
+  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
 }
 .glass-tab {
   display: flex; flex-direction: column; align-items: center; gap: 0px;
@@ -1258,7 +1258,6 @@ s { text-decoration: line-through; opacity: 0.4; }
 /* Screen scroll area */
 .mock-scroll {
   flex: 1; overflow: hidden; display: flex; flex-direction: column;
-  padding-bottom: 50px;
 }
 /* Mock toggle switch */
 .mock-toggle { width: 22px; height: 13px; border-radius: 7px; position: relative; flex-shrink: 0; }
