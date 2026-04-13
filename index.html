@@ -254,51 +254,55 @@ s { text-decoration: line-through; opacity: 0.4; }
 .tod-option-swatch { width: 10px; height: 10px; border-radius: 50%; }
 
 /* ═══════════════════════════════════════════════════
-   HERO SECTION
+   HERO SECTION — full-bleed photo
    ═══════════════════════════════════════════════════ */
 .hero {
   position: relative; min-height: 100vh; display: flex; flex-direction: column;
-  align-items: center; justify-content: flex-start; padding: 140px 24px 80px;
+  align-items: center; justify-content: center; padding: 120px 24px 80px;
   overflow: hidden;
 }
-
-/* Hero grid */
-.hero-grid {
+/* Full-bleed hero photo */
+.hero-photo {
   position: absolute; inset: 0;
-  background-image:
-    linear-gradient(var(--tod-grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--tod-grid) 1px, transparent 1px);
-  background-size: 60px 60px;
-  transition: background-image 1.4s ease;
-  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 20%, transparent 80%);
-  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 20%, transparent 80%);
+  background: url('https://images.unsplash.com/photo-1488085061387-422e29b40080?w=1800&q=85') center/cover;
+  z-index: 0;
 }
-
-/* Hero orbs */
-.hero-orb {
-  position: absolute; border-radius: 50%; filter: blur(120px); pointer-events: none;
-  transition: background 1.4s ease;
+/* Dark cinematic overlay */
+.hero-photo::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg,
+    rgba(5,5,8,0.5) 0%,
+    rgba(5,5,8,0.35) 30%,
+    rgba(5,5,8,0.4) 60%,
+    rgba(5,5,8,0.85) 85%,
+    rgba(5,5,8,1) 100%
+  );
 }
-.hero-orb-1 { width: 600px; height: 600px; top: -200px; left: 50%; transform: translateX(-50%); background: var(--tod-orb1); }
-.hero-orb-2 { width: 500px; height: 500px; bottom: -100px; left: -100px; background: var(--tod-orb2); }
-.hero-orb-3 { width: 400px; height: 400px; bottom: -50px; right: -50px; background: var(--tod-orb3); }
+/* Subtle gold tint on the photo */
+.hero-photo::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 40%, rgba(201,169,110,0.08), transparent 70%);
+  z-index: 1;
+}
 
 /* Hero text */
-.hero-content { text-align: center; position: relative; z-index: 2; max-width: 720px; }
+.hero-content { text-align: center; position: relative; z-index: 2; max-width: 780px; }
 .hero-eyebrow {
   font-size: 12px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase;
-  color: var(--tod-accent); margin-bottom: 28px;
+  color: var(--gold); margin-bottom: 28px;
   opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
 }
 .hero-h1 {
-  font-size: clamp(42px, 7vw, 80px); font-weight: 700; line-height: 1.08;
-  letter-spacing: -1.5px; margin-bottom: 24px;
+  font-size: clamp(44px, 7.5vw, 86px); font-weight: 700; line-height: 1.06;
+  letter-spacing: -2px; margin-bottom: 24px;
   opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
+  text-shadow: 0 4px 30px rgba(0,0,0,0.4);
 }
 .hero-p {
-  font-size: 17px; line-height: 1.7; color: var(--muted); max-width: 520px;
+  font-size: 18px; line-height: 1.7; color: rgba(255,255,255,0.8); max-width: 540px;
   margin: 0 auto 40px; font-weight: 400;
   opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.3);
 }
 .hero-buttons {
   display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
@@ -308,6 +312,24 @@ s { text-decoration: line-through; opacity: 0.4; }
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* Scroll indicator */
+.hero-scroll-hint {
+  position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+  z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 8px;
+  opacity: 0; animation: fadeUp 1s 1.2s forwards;
+}
+.hero-scroll-hint span {
+  font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 2px; text-transform: uppercase;
+}
+.hero-scroll-line {
+  width: 1px; height: 40px; background: linear-gradient(180deg, rgba(201,169,110,0.5), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(0.7); }
+  50% { opacity: 1; transform: scaleY(1); }
 }
 
 /* ═══════════════════════════════════════════════════
@@ -641,9 +663,9 @@ s { text-decoration: line-through; opacity: 0.4; }
 .life-section .section-title,
 .life-section .section-sub { max-width: 700px; margin-left: auto; margin-right: auto; padding: 0 24px; }
 
-/* Stacked card grid */
+/* Stacked card grid — full width */
 .life-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
+  display: flex; flex-direction: column;
   gap: 20px; max-width: 1100px; margin: 60px auto 0; padding: 0 24px;
 }
 
@@ -678,8 +700,8 @@ s { text-decoration: line-through; opacity: 0.4; }
   z-index: 1;
 }
 
-/* Featured card — spans full width, taller */
-.lc-featured { grid-column: 1 / -1; min-height: 500px; }
+/* Featured card — taller */
+.lc-featured { min-height: 520px; }
 
 /* Content overlay */
 .lc-body {
@@ -1453,179 +1475,24 @@ s { text-decoration: line-through; opacity: 0.4; }
      HERO
      ═══════════════════════════════════════════════════ -->
 <section class="hero" id="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-orb hero-orb-1"></div>
-  <div class="hero-orb hero-orb-2"></div>
-  <div class="hero-orb hero-orb-3"></div>
-
-  <!-- Floating passport -->
-  <div class="floating-passport">
-    <div class="passport-stamp">&#x2713;</div>
-    PASSPORT<br>
-    <span style="font-size:7px;color:var(--muted);font-weight:400;margin-top:4px;display:block">47 stamps</span>
-  </div>
-
-  <!-- Flag carousel -->
-  <div class="flag-carousel">
-    <div class="flag-carousel-ring" id="flagRing"></div>
-  </div>
+  <div class="hero-photo"></div>
 
   <div class="hero-content">
-    <div class="hero-eyebrow">iOS 26 &middot; PREMIUM TRAVEL TRACKER</div>
-    <h1 class="hero-h1">Every journey,<br><em>mapped forever</em></h1>
-    <p class="hero-p">Voyage is a premium travel companion for iOS 26. Log flights, hotels, daily diaries, expenses, and photos &mdash; and watch your 3D world map light up.</p>
+    <div class="hero-eyebrow">iOS 26 &middot; PREMIUM TRAVEL COMPANION</div>
+    <h1 class="hero-h1">Plan less.<br><em>Travel more.</em></h1>
+    <p class="hero-p">Flights, hotels, cruises, daily diaries, expenses &mdash; all in one beautiful app. Stop juggling ten apps. Start living your trip.</p>
     <div class="hero-buttons">
       <button class="btn-gold" onclick="document.getElementById('eaOverlay').classList.add('open')">Get Early Access</button>
-      <a href="#features" class="btn-ghost">See how it works &darr;</a>
+      <a href="#life" class="btn-ghost">See your trips &darr;</a>
     </div>
   </div>
 
-  <!-- 3D Phone -->
-  <!-- 3-PHONE HERO — photorealistic CSS frames + app UI -->
-  <div class="phone-scene" id="heroPhones">
-
-    <!-- LEFT — World Map screen -->
-    <div class="hero-device-wrap hero-left">
-      <div class="device">
-        <div class="device-edge-r"></div>
-        <div class="device-edge-l"></div>
-        <div class="device-btn device-btn-power"></div>
-        <div class="device-btn device-btn-vol1"></div>
-        <div class="device-btn device-btn-vol2"></div>
-        <div class="device-inner">
-          <div class="device-screen">
-            <div class="device-di device-di-sm"></div>
-            <div style="padding:38px 10px 0;font-size:8px;font-weight:700;letter-spacing:2px;color:var(--gold)">WORLD MAP</div>
-            <div style="flex:1;margin:6px 8px;border-radius:14px;background:linear-gradient(180deg,#0c1425,#0a1020);position:relative;overflow:hidden">
-              <div class="phone-map-grid"></div>
-              <div style="position:absolute;width:45px;height:30px;top:22px;left:15px;background:#1a2535;border-radius:3px"></div>
-              <div style="position:absolute;width:32px;height:20px;top:18px;left:90px;background:var(--gold);opacity:0.6;border-radius:4px"></div>
-              <div style="position:absolute;width:25px;height:32px;top:36px;left:86px;background:#1a2535;border-radius:3px"></div>
-              <div style="position:absolute;width:50px;height:28px;top:16px;left:118px;background:#1a2535;border-radius:3px"></div>
-              <div style="position:absolute;width:30px;height:20px;top:60px;left:140px;background:#1a2535;border-radius:3px"></div>
-            </div>
-            <div style="padding:4px 10px 12px;display:flex;gap:5px">
-              <div style="flex:1;background:rgba(255,255,255,0.04);border-radius:10px;padding:8px 4px;text-align:center">
-                <div style="font-size:16px;font-weight:800;color:var(--teal)">47</div>
-                <div style="font-size:7px;color:var(--muted);margin-top:2px">Countries</div>
-              </div>
-              <div style="flex:1;background:rgba(255,255,255,0.04);border-radius:10px;padding:8px 4px;text-align:center">
-                <div style="font-size:16px;font-weight:800;color:var(--pink)">138</div>
-                <div style="font-size:7px;color:var(--muted);margin-top:2px">Cities</div>
-              </div>
-              <div style="flex:1;background:rgba(255,255,255,0.04);border-radius:10px;padding:8px 4px;text-align:center">
-                <div style="font-size:16px;font-weight:800;color:var(--gold)">24%</div>
-                <div style="font-size:7px;color:var(--muted);margin-top:2px">Coverage</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- CENTER — Stats Overview (main) -->
-    <div class="hero-device-wrap hero-center">
-      <div class="device">
-        <div class="device-edge-r"></div>
-        <div class="device-edge-l"></div>
-        <div class="device-btn device-btn-power"></div>
-        <div class="device-btn device-btn-vol1"></div>
-        <div class="device-btn device-btn-vol2"></div>
-        <div class="device-btn device-btn-action"></div>
-        <div class="device-inner">
-          <div class="device-screen">
-            <div class="device-di"></div>
-            <div class="phone-status" style="padding-top:44px">
-              <span>9:41</span>
-              <span class="phone-status-right">&bull;&bull;&bull; &#9632;&#9632;</span>
-            </div>
-            <div class="phone-map">
-              <div class="phone-map-grid"></div>
-              <div class="phone-map-land land-na"></div>
-              <div class="phone-map-land land-sa"></div>
-              <div class="phone-map-land land-eu"></div>
-              <div class="phone-map-land land-af"></div>
-              <div class="phone-map-land land-as"></div>
-              <div class="phone-map-land land-au"></div>
-              <div class="phone-arc">
-                <svg viewBox="0 0 160 60"><path class="phone-arc-path" d="M10,50 Q80,-10 150,50"/></svg>
-                <div class="phone-arc-plane">&#x2708;&#xFE0F;</div>
-              </div>
-            </div>
-            <div class="phone-handle"></div>
-            <div class="phone-label">OVERVIEW</div>
-            <div class="phone-stats">
-              <div class="phone-stats-spine">
-                <div class="spine-dot" style="background:var(--gold)"></div>
-                <div class="spine-line" style="--from-color:var(--gold);--to-color:var(--sky)"></div>
-                <div class="spine-dot" style="background:var(--sky)"></div>
-                <div class="spine-line" style="--from-color:var(--sky);--to-color:var(--teal)"></div>
-                <div class="spine-dot" style="background:var(--teal)"></div>
-                <div class="spine-line" style="--from-color:var(--teal);--to-color:var(--pink)"></div>
-                <div class="spine-dot" style="background:var(--pink)"></div>
-                <div class="spine-line" style="--from-color:var(--pink);--to-color:var(--purple)"></div>
-                <div class="spine-dot" style="background:var(--purple)"></div>
-                <div class="spine-line" style="--from-color:var(--purple);--to-color:var(--coral)"></div>
-                <div class="spine-dot" style="background:var(--coral)"></div>
-                <div class="spine-line" style="--from-color:var(--coral);--to-color:var(--gold)"></div>
-                <div class="spine-dot" style="background:var(--gold)"></div>
-                <div class="spine-line" style="--from-color:var(--gold);--to-color:var(--teal)"></div>
-                <div class="spine-dot" style="background:var(--teal)"></div>
-              </div>
-              <div class="phone-stats-list">
-                <div class="phone-stat-row"><span class="phone-stat-label">Trips</span><span class="phone-stat-value" style="color:var(--gold)">24</span></div>
-                <div class="phone-stat-row"><span class="phone-stat-label">Flights</span><span class="phone-stat-value" style="color:var(--sky)">82</span></div>
-                <div class="phone-stat-row"><span class="phone-stat-label">Countries</span><span class="phone-stat-value" style="color:var(--teal)">47</span></div>
-                <div class="phone-stat-row"><span class="phone-stat-label">Cities</span><span class="phone-stat-value" style="color:var(--pink)">138</span></div>
-                <div class="phone-stat-row"><span class="phone-stat-label">km flown</span><span class="phone-stat-value" style="color:var(--purple)">312k</span></div>
-                <div class="phone-stat-row"><span class="phone-stat-label">Hours in air</span><span class="phone-stat-value" style="color:var(--coral)">614h</span></div>
-                <div class="phone-stat-row"><span class="phone-stat-label">Nights away</span><span class="phone-stat-value" style="color:var(--gold)">198</span></div>
-                <div class="phone-stat-row"><span class="phone-stat-label">Total spent</span><span class="phone-stat-value" style="color:var(--teal)">$42k</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- RIGHT — Flight Detail screen -->
-    <div class="hero-device-wrap hero-right">
-      <div class="device">
-        <div class="device-edge-r"></div>
-        <div class="device-edge-l"></div>
-        <div class="device-btn device-btn-power"></div>
-        <div class="device-btn device-btn-vol1"></div>
-        <div class="device-btn device-btn-vol2"></div>
-        <div class="device-inner">
-          <div class="device-screen">
-            <div class="device-di device-di-sm"></div>
-            <div style="padding:38px 10px 0;font-size:8px;font-weight:700;letter-spacing:2px;color:var(--sky)">FLIGHT DETAIL</div>
-            <div style="margin:8px 10px;background:rgba(255,255,255,0.04);border-radius:14px;padding:14px">
-              <div style="font-size:16px;font-weight:800;color:var(--sky);margin-bottom:6px">TK 2</div>
-              <div style="font-size:10px;color:var(--muted);margin-bottom:3px">JFK &rarr; IST</div>
-              <div style="font-size:10px;color:var(--muted);margin-bottom:3px">7:50 PM &rarr; 1:00 PM +1</div>
-              <div style="font-size:10px;color:var(--muted)">$1,840 &middot; Economy Plus</div>
-              <div style="margin-top:10px;height:5px;border-radius:3px;background:rgba(255,255,255,0.06);overflow:hidden">
-                <div style="width:72%;height:100%;background:var(--teal);border-radius:3px"></div>
-              </div>
-              <div style="font-size:8px;color:var(--muted);margin-top:4px">72% on-time rate</div>
-            </div>
-            <div style="margin:4px 10px;background:rgba(255,255,255,0.04);border-radius:14px;padding:12px">
-              <div style="font-size:8px;color:var(--muted);margin-bottom:6px;letter-spacing:1px">WEATHER AT ARRIVAL</div>
-              <div style="font-size:22px">&#x1F324;&#xFE0F; <span style="font-size:15px;font-weight:700">24&deg;C</span></div>
-            </div>
-            <div style="margin:4px 10px;background:rgba(255,255,255,0.04);border-radius:14px;padding:12px">
-              <div style="font-size:8px;color:var(--muted);margin-bottom:6px;letter-spacing:1px">AIRCRAFT</div>
-              <div style="font-size:11px;font-weight:600">Boeing 787-9</div>
-              <div style="font-size:9px;color:var(--muted);margin-top:2px">Turkish Airlines</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
+  <div class="hero-scroll-hint">
+    <span>Scroll</span>
+    <div class="hero-scroll-line"></div>
   </div>
 </section>
+
 
 <!-- ═══════════════════════════════════════════════════
      YOUR LIFE IN TRIPS
@@ -2513,24 +2380,15 @@ s { text-decoration: line-through; opacity: 0.4; }
     nav.classList.toggle('scrolled', window.scrollY > 40);
   }, { passive: true });
 
-  // ─── SCROLL ZOOM — hero 3D scene scale on scroll ──
-  const heroPhones = document.getElementById('heroPhones');
-  function updatePhoneScroll() {
-    if (!heroPhones) return;
+  // ─── HERO PARALLAX — photo moves on scroll ──
+  const heroPhoto = document.querySelector('.hero-photo');
+  window.addEventListener('scroll', () => {
+    if (!heroPhoto) return;
     const sy = window.scrollY;
-    if (sy < window.innerHeight * 1.2) {
-      const progress = Math.min(sy / (window.innerHeight * 0.5), 1);
-      const scale = 1 + progress * 0.08;
-      const translateY = -sy * 0.05;
-      heroPhones.style.transform = 'scale(' + scale + ') translateY(' + translateY + 'px)';
-      heroPhones.style.opacity = Math.max(1 - progress * 0.4, 0.6);
-      heroPhones.style.pointerEvents = 'auto';
-    } else {
-      // Once scrolled past hero, disable pointer events so sections below are hoverable
-      heroPhones.style.pointerEvents = 'none';
+    if (sy < window.innerHeight * 1.5) {
+      heroPhoto.style.transform = 'scale(' + (1 + sy * 0.0003) + ') translateY(' + (sy * 0.3) + 'px)';
     }
-  }
-  window.addEventListener('scroll', updatePhoneScroll, { passive: true });
+  }, { passive: true });
 
   // ─── FEATURE PHONES — mouse tilt on hover ─────────
   document.querySelectorAll('.feature-phone').forEach(fp => {
