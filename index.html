@@ -763,6 +763,128 @@ s { text-decoration: line-through; opacity: 0.4; }
 }
 
 /* ═══════════════════════════════════════════════════
+   ONE PLACE — scattered photo cards
+   ═══════════════════════════════════════════════════ */
+.oneplace-section {
+  position: relative; padding: 120px 24px 80px; overflow: hidden;
+  max-width: 1200px; margin: 0 auto;
+}
+.oneplace-glow {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 800px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,169,110,0.08) 0%, transparent 60%);
+  filter: blur(80px); pointer-events: none;
+}
+
+/* The scattered card grid */
+.oneplace-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: 80px;
+  gap: 16px;
+  margin-top: 50px;
+  max-width: 1100px; margin-left: auto; margin-right: auto;
+}
+
+/* Each card */
+.op-card {
+  border-radius: 20px; overflow: hidden; position: relative;
+  transition: transform 0.5s cubic-bezier(0.22,1,0.36,1), box-shadow 0.5s;
+  cursor: none;
+}
+.op-card:hover {
+  transform: scale(1.03) translateY(-4px);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 0 30px rgba(201,169,110,0.06);
+  z-index: 5;
+}
+
+/* Card photo */
+.op-card-img {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  transition: transform 0.6s;
+}
+.op-card:hover .op-card-img { transform: scale(1.06); }
+
+/* Scrim */
+.op-card::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.15) 40%, rgba(0,0,0,0.7) 100%);
+  z-index: 1;
+}
+
+/* Card content */
+.op-card-body {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 16px 18px; z-index: 2;
+}
+.op-card-label {
+  font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.op-card-title { font-size: 16px; font-weight: 700; line-height: 1.2; }
+.op-card-sub { font-size: 11px; color: rgba(255,255,255,0.6); margin-top: 4px; line-height: 1.4; }
+
+/* Large card variant */
+.op-card-lg .op-card-title { font-size: 22px; }
+.op-card-lg .op-card-sub { font-size: 13px; }
+.op-card-lg .op-card-body { padding: 24px; }
+
+/* Grid placement — scattered, asymmetric */
+.op-c1 { grid-column: 1 / 6; grid-row: 1 / 5; } /* wide left */
+.op-c2 { grid-column: 6 / 9; grid-row: 1 / 4; } /* medium */
+.op-c3 { grid-column: 9 / 13; grid-row: 1 / 5; } /* tall right */
+.op-c4 { grid-column: 1 / 4; grid-row: 5 / 9; } /* tall left */
+.op-c5 { grid-column: 4 / 8; grid-row: 4 / 8; } /* center big */
+.op-c6 { grid-column: 8 / 13; grid-row: 5 / 8; } /* wide right */
+.op-c7 { grid-column: 1 / 5; grid-row: 9 / 12; } /* bottom left */
+.op-c8 { grid-column: 5 / 9; grid-row: 8 / 12; } /* bottom center */
+.op-c9 { grid-column: 9 / 13; grid-row: 8 / 11; } /* bottom right */
+
+/* Slight random rotations for organic feel */
+.op-c1 { transform: rotate(-0.8deg); }
+.op-c2 { transform: rotate(0.5deg); }
+.op-c3 { transform: rotate(0.6deg); }
+.op-c4 { transform: rotate(-0.4deg); }
+.op-c5 { transform: rotate(0.3deg); }
+.op-c6 { transform: rotate(-0.6deg); }
+.op-c7 { transform: rotate(0.7deg); }
+.op-c8 { transform: rotate(-0.3deg); }
+.op-c9 { transform: rotate(0.5deg); }
+.op-card:hover { transform: scale(1.03) translateY(-4px) rotate(0deg) !important; }
+
+/* Tagline below grid */
+.oneplace-bottom {
+  text-align: center; padding: 50px 24px 0;
+  max-width: 600px; margin: 0 auto;
+}
+.oneplace-bottom p {
+  font-size: 16px; color: var(--muted); line-height: 1.7;
+}
+.oneplace-bottom strong { color: var(--text); }
+.oneplace-pills {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+  margin-top: 24px;
+}
+.oneplace-pill {
+  padding: 8px 18px; border-radius: 100px; font-size: 12px; font-weight: 600;
+  background: var(--glass); border: 1px solid var(--glass-border);
+  color: var(--muted); transition: border-color 0.3s, color 0.3s;
+}
+.oneplace-pill:hover { border-color: var(--gold); color: var(--gold); }
+
+@media (max-width: 900px) {
+  .oneplace-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 160px;
+  }
+  .op-c1,.op-c2,.op-c3,.op-c4,.op-c5,.op-c6,.op-c7,.op-c8,.op-c9 {
+    grid-column: auto; grid-row: auto; transform: none !important;
+  }
+  .op-c5 { grid-column: 1 / -1; }
+}
+
+/* ═══════════════════════════════════════════════════
    PROBLEM SECTION
    ═══════════════════════════════════════════════════ */
 .problem-section { position: relative; }
@@ -1706,6 +1828,121 @@ s { text-decoration: line-through; opacity: 0.4; }
     <div class="life-memory">&#x1F3D6;</div>
     <div class="life-memory">&#x1F697;</div>
     <div class="life-memory">&#x1F6A2;</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     ONE PLACE FOR EVERYTHING
+     ═══════════════════════════════════════════════════ -->
+<section class="oneplace-section">
+  <div class="oneplace-glow"></div>
+  <h2 class="section-title reveal">Your entire trip, <em>in one place</em></h2>
+  <div class="section-sub reveal reveal-delay-1">No more switching between airline apps, hotel emails, and Google Maps. Flights, hotels, restaurants, cruise ports, car rentals, places to visit &mdash; all organized, all beautiful.</div>
+
+  <div class="oneplace-grid reveal reveal-delay-2">
+    <!-- 1: Flight card — wide left -->
+    <div class="op-card op-c1 op-card-lg">
+      <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1436491865332-7a61a109db05?w=800&q=80')"></div>
+      <div class="op-card-body">
+        <div class="op-card-label" style="color:var(--sky)">&#x2708;&#xFE0F; FLIGHT</div>
+        <div class="op-card-title">JFK &rarr; NRT</div>
+        <div class="op-card-sub">Turkish Airlines TK 2 &middot; Mar 8 &middot; Gate B42<br>Economy Plus &middot; 13h 45m &middot; $1,840</div>
+      </div>
+    </div>
+
+    <!-- 2: Hotel — medium -->
+    <div class="op-card op-c2">
+      <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80')"></div>
+      <div class="op-card-body">
+        <div class="op-card-label" style="color:var(--purple)">&#x1F3E8; HOTEL</div>
+        <div class="op-card-title">Park Hyatt Tokyo</div>
+        <div class="op-card-sub">Mar 8–12 &middot; 4 nights &middot; $1,200</div>
+      </div>
+    </div>
+
+    <!-- 3: Restaurant — tall right -->
+    <div class="op-card op-c3">
+      <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1553621042-f6e147245754?w=600&q=80')"></div>
+      <div class="op-card-body">
+        <div class="op-card-label" style="color:var(--coral)">&#x1F37D;&#xFE0F; RESTAURANT</div>
+        <div class="op-card-title">Sukiyabashi Jiro</div>
+        <div class="op-card-sub">Omakase &middot; &#x2B50; 4.9 &middot; $$$$ &middot; Dinner</div>
+      </div>
+    </div>
+
+    <!-- 4: Place to visit — tall left -->
+    <div class="op-card op-c4">
+      <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=600&q=80')"></div>
+      <div class="op-card-body">
+        <div class="op-card-label" style="color:var(--gold)">&#x1F3EF; PLACE</div>
+        <div class="op-card-title">Fushimi Inari Shrine</div>
+        <div class="op-card-sub">Kyoto &middot; Temple &middot; 2 hours</div>
+      </div>
+    </div>
+
+    <!-- 5: Cruise — center big -->
+    <div class="op-card op-c5 op-card-lg">
+      <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1548574505-5e239809ee19?w=800&q=80')"></div>
+      <div class="op-card-body">
+        <div class="op-card-label" style="color:var(--teal)">&#x1F6A2; CRUISE</div>
+        <div class="op-card-title">Mediterranean &middot; 7 Ports</div>
+        <div class="op-card-sub">Barcelona &rarr; Marseille &rarr; Rome &rarr; Santorini &rarr; Dubrovnik<br>Jun 1–14 &middot; Royal Caribbean &middot; $6,200</div>
+      </div>
+    </div>
+
+    <!-- 6: Car rental — wide right -->
+    <div class="op-card op-c6">
+      <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&q=80')"></div>
+      <div class="op-card-body">
+        <div class="op-card-label" style="color:var(--gold)">&#x1F697; CAR RENTAL</div>
+        <div class="op-card-title">Iceland Ring Road</div>
+        <div class="op-card-sub">Hertz &middot; Dacia Duster &middot; 10 days &middot; $890</div>
+      </div>
+    </div>
+
+    <!-- 7: Expense — bottom left -->
+    <div class="op-card op-c7">
+      <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80')"></div>
+      <div class="op-card-body">
+        <div class="op-card-label" style="color:var(--teal)">&#x1F4B0; EXPENSE</div>
+        <div class="op-card-title">Street Food Tour</div>
+        <div class="op-card-sub">Bangkok &middot; Food &middot; &yen;4,200 (~$28)</div>
+      </div>
+    </div>
+
+    <!-- 8: Day plan — bottom center -->
+    <div class="op-card op-c8 op-card-lg">
+      <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=800&q=80')"></div>
+      <div class="op-card-body">
+        <div class="op-card-label" style="color:var(--gold)">&#x1F4D6; DAY 3 &middot; PARIS</div>
+        <div class="op-card-title">Montmartre &amp; Sacr&eacute;-C&#x153;ur</div>
+        <div class="op-card-sub">3 places &middot; 2 meals &middot; &euro;180 spent &middot; 42 photos</div>
+      </div>
+    </div>
+
+    <!-- 9: Weather/airport — bottom right -->
+    <div class="op-card op-c9">
+      <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80')"></div>
+      <div class="op-card-body">
+        <div class="op-card-label" style="color:var(--sky)">&#x1F324;&#xFE0F; WEATHER</div>
+        <div class="op-card-title">Maldives &middot; 31&deg;C</div>
+        <div class="op-card-sub">Sunny &middot; Humidity 72% &middot; Perfect</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="oneplace-bottom reveal">
+    <p><strong>Stop digging through emails.</strong> Every confirmation, every reservation, every plan &mdash; organized by trip, by day, by city. Open Voyage and know exactly what's next.</p>
+    <div class="oneplace-pills">
+      <span class="oneplace-pill">&#x2708;&#xFE0F; Flights</span>
+      <span class="oneplace-pill">&#x1F3E8; Hotels</span>
+      <span class="oneplace-pill">&#x1F6A2; Cruises</span>
+      <span class="oneplace-pill">&#x1F697; Car Rentals</span>
+      <span class="oneplace-pill">&#x1F37D;&#xFE0F; Restaurants</span>
+      <span class="oneplace-pill">&#x1F4CD; Places</span>
+      <span class="oneplace-pill">&#x1F4B0; Expenses</span>
+      <span class="oneplace-pill">&#x1F4F7; Photos</span>
+    </div>
   </div>
 </section>
 
