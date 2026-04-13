@@ -1045,6 +1045,7 @@ s { text-decoration: line-through; opacity: 0.4; }
 .glow-gold { background: var(--gold); top: 50%; left: 50%; transform: translate(-50%,-50%); }
 .glow-sky { background: var(--sky); top: 50%; left: 50%; transform: translate(-50%,-50%); }
 .glow-teal { background: var(--teal); top: 50%; left: 50%; transform: translate(-50%,-50%); }
+.glow-purple { background: var(--purple); top: 50%; left: 50%; transform: translate(-50%,-50%); }
 
 /* Feature float cards */
 .feature-float {
@@ -1250,6 +1251,31 @@ s { text-decoration: line-through; opacity: 0.4; }
 .mock-scroll {
   flex: 1; overflow: hidden; display: flex; flex-direction: column;
 }
+/* Mock toggle switch */
+.mock-toggle { width: 22px; height: 13px; border-radius: 7px; position: relative; flex-shrink: 0; }
+.mock-toggle-on { background: #34c759; }
+.mock-toggle-off { background: #e5e5ea; }
+.mock-toggle::after { content: ''; position: absolute; top: 1px; width: 11px; height: 11px; border-radius: 50%; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,0.2); }
+.mock-toggle-on::after { right: 1px; }
+.mock-toggle-off::after { left: 1px; }
+/* Mock settings row */
+.mock-setting-row { padding: 8px 12px; display: flex; justify-content: space-between; align-items: center; border-bottom: 0.5px solid #e5e5ea; font-size: 9px; color: #1c1c1e; }
+.mock-setting-val { font-size: 8px; color: #8e8e93; }
+/* Mock profile card */
+.mock-profile-card { background: #f0f0f5; border-radius: 12px; padding: 10px; margin: 0 12px 8px; display: flex; gap: 8px; align-items: center; }
+.mock-avatar { width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, #b08d57, #d4af37); display: flex; align-items: center; justify-content: center; font-size: 10px; color: #fff; font-weight: 700; flex-shrink: 0; }
+.mock-profile-name { font-size: 10px; font-weight: 600; color: #1c1c1e; }
+.mock-profile-tier { font-size: 7px; color: #8e8e93; }
+/* Mock stat bar for airlines */
+.mock-airline-row { padding: 3px 12px; display: flex; align-items: center; gap: 6px; font-size: 8px; color: #1c1c1e; }
+.mock-airline-bar { height: 6px; border-radius: 3px; }
+/* Mock bar chart */
+.mock-bar-chart { display: flex; gap: 4px; align-items: flex-end; padding: 8px 12px; height: 50px; }
+.mock-bar { width: 100%; border-radius: 3px 3px 0 0; background: #9b59b6; }
+.mock-bar-label { font-size: 6px; color: #8e8e93; text-align: center; margin-top: 2px; }
+.mock-bar-col { display: flex; flex-direction: column; align-items: center; flex: 1; }
+/* Time label in diary */
+.mock-time { font-size: 7px; color: #8e8e93; padding: 4px 12px 2px; }
 
 /* Feature phone inner content */
 .fp-status {
@@ -2148,7 +2174,188 @@ s { text-decoration: line-through; opacity: 0.4; }
 </section>
 
 <!-- ═══════════════════════════════════════════════════
-     FEATURE 1 — WORLD MAP
+     FEATURE 1 — TRIPS
+     ═══════════════════════════════════════════════════ -->
+<section class="feature-section reveal">
+  <div class="feature-bg" style="background-image:url('https://images.unsplash.com/photo-1488646472419-a6a23bbfa7d3?w=1600&q=80')"></div>
+  <div class="feature-inner">
+    <div class="feature-row">
+      <div class="feature-text">
+        <div class="feature-tag" style="color:var(--coral)">&#x1F9F3; YOUR TRIPS</div>
+        <h3 class="feature-title">Your trips, <em>all in one place</em></h3>
+        <ul class="feature-list">
+          <li>Every trip organized with cities, dates, and routes</li>
+          <li>Hero photos and day-by-day city breakdowns</li>
+          <li>Step-by-step trip wizard for new adventures</li>
+          <li>Family trips, solo escapes, cruises &mdash; all beautifully tracked</li>
+        </ul>
+      </div>
+      <!-- Phone: Trips screen -->
+      <div class="feature-phone-wrap tilt-left">
+        <div class="feature-glow glow-gold"></div>
+        <div class="device feature-phone">
+          <div class="device-edge-r"></div>
+          <div class="device-edge-l"></div>
+          <div class="device-btn device-btn-power"></div>
+          <div class="device-btn device-btn-vol1"></div>
+          <div class="device-btn device-btn-vol2"></div>
+          <div class="device-btn device-btn-action"></div>
+          <div class="device-inner">
+            <div class="device-di device-di-sm"></div>
+            <div class="device-screen">
+              <div class="mock-screen">
+                <div class="mock-status"><span>2:49</span><div class="mock-status-icons"><span>&#x25CF;&#x25CF;&#x25CF;&#x25CF;</span> <span>&#x1F50B;</span></div></div>
+                <div class="mock-title">Trips</div>
+                <!-- Trip hero card -->
+                <div style="height:80px;margin:0 12px 8px;border-radius:12px;overflow:hidden;position:relative;background:url('https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=500&q=70') center/cover">
+                  <div style="position:absolute;bottom:0;left:0;right:0;padding:8px 10px;background:linear-gradient(transparent,rgba(0,0,0,0.6))">
+                    <div style="font-size:11px;font-weight:700;color:#fff">Rome &amp; Amalfi</div>
+                    <div style="font-size:7px;color:rgba(255,255,255,0.8)">JFK &rarr; FCO &rarr; NAP &rarr; JFK</div>
+                  </div>
+                </div>
+                <div class="mock-scroll" style="background:#fff">
+                  <!-- City: Rome -->
+                  <div class="mock-city-header">
+                    <div><h4>Rome</h4><span style="font-size:7px;color:#8e8e93">Italy &middot; Apr 10</span></div>
+                  </div>
+                  <div class="mock-day-row">
+                    <div class="mock-day-date"><div class="mock-day-dow">FRI</div><div class="mock-day-num">10</div></div>
+                    <div class="mock-day-content">
+                      <div class="mock-day-label">Day 1 <span class="mock-cost">$148 &rsaquo;</span></div>
+                    </div>
+                  </div>
+                  <div class="mock-day-row">
+                    <div class="mock-day-date"><div class="mock-day-dow">SAT</div><div class="mock-day-num">11</div></div>
+                    <div class="mock-day-content">
+                      <div class="mock-day-label">Day 2 <span class="mock-cost">$210 &rsaquo;</span></div>
+                    </div>
+                  </div>
+                  <!-- City: Amalfi -->
+                  <div class="mock-city-header">
+                    <div><h4>Amalfi</h4><span style="font-size:7px;color:#8e8e93">Italy &middot; Apr 13</span></div>
+                  </div>
+                  <div class="mock-day-row">
+                    <div class="mock-day-date"><div class="mock-day-dow">TUE</div><div class="mock-day-num">13</div></div>
+                    <div class="mock-day-content">
+                      <div class="mock-day-label">Day 4 <span class="mock-cost">$320 &rsaquo;</span></div>
+                    </div>
+                  </div>
+                </div>
+                <!-- TABBAR -->
+                <div class="glass-tabbar">
+                  <div class="glass-tab active"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M17 6h-2V4c0-1.1-.9-2-2-2H11C9.9 2 9 2.9 9 4v2H7C5.9 6 5 6.9 5 8v11c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM11 4h2v2h-2V4z"/></svg></div></div>Trips</div>
+                  <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM10 5.47l4 1.4v11.66l-4-1.4V5.47zm-5 .99l3-1.01v11.7l-3 1.16V6.46zm14 11.08l-3 1.01V6.86l3-1.16v11.84z"/></svg></div></div>Map</div>
+                  <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></div></div>Flights</div>
+                  <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><rect x="4" y="12" width="4" height="8" rx="1"/><rect x="10" y="7" width="4" height="13" rx="1"/><rect x="16" y="4" width="4" height="16" rx="1"/></svg></div></div>Stats</div>
+                  <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.31.06-.63.06-.94s-.02-.63-.06-.94l2.03-1.58a.49.49 0 00.12-.61l-1.92-3.32a.49.49 0 00-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 00-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.49.49 0 00-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94l-2.03 1.58a.49.49 0 00-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1112 8.4a3.6 3.6 0 010 7.2z"/></svg></div></div>Settings</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     FEATURE 2 — DAILY DIARY
+     ═══════════════════════════════════════════════════ -->
+<section class="feature-section reverse reveal">
+  <div class="feature-bg" style="background-image:url('https://images.unsplash.com/photo-1528164344705-47542687000d?w=1600&q=80')"></div>
+  <div class="feature-inner">
+    <div class="feature-row">
+      <!-- Phone: Diary screen -->
+      <div class="feature-phone-wrap tilt-right">
+        <div class="feature-glow glow-teal"></div>
+        <div class="device feature-phone">
+          <div class="device-edge-r"></div>
+          <div class="device-edge-l"></div>
+          <div class="device-btn device-btn-power"></div>
+          <div class="device-btn device-btn-vol1"></div>
+          <div class="device-btn device-btn-vol2"></div>
+          <div class="device-btn device-btn-action"></div>
+          <div class="device-inner">
+            <div class="device-di device-di-sm"></div>
+            <div class="device-screen">
+              <div class="mock-screen">
+                <div class="mock-status" style="position:absolute;top:0;left:0;right:0;z-index:2;color:#fff"><span>2:50</span><div class="mock-status-icons"><span>&#x25CF;&#x25CF;&#x25CF;&#x25CF;</span> <span>&#x1F50B;</span></div></div>
+                <!-- Trip hero -->
+                <div style="height:90px;position:relative;overflow:hidden;background:url('https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=500&q=70') center/cover">
+                  <div style="position:absolute;bottom:0;left:0;right:0;padding:8px 10px;background:linear-gradient(transparent,rgba(0,0,0,0.6))">
+                    <div style="font-size:11px;font-weight:700;color:#fff">Rome &middot; Day 2</div>
+                    <div style="font-size:7px;color:rgba(255,255,255,0.8)">Italy &middot; Apr 11</div>
+                  </div>
+                </div>
+                <div class="mock-scroll" style="background:#fff">
+                  <!-- 9:43 AM -->
+                  <div class="mock-time">9:43 AM</div>
+                  <div class="mock-entry">
+                    <div class="mock-entry-thumb"><img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=100&q=60" alt="" loading="lazy"></div>
+                    <div class="mock-entry-info">
+                      <div class="mock-entry-name">Colosseum</div>
+                      <div class="mock-entry-meta">&#x2B50; Attraction &middot; 2.5 hrs</div>
+                    </div>
+                  </div>
+                  <!-- 12 PM -->
+                  <div class="mock-time">12 PM</div>
+                  <div class="mock-entry">
+                    <div class="mock-entry-thumb"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=100&q=60" alt="" loading="lazy"></div>
+                    <div class="mock-entry-info">
+                      <div class="mock-entry-name">Roscioli</div>
+                      <div class="mock-entry-meta">&#x2B50; Restaurant &middot; $$</div>
+                    </div>
+                    <div class="mock-entry-cost">$68</div>
+                  </div>
+                  <!-- 2 PM -->
+                  <div class="mock-time">2 PM</div>
+                  <div class="mock-entry">
+                    <div class="mock-entry-thumb"><img src="https://images.unsplash.com/photo-1525874684015-58379d421a52?w=100&q=60" alt="" loading="lazy"></div>
+                    <div class="mock-entry-info">
+                      <div class="mock-entry-name">Trevi Fountain</div>
+                      <div class="mock-entry-meta">&#x2B50; Landmark &middot; 45 min</div>
+                    </div>
+                  </div>
+                  <!-- 6 PM -->
+                  <div class="mock-time">6 PM</div>
+                  <div class="mock-entry">
+                    <div style="width:28px;height:28px;border-radius:8px;background:#f0f0f5;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0">&#x2728;</div>
+                    <div class="mock-entry-info">
+                      <div class="mock-entry-name" style="color:#b08d57">AI Suggestion</div>
+                      <div class="mock-entry-meta">Try Pizzeria da Baffetto &middot; $$ &middot; 0.3 mi</div>
+                    </div>
+                  </div>
+                </div>
+                <!-- TABBAR -->
+                <div class="glass-tabbar">
+                  <div class="glass-tab active"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M17 6h-2V4c0-1.1-.9-2-2-2H11C9.9 2 9 2.9 9 4v2H7C5.9 6 5 6.9 5 8v11c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM11 4h2v2h-2V4z"/></svg></div></div>Trips</div>
+                  <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM10 5.47l4 1.4v11.66l-4-1.4V5.47zm-5 .99l3-1.01v11.7l-3 1.16V6.46zm14 11.08l-3 1.01V6.86l3-1.16v11.84z"/></svg></div></div>Map</div>
+                  <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></div></div>Flights</div>
+                  <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><rect x="4" y="12" width="4" height="8" rx="1"/><rect x="10" y="7" width="4" height="13" rx="1"/><rect x="16" y="4" width="4" height="16" rx="1"/></svg></div></div>Stats</div>
+                  <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.31.06-.63.06-.94s-.02-.63-.06-.94l2.03-1.58a.49.49 0 00.12-.61l-1.92-3.32a.49.49 0 00-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 00-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.49.49 0 00-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94l-2.03 1.58a.49.49 0 00-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1112 8.4a3.6 3.6 0 010 7.2z"/></svg></div></div>Settings</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="feature-text" style="text-align:right">
+        <div class="feature-tag" style="color:var(--teal);justify-content:flex-end">&#x1F4D6; DAILY DIARY</div>
+        <h3 class="feature-title">Every day, <em>beautifully logged</em></h3>
+        <ul class="feature-list" style="align-items:flex-end">
+          <li>Day-by-day timeline with gold sidebar organized by city</li>
+          <li>Log places, restaurants, and attractions with photos</li>
+          <li>AI suggests must-visit restaurants, attractions, and hidden gems for each city and cruise port</li>
+          <li>Multi-currency expense tracking per day</li>
+          <li>AI writes your trip story in your voice</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     FEATURE 3 — WORLD MAP
      ═══════════════════════════════════════════════════ -->
 <section class="feature-section reveal">
   <div class="feature-bg" style="background-image:url('https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=1600&q=80')"></div>
@@ -2226,7 +2433,7 @@ s { text-decoration: line-through; opacity: 0.4; }
 </section>
 
 <!-- ═══════════════════════════════════════════════════
-     FEATURE 2 — FLIGHTS
+     FEATURE 4 — FLIGHTS
      ═══════════════════════════════════════════════════ -->
 <section class="feature-section reverse reveal">
   <div class="feature-bg" style="background-image:url('https://images.unsplash.com/photo-1569154941061-e231b4725ef1?w=1600&q=80')"></div>
@@ -2315,25 +2522,25 @@ s { text-decoration: line-through; opacity: 0.4; }
 </section>
 
 <!-- ═══════════════════════════════════════════════════
-     FEATURE 3 — DAILY DIARY
+     FEATURE 5 — STATS
      ═══════════════════════════════════════════════════ -->
 <section class="feature-section reveal">
-  <div class="feature-bg" style="background-image:url('https://images.unsplash.com/photo-1528164344705-47542687000d?w=1600&q=80')"></div>
+  <div class="feature-bg" style="background-image:url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1600&q=80')"></div>
   <div class="feature-inner">
     <div class="feature-row">
       <div class="feature-text">
-        <div class="feature-tag" style="color:var(--teal)">&#x1F4D6; DAILY DIARY</div>
-        <h3 class="feature-title">Every day, <em>beautifully logged</em></h3>
+        <div class="feature-tag" style="color:var(--purple)">&#x1F4CA; STATS</div>
+        <h3 class="feature-title">Your travel story, <em>in numbers</em></h3>
         <ul class="feature-list">
-          <li>Day-by-day timeline organized by city</li>
-          <li>Log places, restaurants, and attractions with photos</li>
-          <li>Multi-currency expense tracking per day</li>
-          <li>AI writes your trip story in your voice</li>
+          <li>Lifetime flight count, total miles, and hours in the air</li>
+          <li>Airline breakdown with your most-flown carriers</li>
+          <li>Spending by country and category</li>
+          <li>Monthly travel trends and year-over-year growth</li>
         </ul>
       </div>
-      <!-- Phone: Diary screen -->
+      <!-- Phone: Stats screen -->
       <div class="feature-phone-wrap tilt-left">
-        <div class="feature-glow glow-teal"></div>
+        <div class="feature-glow glow-purple"></div>
         <div class="device feature-phone">
           <div class="device-edge-r"></div>
           <div class="device-edge-l"></div>
@@ -2345,64 +2552,140 @@ s { text-decoration: line-through; opacity: 0.4; }
             <div class="device-di device-di-sm"></div>
             <div class="device-screen">
               <div class="mock-screen">
-                <div class="mock-status" style="position:absolute;top:0;left:0;right:0;z-index:2;color:#fff"><span>2:50</span><div class="mock-status-icons"><span>&#x25CF;&#x25CF;&#x25CF;&#x25CF;</span> <span>&#x1F50B;</span></div></div>
-                <div class="mock-trip-hero">
-                  <img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=500&q=70" alt="" loading="lazy">
-                  <div class="mock-trip-hero-text">
-                    <h4>Rome &amp; Amalfi</h4>
-                    <span>JFK &rarr; FCO &rarr; NAP &rarr; JFK</span>
-                  </div>
-                </div>
+                <div class="mock-status"><span>2:51</span><div class="mock-status-icons"><span>&#x25CF;&#x25CF;&#x25CF;&#x25CF;</span> <span>&#x1F50B;</span></div></div>
+                <div class="mock-title">Stats</div>
                 <div class="mock-scroll" style="background:#fff">
-                  <div class="mock-city-header">
-                    <div><h4>Rome</h4><span style="font-size:7px;color:#8e8e93">Italy &middot; Apr 10</span></div>
+                  <!-- Stats grid -->
+                  <div class="mock-pills">
+                    <div class="mock-pill"><div class="mock-pill-num">12</div><div class="mock-pill-label">Flights</div></div>
+                    <div class="mock-pill"><div class="mock-pill-num">28,400</div><div class="mock-pill-label">Miles</div></div>
+                    <div class="mock-pill"><div class="mock-pill-num">7</div><div class="mock-pill-label">Countries</div></div>
+                    <div class="mock-pill"><div class="mock-pill-num">4</div><div class="mock-pill-label">Airlines</div></div>
                   </div>
-                  <div class="mock-day-row">
-                    <div class="mock-day-date"><div class="mock-day-dow">FRI</div><div class="mock-day-num">10</div></div>
-                    <div class="mock-day-content">
-                      <div class="mock-day-label">Day 1 <span class="mock-cost">$148 &rsaquo;</span></div>
-                    </div>
+                  <!-- Top Airlines -->
+                  <div class="mock-section-label">TOP AIRLINES</div>
+                  <div class="mock-airline-row">
+                    <span class="mock-flight-dot" style="background:#e31837"></span>
+                    <span style="width:60px">Turkish Airlines</span>
+                    <div class="mock-airline-bar" style="width:60%;background:#e31837"></div>
                   </div>
-                  <div class="mock-day-row">
-                    <div class="mock-day-date"><div class="mock-day-dow">SAT</div><div class="mock-day-num">11</div></div>
-                    <div class="mock-day-content">
-                      <div class="mock-day-label">Day 2 <span class="mock-cost">$210 &rsaquo;</span></div>
-                      <div class="mock-entry">
-                        <div class="mock-entry-thumb"><img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=100&q=60" alt="" loading="lazy"></div>
-                        <div class="mock-entry-info">
-                          <div class="mock-entry-name">Colosseum</div>
-                          <div class="mock-entry-meta">&#x2B50; Attraction &middot; 2.5 hrs</div>
-                        </div>
-                      </div>
-                      <div class="mock-entry">
-                        <div class="mock-entry-thumb"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=100&q=60" alt="" loading="lazy"></div>
-                        <div class="mock-entry-info">
-                          <div class="mock-entry-name">Roscioli</div>
-                          <div class="mock-entry-meta">&#x2B50; Restaurant &middot; $$</div>
-                        </div>
-                        <div class="mock-entry-cost">$68</div>
-                      </div>
-                      <div class="mock-entry">
-                        <div class="mock-entry-thumb"><img src="https://images.unsplash.com/photo-1525874684015-58379d421a52?w=100&q=60" alt="" loading="lazy"></div>
-                        <div class="mock-entry-info">
-                          <div class="mock-entry-name">Trevi Fountain</div>
-                          <div class="mock-entry-meta">&#x2B50; Landmark &middot; 45 min</div>
-                        </div>
-                      </div>
-                    </div>
+                  <div class="mock-airline-row">
+                    <span class="mock-flight-dot" style="background:#003a70"></span>
+                    <span style="width:60px">Delta</span>
+                    <div class="mock-airline-bar" style="width:25%;background:#003a70"></div>
+                  </div>
+                  <div class="mock-airline-row">
+                    <span class="mock-flight-dot" style="background:#002157"></span>
+                    <span style="width:60px">Air France</span>
+                    <div class="mock-airline-bar" style="width:15%;background:#002157"></div>
+                  </div>
+                  <!-- Monthly Flights -->
+                  <div class="mock-section-label">MONTHLY FLIGHTS</div>
+                  <div class="mock-bar-chart">
+                    <div class="mock-bar-col"><div class="mock-bar" style="height:20px"></div><div class="mock-bar-label">J</div></div>
+                    <div class="mock-bar-col"><div class="mock-bar" style="height:10px"></div><div class="mock-bar-label">F</div></div>
+                    <div class="mock-bar-col"><div class="mock-bar" style="height:30px"></div><div class="mock-bar-label">M</div></div>
+                    <div class="mock-bar-col"><div class="mock-bar" style="height:15px"></div><div class="mock-bar-label">A</div></div>
+                    <div class="mock-bar-col"><div class="mock-bar" style="height:40px"></div><div class="mock-bar-label">M</div></div>
+                    <div class="mock-bar-col"><div class="mock-bar" style="height:25px"></div><div class="mock-bar-label">J</div></div>
                   </div>
                 </div>
+                <!-- TABBAR -->
                 <div class="glass-tabbar">
-                  <div class="glass-tab active"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M17 6h-2V4c0-1.1-.9-2-2-2H11C9.9 2 9 2.9 9 4v2H7C5.9 6 5 6.9 5 8v11c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM11 4h2v2h-2V4z"/></svg></div></div>Trips</div>
+                  <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M17 6h-2V4c0-1.1-.9-2-2-2H11C9.9 2 9 2.9 9 4v2H7C5.9 6 5 6.9 5 8v11c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM11 4h2v2h-2V4z"/></svg></div></div>Trips</div>
                   <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM10 5.47l4 1.4v11.66l-4-1.4V5.47zm-5 .99l3-1.01v11.7l-3 1.16V6.46zm14 11.08l-3 1.01V6.86l3-1.16v11.84z"/></svg></div></div>Map</div>
                   <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></div></div>Flights</div>
-                  <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><rect x="4" y="12" width="4" height="8" rx="1"/><rect x="10" y="7" width="4" height="13" rx="1"/><rect x="16" y="4" width="4" height="16" rx="1"/></svg></div></div>Stats</div>
+                  <div class="glass-tab active"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><rect x="4" y="12" width="4" height="8" rx="1"/><rect x="10" y="7" width="4" height="13" rx="1"/><rect x="16" y="4" width="4" height="16" rx="1"/></svg></div></div>Stats</div>
                   <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.31.06-.63.06-.94s-.02-.63-.06-.94l2.03-1.58a.49.49 0 00.12-.61l-1.92-3.32a.49.49 0 00-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 00-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.49.49 0 00-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94l-2.03 1.58a.49.49 0 00-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1112 8.4a3.6 3.6 0 010 7.2z"/></svg></div></div>Settings</div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     FEATURE 6 — SETTINGS
+     ═══════════════════════════════════════════════════ -->
+<section class="feature-section reverse reveal">
+  <div class="feature-bg" style="background-image:url('https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1600&q=80')"></div>
+  <div class="feature-inner">
+    <div class="feature-row">
+      <!-- Phone: Settings screen -->
+      <div class="feature-phone-wrap tilt-right">
+        <div class="feature-glow glow-gold"></div>
+        <div class="device feature-phone">
+          <div class="device-edge-r"></div>
+          <div class="device-edge-l"></div>
+          <div class="device-btn device-btn-power"></div>
+          <div class="device-btn device-btn-vol1"></div>
+          <div class="device-btn device-btn-vol2"></div>
+          <div class="device-btn device-btn-action"></div>
+          <div class="device-inner">
+            <div class="device-di device-di-sm"></div>
+            <div class="device-screen">
+              <div class="mock-screen">
+                <div class="mock-status"><span>2:52</span><div class="mock-status-icons"><span>&#x25CF;&#x25CF;&#x25CF;&#x25CF;</span> <span>&#x1F50B;</span></div></div>
+                <div class="mock-title">Settings</div>
+                <div class="mock-scroll" style="background:#fff">
+                  <!-- Profile card -->
+                  <div class="mock-profile-card">
+                    <div class="mock-avatar">MS</div>
+                    <div>
+                      <div class="mock-profile-name">Mehdi S.</div>
+                      <div class="mock-profile-tier">Globe Master &middot; Tier V</div>
+                    </div>
+                  </div>
+                  <!-- General -->
+                  <div class="mock-section-label">GENERAL</div>
+                  <div class="mock-setting-row">
+                    <span>Notifications</span>
+                    <div class="mock-toggle mock-toggle-on"></div>
+                  </div>
+                  <div class="mock-setting-row">
+                    <span>Dark Mode</span>
+                    <div class="mock-toggle mock-toggle-off"></div>
+                  </div>
+                  <div class="mock-setting-row">
+                    <span>Currency</span>
+                    <span class="mock-setting-val">USD $</span>
+                  </div>
+                  <!-- Data -->
+                  <div class="mock-section-label">DATA</div>
+                  <div class="mock-setting-row">
+                    <span>Export Trips</span>
+                    <span class="mock-setting-val">&rsaquo;</span>
+                  </div>
+                  <div class="mock-setting-row">
+                    <span>Share Stats</span>
+                    <span class="mock-setting-val">&rsaquo;</span>
+                  </div>
+                </div>
+                <!-- TABBAR -->
+                <div class="glass-tabbar">
+                  <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M17 6h-2V4c0-1.1-.9-2-2-2H11C9.9 2 9 2.9 9 4v2H7C5.9 6 5 6.9 5 8v11c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM11 4h2v2h-2V4z"/></svg></div></div>Trips</div>
+                  <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM10 5.47l4 1.4v11.66l-4-1.4V5.47zm-5 .99l3-1.01v11.7l-3 1.16V6.46zm14 11.08l-3 1.01V6.86l3-1.16v11.84z"/></svg></div></div>Map</div>
+                  <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></div></div>Flights</div>
+                  <div class="glass-tab"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><rect x="4" y="12" width="4" height="8" rx="1"/><rect x="10" y="7" width="4" height="13" rx="1"/><rect x="16" y="4" width="4" height="16" rx="1"/></svg></div></div>Stats</div>
+                  <div class="glass-tab active"><div class="glass-tab-bg"><div class="glass-tab-icon"><svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.31.06-.63.06-.94s-.02-.63-.06-.94l2.03-1.58a.49.49 0 00.12-.61l-1.92-3.32a.49.49 0 00-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 00-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.49.49 0 00-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94l-2.03 1.58a.49.49 0 00-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1112 8.4a3.6 3.6 0 010 7.2z"/></svg></div></div>Settings</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="feature-text" style="text-align:right">
+        <div class="feature-tag" style="color:var(--gold);justify-content:flex-end">&#x2699;&#xFE0F; SETTINGS</div>
+        <h3 class="feature-title">Make it <em>yours</em></h3>
+        <ul class="feature-list" style="align-items:flex-end">
+          <li>Customize your traveler profile and avatar</li>
+          <li>Track your milestone tier from First Steps to Orbital</li>
+          <li>Multi-currency support and notification preferences</li>
+          <li>Export your travel data and share your stats</li>
+        </ul>
       </div>
     </div>
   </div>
