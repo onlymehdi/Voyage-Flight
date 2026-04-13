@@ -1906,69 +1906,10 @@ s { text-decoration: line-through; opacity: 0.4; }
                 <div class="mock-title">Map</div>
                 <div class="mock-map-stats"><strong>7</strong> visited &nbsp;<strong>3</strong> lived &nbsp;<strong>24</strong> cities &nbsp;<strong>3</strong> flights</div>
                 <div class="mock-map-area" style="background:#f2f2f7;position:relative">
-                  <!-- Use a clean simplified map image approach -->
-                  <svg viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
-                    <rect width="1000" height="500" fill="#f2f2f7"/>
-                    <!-- Simplified but RECOGNIZABLE world map outlines -->
-                    <!-- North America -->
-                    <path d="M90 80 L120 55 L165 45 L210 40 L240 50 L255 70 L250 95 L235 115 L220 130 L205 155 L195 170 L180 175 L165 165 L145 155 L130 140 L115 120 L100 105 L90 90Z" fill="#dcdce0" stroke="#ccccd0" stroke-width="1"/>
-                    <!-- Mexico/Central America -->
-                    <path d="M145 155 L165 165 L175 175 L170 190 L160 200 L148 205 L140 195 L135 180 L138 168Z" fill="#dcdce0" stroke="#ccccd0" stroke-width="1"/>
-                    <!-- South America -->
-                    <path d="M195 220 L220 210 L245 215 L265 235 L275 265 L270 310 L260 350 L245 380 L225 395 L205 385 L190 360 L185 330 L182 295 L185 260 L190 235Z" fill="#dcdce0" stroke="#ccccd0" stroke-width="1"/>
-                    <!-- Greenland -->
-                    <path d="M270 25 L310 15 L340 25 L345 50 L330 60 L300 58 L278 45Z" fill="#dcdce0" stroke="#ccccd0" stroke-width="0.5"/>
-                    <!-- Iceland -->
-                    <path d="M355 52 L370 48 L378 55 L372 62 L358 60Z" fill="#dcdce0" stroke="#ccccd0" stroke-width="0.5"/>
-                    <!-- UK -->
-                    <path d="M400 72 L408 62 L415 65 L418 80 L412 90 L404 88 L400 80Z" fill="#dcdce0" stroke="#ccccd0" stroke-width="0.5"/>
-                    <!-- Ireland -->
-                    <path d="M392 75 L398 70 L402 78 L398 84 L392 80Z" fill="#dcdce0" stroke="#ccccd0" stroke-width="0.5"/>
-                    <!-- Europe -->
-                    <path d="M420 55 L450 48 L480 50 L510 55 L530 65 L535 85 L525 100 L510 108 L490 105 L470 98 L450 92 L435 85 L425 75 L420 65Z" fill="#dcdce0" stroke="#ccccd0" stroke-width="1"/>
-                    <!-- Scandinavia -->
-                    <path d="M440 30 L455 22 L465 28 L470 45 L462 55 L448 52 L440 42Z" fill="#dcdce0" stroke="#ccccd0" stroke-width="0.5"/>
-                    <!-- Italy boot -->
-                    <path d="M465 95 L470 100 L475 115 L472 125 L468 120 L463 108 L462 98Z" fill="#dcdce0" stroke="#ccccd0" stroke-width="0.5"/>
-                    <!-- Africa -->
-                    <path d="M430 130 L470 125 L510 130 L535 145 L550 175 L555 215 L548 260 L535 300 L515 330 L490 345 L465 340 L445 320 L432 290 L425 255 L420 220 L418 185 L422 155Z" fill="#dcdce0" stroke="#ccccd0" stroke-width="1"/>
-                    <!-- Madagascar -->
-                    <path d="M555 285 L562 275 L568 285 L565 305 L558 310 L552 300Z" fill="#dcdce0" stroke="#ccccd0" stroke-width="0.5"/>
-                    <!-- Middle East -->
-                    <path d="M540 100 L570 90 L600 95 L615 110 L610 130 L595 140 L575 138 L555 130 L540 120Z" fill="#dcdce0" stroke="#ccccd0" stroke-width="1"/>
-                    <!-- Russia -->
-                    <path d="M540 30 L600 18 L680 15 L760 20 L830 30 L870 45 L880 60 L870 72 L840 75 L790 70 L730 65 L670 58 L620 52 L580 48 L550 42Z" fill="#dcdce0" stroke="#ccccd0" stroke-width="1"/>
-                    <!-- India -->
-                    <path d="M630 115 L660 105 L685 115 L690 145 L680 175 L660 195 L640 185 L630 160 L625 135Z" fill="#dcdce0" stroke="#ccccd0" stroke-width="1"/>
-                    <!-- Sri Lanka -->
-                    <path d="M660 198 L668 195 L670 205 L665 210 L658 205Z" fill="#dcdce0" stroke="#ccccd0" stroke-width="0.5"/>
-                    <!-- China/East Asia -->
-                    <path d="M700 55 L745 45 L790 50 L820 65 L825 85 L810 100 L785 108 L755 105 L730 95 L710 82 L700 68Z" fill="#dcdce0" stroke="#ccccd0" stroke-width="1"/>
-                    <!-- Korean Peninsula -->
-                    <path d="M805 72 L815 68 L818 80 L812 88 L805 82Z" fill="#dcdce0" stroke="#ccccd0" stroke-width="0.5"/>
-                    <!-- Japan -->
-                    <path d="M830 60 L838 52 L845 58 L848 75 L842 90 L835 85 L830 72Z" fill="#dcdce0" stroke="#ccccd0" stroke-width="0.5"/>
-                    <!-- Southeast Asia -->
-                    <path d="M720 110 L745 105 L760 115 L755 135 L740 145 L725 140 L715 128Z" fill="#dcdce0" stroke="#ccccd0" stroke-width="1"/>
-                    <!-- Indonesia -->
-                    <path d="M720 170 L760 165 L800 168 L830 175 L825 185 L790 188 L750 185 L720 180Z" fill="#dcdce0" stroke="#ccccd0" stroke-width="0.5"/>
-                    <!-- Philippines -->
-                    <path d="M785 120 L792 115 L798 125 L795 140 L788 138Z" fill="#dcdce0" stroke="#ccccd0" stroke-width="0.5"/>
-                    <!-- Australia -->
-                    <path d="M780 260 L825 245 L870 250 L905 270 L910 300 L895 325 L865 340 L830 338 L800 325 L785 305 L778 280Z" fill="#dcdce0" stroke="#ccccd0" stroke-width="1"/>
-                    <!-- New Zealand -->
-                    <path d="M928 330 L935 320 L940 335 L935 350 L928 345Z" fill="#dcdce0" stroke="#ccccd0" stroke-width="0.5"/>
-                    <!-- Tasmania -->
-                    <path d="M870 345 L878 342 L882 350 L876 355 L870 352Z" fill="#dcdce0" stroke="#ccccd0" stroke-width="0.5"/>
-
-                    <!-- VISITED COUNTRIES highlighted in gold -->
-                    <path d="M100 82 L155 52 L230 48 L248 68 L240 92 L215 115 L180 130 L145 125 L115 112 L100 95Z" fill="#b08d57" opacity="0.2"/>
-                    <path d="M462 92 L475 100 L478 120 L470 128 L460 115 L458 100Z" fill="#b08d57" opacity="0.25"/>
-                    <path d="M830 58 L840 52 L848 62 L845 82 L835 88 L828 75Z" fill="#b08d57" opacity="0.25"/>
-                    <path d="M720 108 L748 102 L758 118 L748 138 L728 138 L715 125Z" fill="#b08d57" opacity="0.2"/>
-                    <path d="M780 258 L830 242 L875 252 L908 275 L905 310 L870 335 L828 335 L798 320 L782 298Z" fill="#b08d57" opacity="0.15"/>
-                    <path d="M400 70 L410 62 L418 68 L416 85 L408 90 L398 82Z" fill="#b08d57" opacity="0.25"/>
-                    <path d="M195 218 L225 210 L250 220 L268 245 L272 290 L260 340 L240 375Z" fill="#b08d57" opacity="0.12"/>
+                  <!-- Real map image with overlay -->
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/World_map_blank_without_borders.svg/1280px-World_map_blank_without_borders.svg.png" alt="" style="width:100%;height:100%;object-fit:contain;opacity:0.18;position:absolute;inset:0" loading="lazy">
+                  <svg viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;position:relative;z-index:1">
+                    <!-- Map image handles continents — SVG only has arcs + dots -->
 
                     <!-- FLIGHT ARCS -->
                     <path d="M200 95 Q330 15 470 85" stroke="#b08d57" stroke-width="2" fill="none" opacity="0.45"/>
