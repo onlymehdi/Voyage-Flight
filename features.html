@@ -1118,24 +1118,24 @@ s { text-decoration: line-through; opacity: 0.4; }
 /* Liquid glass tab bar */
 .glass-tabbar {
   display: flex; justify-content: space-around; align-items: center;
-  padding: 5px 6px 10px; flex-shrink: 0;
-  position: absolute; bottom: 6px; left: 6px; right: 6px; z-index: 10;
-  border-radius: 22px;
-  background: rgba(245,245,247,0.7);
+  padding: 4px 6px 6px; flex-shrink: 0;
+  position: absolute; bottom: 5px; left: 8px; right: 8px; z-index: 10;
+  border-radius: 18px;
+  background: rgba(245,245,247,0.72);
   backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.08), inset 0 0.5px 0 rgba(255,255,255,0.8);
+  box-shadow: 0 1px 8px rgba(0,0,0,0.06), inset 0 0.5px 0 rgba(255,255,255,0.7);
 }
 .glass-tab {
   display: flex; flex-direction: column; align-items: center; gap: 0px;
-  font-size: 8px; color: #2c2c2e; font-weight: 600;
-  padding: 2px 0; position: relative; letter-spacing: 0.2px;
+  font-size: 7px; color: #2c2c2e; font-weight: 600;
+  padding: 1px 0; position: relative; letter-spacing: 0.2px;
 }
 .glass-tab.active { color: #b08d57; }
-.glass-tab-icon { width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; }
-.glass-tab-icon svg { width: 22px; height: 22px; fill: currentColor; }
+.glass-tab-icon { width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; }
+.glass-tab-icon svg { width: 18px; height: 18px; fill: currentColor; }
 .glass-tab-bg {
   display: flex; flex-direction: column; align-items: center; gap: 0px;
-  padding: 3px 10px 1px; border-radius: 12px;
+  padding: 2px 8px 1px; border-radius: 10px;
 }
 .glass-tab.active .glass-tab-bg {
   background: rgba(0,0,0,0.06);
@@ -1905,32 +1905,37 @@ s { text-decoration: line-through; opacity: 0.4; }
                 <div class="mock-status"><span>2:49</span><div class="mock-status-icons"><span>&#x25CF;&#x25CF;&#x25CF;&#x25CF;</span> <span>&#x1F50B;</span></div></div>
                 <div class="mock-title">Map</div>
                 <div class="mock-map-stats"><strong>7</strong> visited &nbsp;<strong>3</strong> lived &nbsp;<strong>24</strong> cities &nbsp;<strong>3</strong> flights</div>
-                <div class="mock-map-area" style="background:#f2f2f7;position:relative">
-                  <!-- Real map image with overlay -->
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/World_map_blank_without_borders.svg/1280px-World_map_blank_without_borders.svg.png" alt="" style="width:100%;height:100%;object-fit:contain;opacity:0.18;position:absolute;inset:0" loading="lazy">
-                  <svg viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;position:relative;z-index:1">
-                    <!-- Map image handles continents — SVG only has arcs + dots -->
-
-                    <!-- FLIGHT ARCS -->
-                    <path d="M200 95 Q330 15 470 85" stroke="#b08d57" stroke-width="2" fill="none" opacity="0.45"/>
-                    <path d="M470 85 Q660 0 838 68" stroke="#b08d57" stroke-width="2" fill="none" opacity="0.45"/>
-                    <path d="M838 68 Q790 90 740 125" stroke="#b08d57" stroke-width="1.5" fill="none" stroke-dasharray="6 4" opacity="0.35"/>
-                    <path d="M200 95 Q210 180 215 260" stroke="#b08d57" stroke-width="1.5" fill="none" stroke-dasharray="6 4" opacity="0.3"/>
-                    <path d="M470 85 Q440 75 410 78" stroke="#b08d57" stroke-width="1.5" fill="none" stroke-dasharray="4 3" opacity="0.3"/>
-
-                    <!-- CITY DOTS with glow -->
-                    <circle cx="200" cy="95" r="6" fill="#34c759" opacity="0.25"/><circle cx="200" cy="95" r="3" fill="#34c759"/>
-                    <circle cx="470" cy="85" r="6" fill="#34c759" opacity="0.25"/><circle cx="470" cy="85" r="3" fill="#34c759"/>
-                    <circle cx="838" cy="68" r="6" fill="#34c759" opacity="0.25"/><circle cx="838" cy="68" r="3" fill="#34c759"/>
-                    <circle cx="740" cy="125" r="6" fill="#34c759" opacity="0.25"/><circle cx="740" cy="125" r="3" fill="#34c759"/>
-                    <circle cx="410" cy="78" r="4" fill="#34c759" opacity="0.2"/><circle cx="410" cy="78" r="2.5" fill="#34c759"/>
-                    <circle cx="150" cy="100" r="4" fill="#34c759" opacity="0.2"/><circle cx="150" cy="100" r="2.5" fill="#34c759"/>
-                    <circle cx="845" cy="295" r="4" fill="#34c759" opacity="0.2"/><circle cx="845" cy="295" r="2.5" fill="#34c759"/>
-                    <circle cx="215" cy="260" r="4" fill="#34c759" opacity="0.2"/><circle cx="215" cy="260" r="2.5" fill="#34c759"/>
-
-                    <!-- Plane icons on arcs -->
-                    <text x="335" y="38" font-size="16" fill="#b08d57">&#x2708;</text>
-                    <text x="660" y="30" font-size="14" fill="#b08d57">&#x2708;</text>
+                <div class="mock-map-area" style="background:#f2f2f7;position:relative;overflow:hidden">
+                  <!-- Real map image — zoomed in, more visible -->
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/World_map_blank_without_borders.svg/1280px-World_map_blank_without_borders.svg.png" alt="" style="width:140%;height:140%;object-fit:cover;object-position:30% 25%;opacity:0.25;position:absolute;top:-15%;left:-20%" loading="lazy">
+                  <!-- Gold country highlights -->
+                  <svg viewBox="0 0 100 70" xmlns="http://www.w3.org/2000/svg" style="width:140%;height:140%;position:absolute;top:-15%;left:-20%;z-index:1">
+                    <!-- Approximate country highlight overlays (gold tint) -->
+                    <ellipse cx="22" cy="25" rx="8" ry="5" fill="#b08d57" opacity="0.15"/><!-- USA -->
+                    <ellipse cx="47" cy="22" rx="3" ry="4" fill="#b08d57" opacity="0.2"/><!-- Italy -->
+                    <ellipse cx="42" cy="18" rx="2" ry="2" fill="#b08d57" opacity="0.2"/><!-- UK -->
+                    <ellipse cx="84" cy="20" rx="2" ry="4" fill="#b08d57" opacity="0.2"/><!-- Japan -->
+                    <ellipse cx="73" cy="30" rx="3" ry="3" fill="#b08d57" opacity="0.15"/><!-- Thailand -->
+                    <ellipse cx="82" cy="48" rx="5" ry="3" fill="#b08d57" opacity="0.12"/><!-- Australia -->
+                  </svg>
+                  <!-- Flight arcs + dots -->
+                  <svg viewBox="0 0 100 70" xmlns="http://www.w3.org/2000/svg" style="width:140%;height:140%;position:absolute;top:-15%;left:-20%;z-index:2">
+                    <!-- Flight arcs -->
+                    <path d="M22 25 Q35 10 47 22" stroke="#b08d57" stroke-width="0.4" fill="none" opacity="0.5"/>
+                    <path d="M47 22 Q65 8 84 20" stroke="#b08d57" stroke-width="0.4" fill="none" opacity="0.5"/>
+                    <path d="M84 20 Q78 25 73 30" stroke="#b08d57" stroke-width="0.3" fill="none" stroke-dasharray="1 0.8" opacity="0.4"/>
+                    <path d="M47 22 Q44 19 42 18" stroke="#b08d57" stroke-width="0.3" fill="none" stroke-dasharray="0.8 0.6" opacity="0.35"/>
+                    <!-- City dots -->
+                    <circle cx="22" cy="25" r="1" fill="#34c759" opacity="0.3"/><circle cx="22" cy="25" r="0.5" fill="#34c759"/>
+                    <circle cx="47" cy="22" r="1" fill="#34c759" opacity="0.3"/><circle cx="47" cy="22" r="0.5" fill="#34c759"/>
+                    <circle cx="84" cy="20" r="1" fill="#34c759" opacity="0.3"/><circle cx="84" cy="20" r="0.5" fill="#34c759"/>
+                    <circle cx="73" cy="30" r="1" fill="#34c759" opacity="0.3"/><circle cx="73" cy="30" r="0.5" fill="#34c759"/>
+                    <circle cx="42" cy="18" r="0.7" fill="#34c759" opacity="0.25"/><circle cx="42" cy="18" r="0.4" fill="#34c759"/>
+                    <circle cx="18" cy="27" r="0.7" fill="#34c759" opacity="0.25"/><circle cx="18" cy="27" r="0.4" fill="#34c759"/>
+                    <circle cx="82" cy="48" r="0.7" fill="#34c759" opacity="0.25"/><circle cx="82" cy="48" r="0.4" fill="#34c759"/>
+                    <!-- Plane -->
+                    <text x="34" y="14" font-size="2.5" fill="#b08d57">&#x2708;</text>
+                    <text x="65" y="11" font-size="2" fill="#b08d57">&#x2708;</text>
                   </svg>
                 </div>
                 <div class="glass-tabbar">
