@@ -599,15 +599,15 @@ s { text-decoration: line-through; opacity: 0.4; }
 }
 .section-photo-wrap img {
   width: 100%; height: 100%; object-fit: cover; object-position: center;
-  filter: brightness(0.35) saturate(1.2);
+  filter: brightness(0.55) saturate(1.2);
 }
 .section-photo-wrap::after {
   content: ''; position: absolute; inset: 0;
   background: linear-gradient(180deg,
-    rgba(5,5,8,0.85) 0%, rgba(5,5,8,0.55) 50%, rgba(5,5,8,0.85) 100%
+    rgba(5,5,8,0.7) 0%, rgba(5,5,8,0.4) 50%, rgba(5,5,8,0.7) 100%
   );
 }
-.section > *:not(.section-photo-wrap) { position: relative; z-index: 1; }
+.section > *:not(.section-photo-wrap):not(.problem-photo-wrap):not(.problem-glow):not(.cta-photo-wrap):not(.cta-glow) { position: relative; z-index: 1; }
 .section-label {
   font-size: 12px; font-weight: 700; letter-spacing: 3px;
   text-transform: uppercase; color: var(--tod-accent); margin-bottom: 20px;
@@ -889,12 +889,12 @@ s { text-decoration: line-through; opacity: 0.4; }
 }
 .problem-photo-wrap img {
   width: 100%; height: 100%; object-fit: cover; object-position: center;
-  filter: brightness(0.3) saturate(1.2);
+  filter: brightness(0.55) saturate(1.2);
 }
 .problem-photo-wrap::after {
   content: ''; position: absolute; inset: 0;
   background: linear-gradient(180deg,
-    rgba(5,5,8,0.88) 0%, rgba(5,5,8,0.55) 50%, rgba(5,5,8,0.88) 100%
+    rgba(5,5,8,0.7) 0%, rgba(5,5,8,0.4) 50%, rgba(5,5,8,0.7) 100%
   );
 }
 .problem-glow {
@@ -1401,12 +1401,12 @@ s { text-decoration: line-through; opacity: 0.4; }
 }
 .cta-photo-wrap img {
   width: 100%; height: 100%; object-fit: cover; object-position: center;
-  filter: brightness(0.25) saturate(1.3);
+  filter: brightness(0.55) saturate(1.3);
 }
 .cta-photo-wrap::after {
   content: ''; position: absolute; inset: 0;
   background: linear-gradient(180deg,
-    rgba(5,5,8,0.9) 0%, rgba(5,5,8,0.5) 50%, rgba(5,5,8,0.9) 100%
+    rgba(5,5,8,0.7) 0%, rgba(5,5,8,0.4) 50%, rgba(5,5,8,0.7) 100%
   );
 }
 .cta-glow {
