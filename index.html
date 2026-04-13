@@ -773,7 +773,8 @@ s { text-decoration: line-through; opacity: 0.4; }
     0 4px 12px rgba(0,0,0,0.3);
 }
 .op-card:hover {
-  transform: translateY(-16px) scale(1.04);
+  transform: perspective(800px) translateY(-16px) scale(1.06) rotateY(0deg) !important;
+  opacity: 1 !important;
   box-shadow:
     0 50px 100px rgba(0,0,0,0.5),
     0 10px 30px rgba(0,0,0,0.4),
@@ -2771,6 +2772,29 @@ s { text-decoration: line-through; opacity: 0.4; }
     row.addEventListener('mouseup', () => { isDown = false; row.style.cursor = 'grab'; });
     row.addEventListener('mousemove', e => { if (!isDown) return; e.preventDefault(); row.scrollLeft = sl - (e.pageX - row.offsetLeft - startX) * 1.5; });
   });
+
+  // ─── 3D SCROLL EFFECT ON CARDS ──────────────────
+  const opScroll = document.querySelector('.op-scroll');
+  function update3DCards() {
+    if (!opScroll) return;
+    const scrollRect = opScroll.getBoundingClientRect();
+    const centerX = scrollRect.left + scrollRect.width / 2;
+    opScroll.querySelectorAll('.op-card:not(.filtered-out)').forEach(card => {
+      const cardRect = card.getBoundingClientRect();
+      const cardCenter = cardRect.left + cardRect.width / 2;
+      const dist = (cardCenter - centerX) / (scrollRect.width / 2); // -1 to 1
+      const clamp = Math.max(-1, Math.min(1, dist));
+      const rotY = clamp * -8;
+      const scale = 1 - Math.abs(clamp) * 0.08;
+      const translateZ = (1 - Math.abs(clamp)) * 20;
+      card.style.transform = 'perspective(800px) rotateY(' + rotY + 'deg) scale(' + scale + ') translateZ(' + translateZ + 'px)';
+      card.style.opacity = 1 - Math.abs(clamp) * 0.25;
+    });
+  }
+  if (opScroll) {
+    opScroll.addEventListener('scroll', update3DCards, { passive: true });
+    update3DCards();
+  }
 
   // ─── CATEGORY PILL FILTERS ─────────────────────
   const opPills = document.querySelectorAll('#opPills .oneplace-pill');
