@@ -5,7 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Inside Voyage — Premium Travel Tracker for iOS 26</title>
 <meta name="description" content="Voyage turns your travels into a living world map. Track flights, countries, cities, and memories — with the depth they deserve.">
+<meta name="theme-color" content="#0A0E1A">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Inside Voyage — Every screen, every detail">
+<meta property="og:description" content="Six screens. Trips, daily diaries, flights, a 3D world map, travel stats, and personalized settings.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://images.unsplash.com" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -138,6 +144,43 @@ s { text-decoration: line-through; opacity: 0.4; }
   cursor: pointer; transition: border-color 0.3s, background 0.3s;
 }
 .btn-ghost:hover { border-color: var(--tod-accent); background: rgba(201,169,110,0.06); }
+
+/* Icons + hamburger */
+.ico { width: 1em; height: 1em; display: inline-block; vertical-align: -0.15em; flex-shrink: 0; }
+.nav-burger {
+  display: none; width: 44px; height: 44px; align-items: center; justify-content: center;
+  background: rgba(255,255,255,0.04); border: 1px solid var(--tod-glass-border);
+  border-radius: 12px; color: var(--text); cursor: pointer;
+}
+.nav-burger:hover { background: rgba(255,255,255,0.08); border-color: var(--tod-accent); }
+.nav-burger .ico { width: 22px; height: 22px; }
+.mobile-menu {
+  position: fixed; top: 0; right: 0; bottom: 0; width: min(320px, 86vw);
+  background: rgba(8,10,18,0.96); backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
+  border-left: 1px solid var(--tod-glass-border);
+  transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+  z-index: 1500; display: flex; flex-direction: column; padding: 88px 32px 32px;
+}
+.mobile-menu.open { transform: translateX(0); }
+.mobile-menu a {
+  font-size: 18px; font-weight: 600; color: var(--text); padding: 16px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06); letter-spacing: 0.3px; text-decoration: none;
+}
+.mobile-menu a:hover { color: var(--tod-accent); }
+.mobile-menu .btn-gold { margin-top: 24px; width: 100%; text-align: center; text-decoration: none; }
+.mobile-menu-close {
+  position: absolute; top: 24px; right: 24px; width: 40px; height: 40px;
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  color: var(--muted); cursor: pointer;
+}
+.mobile-menu-close .ico { width: 18px; height: 18px; }
+.mobile-backdrop {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
+  opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; z-index: 1400;
+}
+.mobile-backdrop.open { opacity: 1; visibility: visible; }
+body.menu-open { overflow: hidden; }
 
 /* ═══════════════════════════════════════════════════
    EARLY ACCESS MODAL
@@ -1513,6 +1556,9 @@ s { text-decoration: line-through; opacity: 0.4; }
    ═══════════════════════════════════════════════════ */
 @media (max-width: 900px) {
   .nav-links { display: none; }
+  .nav-burger { display: flex; }
+  .nav-right .btn-gold { display: none; }
+  .nav { padding: 0 20px; }
   .tod-badge { display: none; }
   .hero-h1 { font-size: 42px; }
   .orbit { display: none; }
@@ -1586,6 +1632,13 @@ s { text-decoration: line-through; opacity: 0.4; }
 <!-- ═══════════════════════════════════════════════════
      GLASS NAV
      ═══════════════════════════════════════════════════ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  </defs>
+</svg>
+
 <nav class="nav" id="nav">
   <div class="nav-logo">V<span class="o">O</span>YAGE</div>
   <div class="nav-links">
@@ -1595,8 +1648,22 @@ s { text-decoration: line-through; opacity: 0.4; }
   </div>
   <div class="nav-right">
     <a href="index.html#download" class="btn-gold" style="text-decoration:none">Get Early Access</a>
+    <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <svg class="ico"><use href="#i-menu"/></svg>
+    </button>
   </div>
 </nav>
+
+<div class="mobile-backdrop" id="mobileBackdrop"></div>
+<aside class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu">
+    <svg class="ico"><use href="#i-x"/></svg>
+  </button>
+  <a href="index.html#life" data-mobile-link>Explore</a>
+  <a href="features.html" data-mobile-link>Inside Voyage</a>
+  <a href="index.html#download" data-mobile-link>Download</a>
+  <a href="index.html#download" class="btn-gold" data-mobile-link>Get Early Access</a>
+</aside>
 
 <section class="hero" style="min-height:70vh">
   <div class="hero-photo" style="background-image:url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1800&q=80')"></div>
@@ -2429,23 +2496,49 @@ s { text-decoration: line-through; opacity: 0.4; }
     setTimeout(() => origObserver.observe(wrapper), i * 100);
   });
 
+  // ─── MOBILE MENU ───────────────────────────────
+  const navBurger = document.getElementById('navBurger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const mobileBackdrop = document.getElementById('mobileBackdrop');
+  const mobileMenuClose = document.getElementById('mobileMenuClose');
+  function openMobileMenu() {
+    mobileMenu.classList.add('open');
+    mobileBackdrop.classList.add('open');
+    document.body.classList.add('menu-open');
+    navBurger.setAttribute('aria-expanded', 'true');
+    mobileMenu.setAttribute('aria-hidden', 'false');
+  }
+  function closeMobileMenu() {
+    mobileMenu.classList.remove('open');
+    mobileBackdrop.classList.remove('open');
+    document.body.classList.remove('menu-open');
+    navBurger.setAttribute('aria-expanded', 'false');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+  }
+  if (navBurger) navBurger.addEventListener('click', openMobileMenu);
+  if (mobileMenuClose) mobileMenuClose.addEventListener('click', closeMobileMenu);
+  if (mobileBackdrop) mobileBackdrop.addEventListener('click', closeMobileMenu);
+  document.querySelectorAll('[data-mobile-link]').forEach(a => a.addEventListener('click', closeMobileMenu));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobileMenu(); });
+
   // ─── MILESTONE DRAG SCROLL ───────────────────────
   const track = document.getElementById('milestoneTrack');
-  let isDown = false, startX, scrollLeft;
-
-  track.addEventListener('mousedown', e => {
-    isDown = true; track.style.cursor = 'grabbing';
-    startX = e.pageX - track.offsetLeft;
-    scrollLeft = track.scrollLeft;
-  });
-  track.addEventListener('mouseleave', () => { isDown = false; track.style.cursor = 'grab'; });
-  track.addEventListener('mouseup', () => { isDown = false; track.style.cursor = 'grab'; });
-  track.addEventListener('mousemove', e => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - track.offsetLeft;
-    track.scrollLeft = scrollLeft - (x - startX) * 1.5;
-  });
+  if (track) {
+    let isDown = false, startX, scrollLeft;
+    track.addEventListener('mousedown', e => {
+      isDown = true; track.style.cursor = 'grabbing';
+      startX = e.pageX - track.offsetLeft;
+      scrollLeft = track.scrollLeft;
+    });
+    track.addEventListener('mouseleave', () => { isDown = false; track.style.cursor = 'grab'; });
+    track.addEventListener('mouseup', () => { isDown = false; track.style.cursor = 'grab'; });
+    track.addEventListener('mousemove', e => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - track.offsetLeft;
+      track.scrollLeft = scrollLeft - (x - startX) * 1.5;
+    });
+  }
 
   // ─── FLAG CAROUSEL ───────────────────────────────
   const flags = ['\u{1F1EF}\u{1F1F5}', '\u{1F1EB}\u{1F1F7}', '\u{1F1EC}\u{1F1E7}', '\u{1F1E9}\u{1F1EA}', '\u{1F1EE}\u{1F1F9}', '\u{1F1E7}\u{1F1F7}', '\u{1F1F9}\u{1F1F7}', '\u{1F1E6}\u{1F1FA}'];

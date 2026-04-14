@@ -5,7 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VOYAGE — Premium Travel Tracker for iOS 26</title>
 <meta name="description" content="Voyage turns your travels into a living world map. Track flights, countries, cities, and memories — with the depth they deserve.">
+<meta name="theme-color" content="#0A0E1A">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="website">
+<meta property="og:title" content="VOYAGE — Premium Travel Tracker for iOS 26">
+<meta property="og:description" content="Flights, hotels, cruises, daily diaries, expenses — all in one beautiful app.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1488085061387-422e29b40080?w=1200&q=85">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="VOYAGE — Premium Travel Tracker">
+<meta name="twitter:description" content="Flights, hotels, cruises, daily diaries — all in one beautiful app.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://images.unsplash.com" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -85,6 +95,15 @@ s { text-decoration: line-through; opacity: 0.4; }
 /* Custom cursor removed — using default */
 
 /* ═══════════════════════════════════════════════════
+   ICONS
+   ═══════════════════════════════════════════════════ */
+.ico { width: 1em; height: 1em; display: inline-block; vertical-align: -0.15em; flex-shrink: 0; }
+.ico-lg { width: 1.3em; height: 1.3em; vertical-align: -0.25em; }
+.oneplace-pill .ico { margin-right: 4px; }
+.lc-chip .ico, .lc-photos .ico { margin-right: 4px; }
+.op-card-label .ico { margin-right: 4px; vertical-align: -0.2em; }
+
+/* ═══════════════════════════════════════════════════
    SCROLL REVEAL
    ═══════════════════════════════════════════════════ */
 .reveal {
@@ -138,6 +157,44 @@ s { text-decoration: line-through; opacity: 0.4; }
   cursor: pointer; transition: border-color 0.3s, background 0.3s;
 }
 .btn-ghost:hover { border-color: var(--tod-accent); background: rgba(201,169,110,0.06); }
+
+/* Hamburger / mobile menu */
+.nav-burger {
+  display: none; width: 44px; height: 44px; align-items: center; justify-content: center;
+  background: rgba(255,255,255,0.04); border: 1px solid var(--tod-glass-border);
+  border-radius: 12px; color: var(--text); cursor: pointer;
+  transition: background 0.3s, border-color 0.3s;
+}
+.nav-burger:hover { background: rgba(255,255,255,0.08); border-color: var(--tod-accent); }
+.nav-burger .ico { width: 22px; height: 22px; }
+.mobile-menu {
+  position: fixed; top: 0; right: 0; bottom: 0; width: min(320px, 86vw);
+  background: rgba(8,10,18,0.96); backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
+  border-left: 1px solid var(--tod-glass-border);
+  transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+  z-index: 1500; display: flex; flex-direction: column; padding: 88px 32px 32px;
+}
+.mobile-menu.open { transform: translateX(0); }
+.mobile-menu a {
+  font-size: 18px; font-weight: 600; color: var(--text); padding: 16px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06); letter-spacing: 0.3px;
+}
+.mobile-menu a:hover { color: var(--tod-accent); }
+.mobile-menu .btn-gold { margin-top: 24px; width: 100%; }
+.mobile-menu-close {
+  position: absolute; top: 24px; right: 24px; width: 40px; height: 40px;
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  color: var(--muted); cursor: pointer;
+}
+.mobile-menu-close:hover { background: rgba(255,255,255,0.12); color: var(--text); }
+.mobile-menu-close .ico { width: 18px; height: 18px; }
+.mobile-backdrop {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
+  opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; z-index: 1400;
+}
+.mobile-backdrop.open { opacity: 1; visibility: visible; }
+body.menu-open { overflow: hidden; }
 
 /* ═══════════════════════════════════════════════════
    EARLY ACCESS MODAL
@@ -669,8 +726,8 @@ s { text-decoration: line-through; opacity: 0.4; }
   z-index: 1;
 }
 
-/* Featured card — taller */
-.lc-featured { min-height: 520px; }
+/* Featured card — same height as the rest */
+.lc-featured { min-height: 320px; }
 
 /* Content overlay */
 .lc-body {
@@ -680,7 +737,7 @@ s { text-decoration: line-through; opacity: 0.4; }
 .lc-name {
   font-size: 32px; font-weight: 700; line-height: 1.1; margin-bottom: 6px;
 }
-.lc-featured .lc-name { font-size: 42px; }
+.lc-featured .lc-name { font-size: 32px; }
 .lc-route {
   font-size: 13px; color: var(--gold); font-weight: 600; margin-bottom: 14px;
 }
@@ -723,10 +780,10 @@ s { text-decoration: line-through; opacity: 0.4; }
 
 @media (max-width: 900px) {
   .life-grid { grid-template-columns: 1fr; }
-  .lc { min-height: 340px; }
-  .lc-featured { min-height: 380px; }
+  .lc { min-height: 280px; }
+  .lc-featured { min-height: 280px; }
   .lc-name { font-size: 26px; }
-  .lc-featured .lc-name { font-size: 32px; }
+  .lc-featured .lc-name { font-size: 26px; }
 }
 
 /* ═══════════════════════════════════════════════════
@@ -761,7 +818,7 @@ s { text-decoration: line-through; opacity: 0.4; }
 
 /* Each 3D photo card */
 .op-card {
-  flex-shrink: 0; width: 380px; height: 520px;
+  flex-shrink: 0; width: 300px; height: 420px;
   border-radius: 28px; overflow: hidden; position: relative;
   scroll-snap-align: center;
   transform-style: preserve-3d;
@@ -827,21 +884,25 @@ s { text-decoration: line-through; opacity: 0.4; }
 /* Card text content */
 .op-card-body {
   position: absolute; bottom: 0; left: 0; right: 0;
-  padding: 28px; z-index: 3;
+  padding: 20px; z-index: 3;
 }
 .op-card-label {
-  font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
-  margin-bottom: 8px; display: flex; align-items: center; gap: 6px;
+  font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  margin-bottom: 6px; display: flex; align-items: center; gap: 5px;
 }
 .op-card-title {
-  font-size: 26px; font-weight: 700; line-height: 1.15; margin-bottom: 8px;
+  font-size: 19px; font-weight: 700; line-height: 1.2; margin-bottom: 6px;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .op-card-sub {
-  font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.5;
+  font-size: 11px; color: rgba(255,255,255,0.65); line-height: 1.45;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* Wider card variant */
-.op-card-wide { width: 480px; }
+.op-card-wide { width: 380px; }
 
 /* Tagline below */
 .oneplace-bottom {
@@ -872,10 +933,12 @@ s { text-decoration: line-through; opacity: 0.4; }
 }
 
 @media (max-width: 900px) {
-  .op-card { width: 300px; height: 420px; }
-  .op-card-wide { width: 340px; }
-  .op-card-title { font-size: 22px; }
-  .op-scroll { padding: 20px 24px 40px; gap: 20px; }
+  .op-card { width: 260px; height: 360px; }
+  .op-card-wide { width: 300px; }
+  .op-card-title { font-size: 17px; }
+  .op-card-sub { font-size: 10px; }
+  .op-card-body { padding: 16px; }
+  .op-scroll { padding: 20px 24px 40px; gap: 16px; }
 }
 
 /* ═══════════════════════════════════════════════════
@@ -1506,6 +1569,9 @@ s { text-decoration: line-through; opacity: 0.4; }
    ═══════════════════════════════════════════════════ */
 @media (max-width: 900px) {
   .nav-links { display: none; }
+  .nav-burger { display: flex; }
+  .nav-right .btn-gold { display: none; }
+  .nav { padding: 0 20px; }
   .tod-badge { display: none; }
   .hero-h1 { font-size: 42px; }
   .orbit { display: none; }
@@ -1545,6 +1611,34 @@ s { text-decoration: line-through; opacity: 0.4; }
 </head>
 <body class="mode-night">
 
+<!-- SVG icon sprite (Lucide-style, 24x24, currentColor) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-plane" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.3 5c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></symbol>
+    <symbol id="i-hotel" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20M4 20V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12M9 10h.01M15 10h.01M9 14h.01M15 14h.01M12 20v-4"/></symbol>
+    <symbol id="i-ship" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 10.5V2l5 3M12 10.5 6 12M12 10.5 18 12M2 20s1.5 2 4 2 3.5-2 6-2 3.5 2 6 2 4-2 4-2M4 18l-2-6h20l-2 6"/></symbol>
+    <symbol id="i-car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2a.5.5 0 0 0 .5-.5V13l-2-5H4.5l-2 5v3.5A.5.5 0 0 0 3 17h2M5 17h14"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></symbol>
+    <symbol id="i-utensils" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7a3 3 0 0 0 3 3h0a3 3 0 0 0 3-3V2M6 12v10M18 2c-2 0-4 2-4 5s2 5 4 5v10"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-7.5-8-13a8 8 0 1 1 16 0c0 5.5-8 13-8 13z"/><circle cx="12" cy="9" r="3"/></symbol>
+    <symbol id="i-dollar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></symbol>
+    <symbol id="i-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1A4 4 0 0 1 16 11"/></symbol>
+    <symbol id="i-road" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h1l3 20h-3M6 2H5L2 22h3M10 2v4M10 10v4M10 18v4"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21.2l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8z"/></symbol>
+    <symbol id="i-map" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m1 6 7-3 8 3 7-3v15l-7 3-8-3-7 3zM8 3v15M16 6v15"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18M7 14v4M12 9v9M17 5v13"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20A15 15 0 0 1 12 2z"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 3.1 6.3 7 1-5 4.9 1.1 6.9L12 17.8l-6.2 3.3L7 14.2 2 9.3l7-1z"/></symbol>
+    <symbol id="i-umbrella" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12v8a2 2 0 0 0 4 0M12 2v1M2 12a10 10 0 0 1 20 0z"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+    <symbol id="i-swim" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c2 0 2 2 4 2s2-2 4-2 2 2 4 2 2-2 4-2 2 2 4 2M2 20c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2M17 7a2 2 0 1 0-4 0M6 15 14 7"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/></symbol>
+  </defs>
+</svg>
+
 <!-- Early Access Modal -->
 <div class="ea-overlay" id="eaOverlay" onclick="if(event.target===this)this.classList.remove('open')">
   <div class="ea-modal">
@@ -1567,7 +1661,7 @@ s { text-decoration: line-through; opacity: 0.4; }
       </form>
     </div>
     <div id="eaSuccess" class="ea-success" style="display:none">
-      <div class="ea-success-icon">&#x2708;&#xFE0F;</div>
+      <div class="ea-success-icon"><svg class="ico"><use href="#i-plane"/></svg></div>
       <div class="ea-success-title">You're on the list!</div>
       <div class="ea-success-sub">We'll reach out when Voyage is ready for takeoff.</div>
     </div>
@@ -1587,8 +1681,22 @@ s { text-decoration: line-through; opacity: 0.4; }
   </div>
   <div class="nav-right">
     <button class="btn-gold" onclick="document.getElementById('eaOverlay').classList.add('open')">Get Early Access</button>
+    <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <svg class="ico"><use href="#i-menu"/></svg>
+    </button>
   </div>
 </nav>
+
+<div class="mobile-backdrop" id="mobileBackdrop"></div>
+<aside class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu">
+    <svg class="ico"><use href="#i-x"/></svg>
+  </button>
+  <a href="#life" data-mobile-link>Explore</a>
+  <a href="features.html" data-mobile-link>Inside Voyage</a>
+  <a href="#download" data-mobile-link>Download</a>
+  <button class="btn-gold" id="mobileCta">Get Early Access</button>
+</aside>
 
 <!-- ═══════════════════════════════════════════════════
      HERO
@@ -1626,16 +1734,16 @@ s { text-decoration: line-through; opacity: 0.4; }
     <div class="lc lc-featured reveal" style="background-image:url('https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=1400&q=85')">
       <div class="lc-top">
         <span class="lc-year">2026</span>
-        <span class="lc-photos">&#x1F4F7; 86 photos</span>
+        <span class="lc-photos"><svg class="ico"><use href="#i-camera"/></svg>86 photos</span>
       </div>
       <div class="lc-body">
         <div class="lc-name">Mediterranean Cruise</div>
         <div class="lc-route">Barcelona &rarr; Marseille &rarr; Rome &rarr; Santorini &rarr; Dubrovnik</div>
         <div class="lc-details">
-          <span class="lc-chip">&#x1F6A2; 7 ports</span>
-          <span class="lc-chip">&#x1F4C5; Jun 1 – 14</span>
-          <span class="lc-chip">&#x1F468;&#x200D;&#x1F469;&#x200D;&#x1F467;&#x200D;&#x1F466; Family</span>
-          <span class="lc-chip">&#x1F3E8; 14 nights</span>
+          <span class="lc-chip"><svg class="ico"><use href="#i-ship"/></svg>7 ports</span>
+          <span class="lc-chip"><svg class="ico"><use href="#i-calendar"/></svg>Jun 1 – 14</span>
+          <span class="lc-chip"><svg class="ico"><use href="#i-users"/></svg>Family</span>
+          <span class="lc-chip"><svg class="ico"><use href="#i-hotel"/></svg>14 nights</span>
           <span class="lc-chip lc-chip-cost">$6,200</span>
         </div>
       </div>
@@ -1645,15 +1753,15 @@ s { text-decoration: line-through; opacity: 0.4; }
     <div class="lc reveal" style="background-image:url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&q=85')">
       <div class="lc-top">
         <span class="lc-year">2026</span>
-        <span class="lc-photos">&#x1F4F7; 64 photos</span>
+        <span class="lc-photos"><svg class="ico"><use href="#i-camera"/></svg>64 photos</span>
       </div>
       <div class="lc-body">
         <div class="lc-name">Tokyo &amp; Kyoto</div>
         <div class="lc-route">JFK &rarr; NRT &rarr; KIX &rarr; JFK</div>
         <div class="lc-details">
-          <span class="lc-chip">&#x2708;&#xFE0F; 3 flights</span>
-          <span class="lc-chip">&#x1F4C5; Mar 8 – 22</span>
-          <span class="lc-chip">&#x1F3D9; 6 cities</span>
+          <span class="lc-chip"><svg class="ico"><use href="#i-plane"/></svg>3 flights</span>
+          <span class="lc-chip"><svg class="ico"><use href="#i-calendar"/></svg>Mar 8 – 22</span>
+          <span class="lc-chip"><svg class="ico"><use href="#i-map"/></svg>6 cities</span>
           <span class="lc-chip lc-chip-cost">$4,280</span>
         </div>
       </div>
@@ -1663,15 +1771,15 @@ s { text-decoration: line-through; opacity: 0.4; }
     <div class="lc reveal" style="background-image:url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=85')">
       <div class="lc-top">
         <span class="lc-year">2025</span>
-        <span class="lc-photos">&#x1F4F7; 78 photos</span>
+        <span class="lc-photos"><svg class="ico"><use href="#i-camera"/></svg>78 photos</span>
       </div>
       <div class="lc-body">
         <div class="lc-name">Bali &amp; Lombok</div>
         <div class="lc-route">SIN &rarr; DPS &rarr; LOP &rarr; SIN</div>
         <div class="lc-details">
-          <span class="lc-chip">&#x2708;&#xFE0F; 3 flights</span>
-          <span class="lc-chip">&#x1F4C5; Jul 5 – 19</span>
-          <span class="lc-chip">&#x1F468;&#x200D;&#x1F469;&#x200D;&#x1F467;&#x200D;&#x1F466; Family</span>
+          <span class="lc-chip"><svg class="ico"><use href="#i-plane"/></svg>3 flights</span>
+          <span class="lc-chip"><svg class="ico"><use href="#i-calendar"/></svg>Jul 5 – 19</span>
+          <span class="lc-chip"><svg class="ico"><use href="#i-users"/></svg>Family</span>
           <span class="lc-chip lc-chip-cost">$5,800</span>
         </div>
       </div>
@@ -1681,16 +1789,16 @@ s { text-decoration: line-through; opacity: 0.4; }
     <div class="lc lc-featured reveal" style="background-image:url('https://images.unsplash.com/photo-1476610182048-b716b8518aae?w=1400&q=85')">
       <div class="lc-top">
         <span class="lc-year">2025</span>
-        <span class="lc-photos">&#x1F4F7; 52 photos</span>
+        <span class="lc-photos"><svg class="ico"><use href="#i-camera"/></svg>52 photos</span>
       </div>
       <div class="lc-body">
         <div class="lc-name">Iceland Ring Road</div>
         <div class="lc-route">KEF &rarr; Akureyri &rarr; Vik &rarr; Reykjavik &rarr; KEF</div>
         <div class="lc-details">
-          <span class="lc-chip">&#x1F697; Road trip</span>
-          <span class="lc-chip">&#x1F4C5; Aug 10 – 20</span>
-          <span class="lc-chip">&#x1F6E3;&#xFE0F; 1,800 km</span>
-          <span class="lc-chip">&#x1F3E8; 8 hotels</span>
+          <span class="lc-chip"><svg class="ico"><use href="#i-car"/></svg>Road trip</span>
+          <span class="lc-chip"><svg class="ico"><use href="#i-calendar"/></svg>Aug 10 – 20</span>
+          <span class="lc-chip"><svg class="ico"><use href="#i-road"/></svg>1,800 km</span>
+          <span class="lc-chip"><svg class="ico"><use href="#i-hotel"/></svg>8 hotels</span>
           <span class="lc-chip lc-chip-cost">$2,900</span>
         </div>
       </div>
@@ -1700,15 +1808,15 @@ s { text-decoration: line-through; opacity: 0.4; }
     <div class="lc reveal" style="background-image:url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&q=85')">
       <div class="lc-top">
         <span class="lc-year">2025</span>
-        <span class="lc-photos">&#x1F4F7; 43 photos</span>
+        <span class="lc-photos"><svg class="ico"><use href="#i-camera"/></svg>43 photos</span>
       </div>
       <div class="lc-body">
         <div class="lc-name">Paris</div>
         <div class="lc-route">JFK &rarr; CDG &rarr; JFK</div>
         <div class="lc-details">
-          <span class="lc-chip">&#x2764;&#xFE0F; Anniversary</span>
-          <span class="lc-chip">&#x1F4C5; Feb 14 – 21</span>
-          <span class="lc-chip">&#x1F37D;&#xFE0F; 14 meals</span>
+          <span class="lc-chip"><svg class="ico"><use href="#i-heart"/></svg>Anniversary</span>
+          <span class="lc-chip"><svg class="ico"><use href="#i-calendar"/></svg>Feb 14 – 21</span>
+          <span class="lc-chip"><svg class="ico"><use href="#i-utensils"/></svg>14 meals</span>
           <span class="lc-chip lc-chip-cost">$3,100</span>
         </div>
       </div>
@@ -1718,15 +1826,15 @@ s { text-decoration: line-through; opacity: 0.4; }
     <div class="lc reveal" style="background-image:url('https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800&q=85')">
       <div class="lc-top">
         <span class="lc-year">2024</span>
-        <span class="lc-photos">&#x1F4F7; 91 photos</span>
+        <span class="lc-photos"><svg class="ico"><use href="#i-camera"/></svg>91 photos</span>
       </div>
       <div class="lc-body">
         <div class="lc-name">Maldives</div>
         <div class="lc-route">DXB &rarr; MLE &rarr; DXB</div>
         <div class="lc-details">
-          <span class="lc-chip">&#x1F3D6;&#xFE0F; Overwater villa</span>
-          <span class="lc-chip">&#x1F4C5; Dec 20 – 28</span>
-          <span class="lc-chip">&#x1F3CA; Snorkelling</span>
+          <span class="lc-chip"><svg class="ico"><use href="#i-umbrella"/></svg>Overwater villa</span>
+          <span class="lc-chip"><svg class="ico"><use href="#i-calendar"/></svg>Dec 20 – 28</span>
+          <span class="lc-chip"><svg class="ico"><use href="#i-swim"/></svg>Snorkelling</span>
           <span class="lc-chip lc-chip-cost">$7,200</span>
         </div>
       </div>
@@ -1736,15 +1844,15 @@ s { text-decoration: line-through; opacity: 0.4; }
     <div class="lc reveal" style="background-image:url('https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800&q=85')">
       <div class="lc-top">
         <span class="lc-year">2024</span>
-        <span class="lc-photos">&#x1F4F7; 58 photos</span>
+        <span class="lc-photos"><svg class="ico"><use href="#i-camera"/></svg>58 photos</span>
       </div>
       <div class="lc-body">
         <div class="lc-name">Rome &amp; Amalfi Coast</div>
         <div class="lc-route">JFK &rarr; FCO &rarr; NAP &rarr; JFK</div>
         <div class="lc-details">
-          <span class="lc-chip">&#x2708;&#xFE0F; 3 flights</span>
-          <span class="lc-chip">&#x1F4C5; Apr 10 – 24</span>
-          <span class="lc-chip">&#x1F37D;&#xFE0F; 22 meals</span>
+          <span class="lc-chip"><svg class="ico"><use href="#i-plane"/></svg>3 flights</span>
+          <span class="lc-chip"><svg class="ico"><use href="#i-calendar"/></svg>Apr 10 – 24</span>
+          <span class="lc-chip"><svg class="ico"><use href="#i-utensils"/></svg>22 meals</span>
           <span class="lc-chip lc-chip-cost">$4,500</span>
         </div>
       </div>
@@ -1754,15 +1862,15 @@ s { text-decoration: line-through; opacity: 0.4; }
     <div class="lc reveal" style="background-image:url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=85')">
       <div class="lc-top">
         <span class="lc-year">2024</span>
-        <span class="lc-photos">&#x1F4F7; 37 photos</span>
+        <span class="lc-photos"><svg class="ico"><use href="#i-camera"/></svg>37 photos</span>
       </div>
       <div class="lc-body">
         <div class="lc-name">Dubai &amp; Abu Dhabi</div>
         <div class="lc-route">LHR &rarr; DXB &rarr; AUH &rarr; LHR</div>
         <div class="lc-details">
-          <span class="lc-chip">&#x2708;&#xFE0F; 2 flights</span>
-          <span class="lc-chip">&#x1F4C5; Nov 15 – 23</span>
-          <span class="lc-chip">&#x1F3E8; 2 hotels</span>
+          <span class="lc-chip"><svg class="ico"><use href="#i-plane"/></svg>2 flights</span>
+          <span class="lc-chip"><svg class="ico"><use href="#i-calendar"/></svg>Nov 15 – 23</span>
+          <span class="lc-chip"><svg class="ico"><use href="#i-hotel"/></svg>2 hotels</span>
           <span class="lc-chip lc-chip-cost">$3,400</span>
         </div>
       </div>
@@ -1793,7 +1901,7 @@ s { text-decoration: line-through; opacity: 0.4; }
         <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=900&q=85')"></div>
         <div class="op-card-border"></div>
         <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--coral)">&#x1F6A2; CRUISE PORT</div>
+          <div class="op-card-label" style="color:var(--coral)"><svg class="ico"><use href="#i-ship"/></svg> CRUISE PORT</div>
           <div class="op-card-title">Santorini</div>
           <div class="op-card-sub">Port 4 of 7 &middot; Jun 8 &middot; 8 hours ashore<br>Oia sunset walk &middot; Wine tasting &middot; Fira cable car</div>
         </div>
@@ -1804,7 +1912,7 @@ s { text-decoration: line-through; opacity: 0.4; }
         <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?w=1000&q=85')"></div>
         <div class="op-card-border"></div>
         <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--sky)">&#x2708;&#xFE0F; FLIGHT</div>
+          <div class="op-card-label" style="color:var(--sky)"><svg class="ico"><use href="#i-plane"/></svg> FLIGHT</div>
           <div class="op-card-title">JFK &rarr; NRT</div>
           <div class="op-card-sub">Turkish Airlines TK 2 &middot; Gate B42 &middot; Seat 14A<br>Economy Plus &middot; 13h 45m &middot; Boeing 787-9 &middot; $1,840</div>
         </div>
@@ -1815,9 +1923,9 @@ s { text-decoration: line-through; opacity: 0.4; }
         <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1582719508461-905c673771fd?w=900&q=85')"></div>
         <div class="op-card-border"></div>
         <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--purple)">&#x1F3E8; HOTEL</div>
+          <div class="op-card-label" style="color:var(--purple)"><svg class="ico"><use href="#i-hotel"/></svg> HOTEL</div>
           <div class="op-card-title">Park Hyatt Tokyo</div>
-          <div class="op-card-sub">Mar 8–12 &middot; Deluxe King &middot; Floor 47<br>4 nights &middot; $1,200 &middot; &#x2B50; 4.8</div>
+          <div class="op-card-sub">Mar 8–12 &middot; Deluxe King &middot; Floor 47<br>4 nights &middot; $1,200 &middot; <svg class="ico"><use href="#i-star"/></svg>4.8</div>
         </div>
       </div>
 
@@ -1826,9 +1934,9 @@ s { text-decoration: line-through; opacity: 0.4; }
         <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1553621042-f6e147245754?w=900&q=85')"></div>
         <div class="op-card-border"></div>
         <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--coral)">&#x1F37D;&#xFE0F; DINNER</div>
+          <div class="op-card-label" style="color:var(--coral)"><svg class="ico"><use href="#i-utensils"/></svg> DINNER</div>
           <div class="op-card-title">Sukiyabashi Jiro</div>
-          <div class="op-card-sub">Omakase &middot; &#x2B50; 4.9 &middot; $$$$ &middot; Day 3<br>Reservation 7:30 PM &middot; 20 courses</div>
+          <div class="op-card-sub">Omakase &middot; <svg class="ico"><use href="#i-star"/></svg>4.9 &middot; $$$$ &middot; Day 3<br>Reservation 7:30 PM &middot; 20 courses</div>
         </div>
       </div>
 
@@ -1837,7 +1945,7 @@ s { text-decoration: line-through; opacity: 0.4; }
         <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1478436127897-769e1b3f0f36?w=1000&q=85')"></div>
         <div class="op-card-border"></div>
         <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--gold)">&#x26E9;&#xFE0F; PLACE</div>
+          <div class="op-card-label" style="color:var(--gold)"><svg class="ico"><use href="#i-pin"/></svg> PLACE</div>
           <div class="op-card-title">Fushimi Inari Shrine</div>
           <div class="op-card-sub">10,000 torii gates &middot; Kyoto &middot; 2 hours<br>Day 5 &middot; Morning hike &middot; 86 photos taken</div>
         </div>
@@ -1848,7 +1956,7 @@ s { text-decoration: line-through; opacity: 0.4; }
         <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1548574505-5e239809ee19?w=900&q=85')"></div>
         <div class="op-card-border"></div>
         <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--teal)">&#x1F6A2; CRUISE</div>
+          <div class="op-card-label" style="color:var(--teal)"><svg class="ico"><use href="#i-ship"/></svg> CRUISE</div>
           <div class="op-card-title">Mediterranean &middot; 7 Ports</div>
           <div class="op-card-sub">Barcelona &rarr; Marseille &rarr; Rome &rarr; Santorini<br>Jun 1–14 &middot; Royal Caribbean &middot; $6,200</div>
         </div>
@@ -1859,7 +1967,7 @@ s { text-decoration: line-through; opacity: 0.4; }
         <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1476610182048-b716b8518aae?w=1000&q=85')"></div>
         <div class="op-card-border"></div>
         <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--gold)">&#x1F697; ROAD TRIP</div>
+          <div class="op-card-label" style="color:var(--gold)"><svg class="ico"><use href="#i-car"/></svg> ROAD TRIP</div>
           <div class="op-card-title">Iceland Ring Road</div>
           <div class="op-card-sub">Hertz &middot; Dacia Duster &middot; 10 days &middot; 1,800 km<br>Pickup KEF Aug 10 &middot; Drop-off KEF Aug 20 &middot; $890</div>
         </div>
@@ -1870,7 +1978,7 @@ s { text-decoration: line-through; opacity: 0.4; }
         <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=900&q=85')"></div>
         <div class="op-card-border"></div>
         <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--gold)">&#x1F4D6; DAY 3</div>
+          <div class="op-card-label" style="color:var(--gold)"><svg class="ico"><use href="#i-book"/></svg> DAY 3</div>
           <div class="op-card-title">Montmartre &amp; Sacr&eacute;-C&oelig;ur</div>
           <div class="op-card-sub">3 places &middot; 2 meals &middot; &euro;180 spent<br>42 photos &middot; 12,400 steps</div>
         </div>
@@ -1881,7 +1989,7 @@ s { text-decoration: line-through; opacity: 0.4; }
         <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=900&q=85')"></div>
         <div class="op-card-border"></div>
         <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--sky)">&#x1F3D6;&#xFE0F; RESORT</div>
+          <div class="op-card-label" style="color:var(--sky)"><svg class="ico"><use href="#i-umbrella"/></svg> RESORT</div>
           <div class="op-card-title">Maldives &middot; Overwater Villa</div>
           <div class="op-card-sub">Dec 20–28 &middot; Soneva Fushi &middot; $7,200<br>Snorkelling &middot; Spa &middot; Sunset dolphin cruise</div>
         </div>
@@ -1892,7 +2000,7 @@ s { text-decoration: line-through; opacity: 0.4; }
         <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=900&q=85')"></div>
         <div class="op-card-border"></div>
         <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--teal)">&#x1F4B0; EXPENSE</div>
+          <div class="op-card-label" style="color:var(--teal)"><svg class="ico"><use href="#i-dollar"/></svg> EXPENSE</div>
           <div class="op-card-title">Street Food Tour</div>
           <div class="op-card-sub">Bangkok &middot; Day 2 &middot; Food<br>6 stalls &middot; &yen;4,200 (~$28) &middot; Worth every baht</div>
         </div>
@@ -1903,7 +2011,7 @@ s { text-decoration: line-through; opacity: 0.4; }
         <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=1000&q=85')"></div>
         <div class="op-card-border"></div>
         <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--sky)">&#x2708;&#xFE0F; FLIGHT</div>
+          <div class="op-card-label" style="color:var(--sky)"><svg class="ico"><use href="#i-plane"/></svg> FLIGHT</div>
           <div class="op-card-title">LAX &rarr; LHR</div>
           <div class="op-card-sub">British Airways BA 268 &middot; Gate 42 &middot; Seat 7K<br>Business &middot; 10h 30m &middot; Boeing 777-300ER &middot; $3,200</div>
         </div>
@@ -1914,7 +2022,7 @@ s { text-decoration: line-through; opacity: 0.4; }
         <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1500835556837-99ac94a94552?w=900&q=85')"></div>
         <div class="op-card-border"></div>
         <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--sky)">&#x2708;&#xFE0F; FLIGHT</div>
+          <div class="op-card-label" style="color:var(--sky)"><svg class="ico"><use href="#i-plane"/></svg> FLIGHT</div>
           <div class="op-card-title">SFO &rarr; CDG</div>
           <div class="op-card-sub">Air France AF 85 &middot; Gate D7 &middot; Seat 22A<br>Premium Economy &middot; 11h 15m &middot; A350 &middot; $2,100</div>
         </div>
@@ -1925,7 +2033,7 @@ s { text-decoration: line-through; opacity: 0.4; }
         <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1556388158-158ea5ccacbd?w=900&q=85')"></div>
         <div class="op-card-border"></div>
         <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--sky)">&#x2708;&#xFE0F; FLIGHT</div>
+          <div class="op-card-label" style="color:var(--sky)"><svg class="ico"><use href="#i-plane"/></svg> FLIGHT</div>
           <div class="op-card-title">MIA &rarr; CUN</div>
           <div class="op-card-sub">American AA 1547 &middot; Gate C12 &middot; Seat 3F<br>First &middot; 2h 20m &middot; Boeing 737 MAX &middot; $680</div>
         </div>
@@ -1936,9 +2044,9 @@ s { text-decoration: line-through; opacity: 0.4; }
         <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=900&q=85')"></div>
         <div class="op-card-border"></div>
         <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--purple)">&#x1F3E8; HOTEL</div>
+          <div class="op-card-label" style="color:var(--purple)"><svg class="ico"><use href="#i-hotel"/></svg> HOTEL</div>
           <div class="op-card-title">Hotel Santa Caterina</div>
-          <div class="op-card-sub">Jun 5&ndash;8 &middot; Sea View Suite &middot; Floor 3<br>3 nights &middot; $2,400 &middot; &#x2B50; 4.9</div>
+          <div class="op-card-sub">Jun 5&ndash;8 &middot; Sea View Suite &middot; Floor 3<br>3 nights &middot; $2,400 &middot; <svg class="ico"><use href="#i-star"/></svg>4.9</div>
         </div>
       </div>
 
@@ -1947,9 +2055,9 @@ s { text-decoration: line-through; opacity: 0.4; }
         <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=900&q=85')"></div>
         <div class="op-card-border"></div>
         <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--purple)">&#x1F3E8; HOTEL</div>
+          <div class="op-card-label" style="color:var(--purple)"><svg class="ico"><use href="#i-hotel"/></svg> HOTEL</div>
           <div class="op-card-title">Four Seasons Bali</div>
-          <div class="op-card-sub">Nov 1&ndash;7 &middot; Garden Villa &middot; Pool access<br>6 nights &middot; $4,800 &middot; &#x2B50; 4.9</div>
+          <div class="op-card-sub">Nov 1&ndash;7 &middot; Garden Villa &middot; Pool access<br>6 nights &middot; $4,800 &middot; <svg class="ico"><use href="#i-star"/></svg>4.9</div>
         </div>
       </div>
 
@@ -1958,7 +2066,7 @@ s { text-decoration: line-through; opacity: 0.4; }
         <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1000&q=85')"></div>
         <div class="op-card-border"></div>
         <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--teal)">&#x1F6A2; CRUISE</div>
+          <div class="op-card-label" style="color:var(--teal)"><svg class="ico"><use href="#i-ship"/></svg> CRUISE</div>
           <div class="op-card-title">Alaska Inside Passage</div>
           <div class="op-card-sub">Seattle &rarr; Juneau &rarr; Skagway &rarr; Glacier Bay<br>Jul 15&ndash;22 &middot; Holland America &middot; $4,500</div>
         </div>
@@ -1969,7 +2077,7 @@ s { text-decoration: line-through; opacity: 0.4; }
         <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1559599238-308793637427?w=900&q=85')"></div>
         <div class="op-card-border"></div>
         <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--teal)">&#x1F6A2; CRUISE PORT</div>
+          <div class="op-card-label" style="color:var(--teal)"><svg class="ico"><use href="#i-ship"/></svg> CRUISE PORT</div>
           <div class="op-card-title">St. Maarten</div>
           <div class="op-card-sub">Port 3 of 5 &middot; Feb 18 &middot; 10 hours ashore<br>Maho Beach &middot; Snorkelling &middot; French side lunch</div>
         </div>
@@ -1980,7 +2088,7 @@ s { text-decoration: line-through; opacity: 0.4; }
         <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=900&q=85')"></div>
         <div class="op-card-border"></div>
         <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--gold)">&#x1F697; ROAD TRIP</div>
+          <div class="op-card-label" style="color:var(--gold)"><svg class="ico"><use href="#i-car"/></svg> ROAD TRIP</div>
           <div class="op-card-title">Tuscany Wine Route</div>
           <div class="op-card-sub">Europcar &middot; Fiat 500 &middot; 5 days &middot; 620 km<br>Pickup Florence &middot; Drop-off Rome &middot; $340</div>
         </div>
@@ -1991,7 +2099,7 @@ s { text-decoration: line-through; opacity: 0.4; }
         <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1000&q=85')"></div>
         <div class="op-card-border"></div>
         <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--gold)">&#x1F697; ROAD TRIP</div>
+          <div class="op-card-label" style="color:var(--gold)"><svg class="ico"><use href="#i-car"/></svg> ROAD TRIP</div>
           <div class="op-card-title">Pacific Coast Highway</div>
           <div class="op-card-sub">Enterprise &middot; Mustang Convertible &middot; 7 days<br>LA &rarr; SF &middot; 950 km &middot; $720</div>
         </div>
@@ -2002,9 +2110,9 @@ s { text-decoration: line-through; opacity: 0.4; }
         <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=85')"></div>
         <div class="op-card-border"></div>
         <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--coral)">&#x1F37D;&#xFE0F; DINNER</div>
+          <div class="op-card-label" style="color:var(--coral)"><svg class="ico"><use href="#i-utensils"/></svg> DINNER</div>
           <div class="op-card-title">Le Comptoir du Panth&eacute;on</div>
-          <div class="op-card-sub">French Bistro &middot; &#x2B50; 4.7 &middot; $$$ &middot; Day 4<br>Reservation 8:00 PM &middot; Duck confit &amp; cr&egrave;me br&ucirc;l&eacute;e</div>
+          <div class="op-card-sub">French Bistro &middot; <svg class="ico"><use href="#i-star"/></svg>4.7 &middot; $$$ &middot; Day 4<br>Reservation 8:00 PM &middot; Duck confit &amp; cr&egrave;me br&ucirc;l&eacute;e</div>
         </div>
       </div>
 
@@ -2013,9 +2121,9 @@ s { text-decoration: line-through; opacity: 0.4; }
         <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=900&q=85')"></div>
         <div class="op-card-border"></div>
         <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--coral)">&#x1F37D;&#xFE0F; LUNCH</div>
+          <div class="op-card-label" style="color:var(--coral)"><svg class="ico"><use href="#i-utensils"/></svg> LUNCH</div>
           <div class="op-card-title">Roscioli</div>
-          <div class="op-card-sub">Italian &middot; &#x2B50; 4.8 &middot; $$ &middot; Day 6<br>Cacio e pepe &middot; Supplì &middot; House wine</div>
+          <div class="op-card-sub">Italian &middot; <svg class="ico"><use href="#i-star"/></svg>4.8 &middot; $$ &middot; Day 6<br>Cacio e pepe &middot; Supplì &middot; House wine</div>
         </div>
       </div>
 
@@ -2024,9 +2132,9 @@ s { text-decoration: line-through; opacity: 0.4; }
         <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1559339352-11d035aa65de?w=900&q=85')"></div>
         <div class="op-card-border"></div>
         <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--coral)">&#x1F37D;&#xFE0F; DINNER</div>
+          <div class="op-card-label" style="color:var(--coral)"><svg class="ico"><use href="#i-utensils"/></svg> DINNER</div>
           <div class="op-card-title">Tickets Barcelona</div>
-          <div class="op-card-sub">Tapas &middot; &#x2B50; 4.9 &middot; $$$$ &middot; Day 1<br>Reservation 9:30 PM &middot; 14 small plates</div>
+          <div class="op-card-sub">Tapas &middot; <svg class="ico"><use href="#i-star"/></svg>4.9 &middot; $$$$ &middot; Day 1<br>Reservation 9:30 PM &middot; 14 small plates</div>
         </div>
       </div>
 
@@ -2035,7 +2143,7 @@ s { text-decoration: line-through; opacity: 0.4; }
         <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=900&q=85')"></div>
         <div class="op-card-border"></div>
         <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--gold)">&#x26E9;&#xFE0F; PLACE</div>
+          <div class="op-card-label" style="color:var(--gold)"><svg class="ico"><use href="#i-pin"/></svg> PLACE</div>
           <div class="op-card-title">Colosseum</div>
           <div class="op-card-sub">Rome &middot; Underground tour &middot; 2.5 hours<br>Day 7 &middot; Morning visit &middot; Skip-the-line tickets</div>
         </div>
@@ -2046,7 +2154,7 @@ s { text-decoration: line-through; opacity: 0.4; }
         <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1526392060635-9d6019884377?w=1000&q=85')"></div>
         <div class="op-card-border"></div>
         <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--gold)">&#x26E9;&#xFE0F; PLACE</div>
+          <div class="op-card-label" style="color:var(--gold)"><svg class="ico"><use href="#i-pin"/></svg> PLACE</div>
           <div class="op-card-title">Machu Picchu</div>
           <div class="op-card-sub">Cusco &middot; Sunrise hike &middot; 4 hours<br>Day 9 &middot; Inca Trail finish &middot; 124 photos taken</div>
         </div>
@@ -2057,7 +2165,7 @@ s { text-decoration: line-through; opacity: 0.4; }
         <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1483985988355-763728e1935b?w=900&q=85')"></div>
         <div class="op-card-border"></div>
         <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--teal)">&#x1F4B0; EXPENSE</div>
+          <div class="op-card-label" style="color:var(--teal)"><svg class="ico"><use href="#i-dollar"/></svg> EXPENSE</div>
           <div class="op-card-title">Milan Shopping</div>
           <div class="op-card-sub">Galleria Vittorio Emanuele &middot; Day 4<br>3 stores &middot; &euro;640 &middot; Fashion &amp; leather goods</div>
         </div>
@@ -2068,7 +2176,7 @@ s { text-decoration: line-through; opacity: 0.4; }
         <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=900&q=85')"></div>
         <div class="op-card-border"></div>
         <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--teal)">&#x1F4B0; EXPENSE</div>
+          <div class="op-card-label" style="color:var(--teal)"><svg class="ico"><use href="#i-dollar"/></svg> EXPENSE</div>
           <div class="op-card-title">Onsen &amp; Spa Day</div>
           <div class="op-card-sub">Hakone &middot; Day 6 &middot; Wellness<br>Hot springs &middot; Massage &middot; &yen;18,000 (~$120)</div>
         </div>
@@ -2079,7 +2187,7 @@ s { text-decoration: line-through; opacity: 0.4; }
         <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=900&q=85')"></div>
         <div class="op-card-border"></div>
         <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--teal)">&#x1F4B0; EXPENSE</div>
+          <div class="op-card-label" style="color:var(--teal)"><svg class="ico"><use href="#i-dollar"/></svg> EXPENSE</div>
           <div class="op-card-title">Transport &middot; Day 3</div>
           <div class="op-card-sub">Tokyo &middot; Uber &amp; Metro &middot; 6 rides<br>&yen;8,400 (~$56) &middot; Shibuya to Asakusa</div>
         </div>
@@ -2090,7 +2198,7 @@ s { text-decoration: line-through; opacity: 0.4; }
         <div class="op-card-img" style="background-image:url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=900&q=85')"></div>
         <div class="op-card-border"></div>
         <div class="op-card-body">
-          <div class="op-card-label" style="color:var(--gold)">&#x1F697; ROAD TRIP</div>
+          <div class="op-card-label" style="color:var(--gold)"><svg class="ico"><use href="#i-car"/></svg> ROAD TRIP</div>
           <div class="op-card-title">New Zealand South Island</div>
           <div class="op-card-sub">Jucy &middot; Campervan &middot; 14 days &middot; 2,300 km<br>Christchurch loop &middot; $1,150</div>
         </div>
@@ -2103,13 +2211,13 @@ s { text-decoration: line-through; opacity: 0.4; }
     <p><strong>Stop digging through emails.</strong> Every confirmation, every reservation, every plan &mdash; organized by trip, by day, by city. Open Voyage and know exactly what's next.</p>
     <div class="oneplace-pills" id="opPills">
       <span class="oneplace-pill active" data-filter="all">All</span>
-      <span class="oneplace-pill" data-filter="flight">&#x2708;&#xFE0F; Flights</span>
-      <span class="oneplace-pill" data-filter="hotel">&#x1F3E8; Hotels</span>
-      <span class="oneplace-pill" data-filter="cruise">&#x1F6A2; Cruises</span>
-      <span class="oneplace-pill" data-filter="car">&#x1F697; Car Rentals</span>
-      <span class="oneplace-pill" data-filter="restaurant">&#x1F37D;&#xFE0F; Restaurants</span>
-      <span class="oneplace-pill" data-filter="place">&#x1F4CD; Places</span>
-      <span class="oneplace-pill" data-filter="expense">&#x1F4B0; Expenses</span>
+      <span class="oneplace-pill" data-filter="flight"><svg class="ico"><use href="#i-plane"/></svg>Flights</span>
+      <span class="oneplace-pill" data-filter="hotel"><svg class="ico"><use href="#i-hotel"/></svg>Hotels</span>
+      <span class="oneplace-pill" data-filter="cruise"><svg class="ico"><use href="#i-ship"/></svg>Cruises</span>
+      <span class="oneplace-pill" data-filter="car"><svg class="ico"><use href="#i-car"/></svg>Car Rentals</span>
+      <span class="oneplace-pill" data-filter="restaurant"><svg class="ico"><use href="#i-utensils"/></svg>Restaurants</span>
+      <span class="oneplace-pill" data-filter="place"><svg class="ico"><use href="#i-pin"/></svg>Places</span>
+      <span class="oneplace-pill" data-filter="expense"><svg class="ico"><use href="#i-dollar"/></svg>Expenses</span>
     </div>
   </div>
 </section>
@@ -2124,17 +2232,17 @@ s { text-decoration: line-through; opacity: 0.4; }
   <div class="section-sub reveal reveal-delay-1">There's a better way to remember where you've been.</div>
   <div class="problem-grid">
     <div class="problem-card reveal reveal-delay-1">
-      <div class="problem-icon">&#x1F5FA;&#xFE0F;</div>
+      <div class="problem-icon"><svg class="ico"><use href="#i-map"/></svg></div>
       <h3>No visual record</h3>
       <p>Your world map should light up gold. Instead you&rsquo;re <s>manually updating a spreadsheet</s>.</p>
     </div>
     <div class="problem-card reveal reveal-delay-2">
-      <div class="problem-icon">&#x2708;&#xFE0F;</div>
+      <div class="problem-icon"><svg class="ico"><use href="#i-plane"/></svg></div>
       <h3>Flights disappear</h3>
       <p>Every flight is a story. All of it <s>lost in your email inbox</s>.</p>
     </div>
     <div class="problem-card reveal reveal-delay-3">
-      <div class="problem-icon">&#x1F4CA;</div>
+      <div class="problem-icon"><svg class="ico"><use href="#i-chart"/></svg></div>
       <h3>Stats mean nothing</h3>
       <p>Most apps give you a number. You want airline breakdowns, routes, and spending per country.</p>
     </div>
@@ -2151,22 +2259,22 @@ s { text-decoration: line-through; opacity: 0.4; }
   <div class="how-grid">
     <div class="how-line"></div>
     <div class="how-step reveal reveal-delay-1">
-      <div class="how-dot">&#x1F9F3;</div>
+      <div class="how-dot"><svg class="ico"><use href="#i-map"/></svg></div>
       <h3>Create a trip</h3>
       <p>Step-by-step wizard: cities, flights, hotels, car rentals &mdash; all in one flow.</p>
     </div>
     <div class="how-step reveal reveal-delay-2">
-      <div class="how-dot">&#x2708;&#xFE0F;</div>
+      <div class="how-dot"><svg class="ico"><use href="#i-plane"/></svg></div>
       <h3>Add flights</h3>
       <p>Search by flight number. Real gates, delays, weather, and seat info pulled instantly.</p>
     </div>
     <div class="how-step reveal reveal-delay-3">
-      <div class="how-dot">&#x1F4D6;</div>
+      <div class="how-dot"><svg class="ico"><use href="#i-book"/></svg></div>
       <h3>Live your trip</h3>
       <p>Daily diary with places, meals, and expenses. AI suggests where to eat and what to see.</p>
     </div>
     <div class="how-step reveal reveal-delay-4">
-      <div class="how-dot">&#x1F30D;</div>
+      <div class="how-dot"><svg class="ico"><use href="#i-globe"/></svg></div>
       <h3>See your world</h3>
       <p>3D globe lights up with every country. Flight arcs trace your routes.</p>
     </div>
@@ -2210,7 +2318,7 @@ s { text-decoration: line-through; opacity: 0.4; }
   <div class="feature-inner" style="text-align:center;max-width:700px">
     <div class="feature-row" style="display:block">
       <div class="feature-text" style="text-align:center">
-        <div class="feature-tag" style="color:var(--sky);justify-content:center">🤿 INSIDE VOYAGE</div>
+        <div class="feature-tag" style="color:var(--sky);justify-content:center"><svg class="ico"><use href="#i-book"/></svg> INSIDE VOYAGE</div>
         <h3 class="feature-title" style="text-align:center">Dive deep into <em>every screen</em></h3>
         <p style="font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:32px">Six screens. Trips, daily diaries, flights, a 3D world map, travel stats, and personalized settings &mdash; each one designed to make your journeys unforgettable.</p>
         <a href="features.html" class="btn-gold" style="display:inline-block;text-decoration:none">Explore the App &rarr;</a>
@@ -2231,13 +2339,13 @@ s { text-decoration: line-through; opacity: 0.4; }
       <div class="tier-name">Free</div>
       <div class="tier-price">Forever free</div>
       <ul class="tier-features">
-        <li><span class="check">&#x2713;</span> 3 trips</li>
-        <li><span class="check">&#x2713;</span> 7 days per trip</li>
-        <li><span class="check">&#x2713;</span> 5 photos per trip</li>
-        <li><span class="check">&#x2713;</span> 3D World Map</li>
-        <li><span class="cross">&#x2717;</span> Expense tracking</li>
-        <li><span class="cross">&#x2717;</span> AI recommendations</li>
-        <li><span class="cross">&#x2717;</span> Live flight tracking</li>
+        <li><span class="check"><svg class="ico"><use href="#i-check"/></svg></span> 3 trips</li>
+        <li><span class="check"><svg class="ico"><use href="#i-check"/></svg></span> 7 days per trip</li>
+        <li><span class="check"><svg class="ico"><use href="#i-check"/></svg></span> 5 photos per trip</li>
+        <li><span class="check"><svg class="ico"><use href="#i-check"/></svg></span> 3D World Map</li>
+        <li><span class="cross"><svg class="ico"><use href="#i-x"/></svg></span> Expense tracking</li>
+        <li><span class="cross"><svg class="ico"><use href="#i-x"/></svg></span> AI recommendations</li>
+        <li><span class="cross"><svg class="ico"><use href="#i-x"/></svg></span> Live flight tracking</li>
       </ul>
     </div>
     <div class="tier-card tier-premium reveal reveal-delay-2">
@@ -2245,13 +2353,13 @@ s { text-decoration: line-through; opacity: 0.4; }
       <div class="tier-name">Premium</div>
       <div class="tier-price">$4.99/month</div>
       <ul class="tier-features">
-        <li><span class="check">&#x2713;</span> Unlimited trips &amp; days</li>
-        <li><span class="check">&#x2713;</span> Unlimited photos</li>
-        <li><span class="check">&#x2713;</span> Advanced flight data</li>
-        <li><span class="check">&#x2713;</span> Live flight tracking</li>
-        <li><span class="check">&#x2713;</span> Expense tracking</li>
-        <li><span class="check">&#x2713;</span> AI concierge &amp; stories</li>
-        <li><span class="check">&#x2713;</span> Detailed stats &amp; export</li>
+        <li><span class="check"><svg class="ico"><use href="#i-check"/></svg></span> Unlimited trips &amp; days</li>
+        <li><span class="check"><svg class="ico"><use href="#i-check"/></svg></span> Unlimited photos</li>
+        <li><span class="check"><svg class="ico"><use href="#i-check"/></svg></span> Advanced flight data</li>
+        <li><span class="check"><svg class="ico"><use href="#i-check"/></svg></span> Live flight tracking</li>
+        <li><span class="check"><svg class="ico"><use href="#i-check"/></svg></span> Expense tracking</li>
+        <li><span class="check"><svg class="ico"><use href="#i-check"/></svg></span> AI concierge &amp; stories</li>
+        <li><span class="check"><svg class="ico"><use href="#i-check"/></svg></span> Detailed stats &amp; export</li>
       </ul>
     </div>
     <div class="tier-card tier-lifetime reveal reveal-delay-3">
@@ -2259,13 +2367,13 @@ s { text-decoration: line-through; opacity: 0.4; }
       <div class="tier-name">Lifetime</div>
       <div class="tier-price">$79.99 one-time</div>
       <ul class="tier-features">
-        <li><span class="check">&#x2713;</span> Everything in Premium</li>
-        <li><span class="check">&#x2713;</span> All future features</li>
-        <li><span class="check">&#x2713;</span> Priority support</li>
-        <li><span class="check">&#x2713;</span> Early access to beta</li>
-        <li><span class="check">&#x2713;</span> Yours forever</li>
-        <li><span class="check">&#x2713;</span> One-time payment</li>
-        <li><span class="check">&#x2713;</span> No subscriptions</li>
+        <li><span class="check"><svg class="ico"><use href="#i-check"/></svg></span> Everything in Premium</li>
+        <li><span class="check"><svg class="ico"><use href="#i-check"/></svg></span> All future features</li>
+        <li><span class="check"><svg class="ico"><use href="#i-check"/></svg></span> Priority support</li>
+        <li><span class="check"><svg class="ico"><use href="#i-check"/></svg></span> Early access to beta</li>
+        <li><span class="check"><svg class="ico"><use href="#i-check"/></svg></span> Yours forever</li>
+        <li><span class="check"><svg class="ico"><use href="#i-check"/></svg></span> One-time payment</li>
+        <li><span class="check"><svg class="ico"><use href="#i-check"/></svg></span> No subscriptions</li>
       </ul>
     </div>
   </div>
@@ -2286,7 +2394,7 @@ s { text-decoration: line-through; opacity: 0.4; }
       <button class="ea-submit" type="submit">Get Early Access</button>
     </form>
   </div>
-  <div class="cta-form-success" id="ctaSuccess" style="display:none">&#x2708;&#xFE0F; You're on the list! We'll let you know when Voyage launches.</div>
+  <div class="cta-form-success" id="ctaSuccess" style="display:none"><svg class="ico"><use href="#i-plane"/></svg>You're on the list! We'll let you know when Voyage launches.</div>
   <div class="store-badges reveal reveal-delay-2" style="position:relative;z-index:1;margin-top:40px">
     <a href="#" class="store-badge-link" aria-label="Download on the App Store">
       <svg width="200" height="59" viewBox="0 0 135 40" xmlns="http://www.w3.org/2000/svg"><g><path fill="#A6A6A6" d="M130.197,40H4.729C2.122,40,0,37.872,0,35.267V4.726C0,2.12,2.122,0,4.729,0h125.468C132.803,0,135,2.12,135,4.726v30.541C135,37.872,132.803,40,130.197,40L130.197,40z"/><path d="M134.032,35.268c0,2.116-1.714,3.83-3.834,3.83H4.729c-2.119,0-3.839-1.714-3.839-3.83V4.725c0-2.115,1.72-3.835,3.839-3.835h125.468c2.121,0,3.834,1.72,3.834,3.835L134.032,35.268L134.032,35.268z"/><g><g><path fill="#FFFFFF" d="M30.128,19.784c-0.029-3.223,2.639-4.791,2.761-4.864c-1.511-2.203-3.853-2.504-4.676-2.528c-1.967-0.207-3.875,1.177-4.877,1.177c-1.022,0-2.565-1.157-4.228-1.123c-2.14,0.033-4.142,1.272-5.24,3.196c-2.266,3.923-0.576,9.688,1.595,12.859c1.086,1.553,2.355,3.287,4.016,3.226c1.625-0.067,2.232-1.036,4.193-1.036c1.943,0,2.513,1.036,4.207,0.997c1.744-0.028,2.842-1.56,3.89-3.127c1.255-1.78,1.759-3.533,1.779-3.623C33.507,24.924,30.161,23.647,30.128,19.784z"/><path fill="#FFFFFF" d="M26.928,10.306c0.874-1.093,1.472-2.58,1.306-4.089c-1.265,0.056-2.847,0.875-3.758,1.944c-0.806,0.942-1.526,2.486-1.34,3.938C24.557,12.205,26.016,11.382,26.928,10.306z"/></g></g><g><path fill="#FFFFFF" d="M53.645,31.504h-2.271l-1.244-3.909h-4.324l-1.185,3.909h-2.211l4.284-13.308h2.646L53.645,31.504z M49.755,25.955L48.63,22.48c-0.119-0.355-0.342-1.191-0.671-2.507h-0.04c-0.131,0.566-0.342,1.402-0.632,2.507l-1.105,3.475H49.755z"/><path fill="#FFFFFF" d="M64.662,26.588c0,1.632-0.441,2.922-1.323,3.869c-0.79,0.843-1.771,1.264-2.942,1.264c-1.264,0-2.172-0.454-2.725-1.362h-0.04v5.055h-2.132V25.067c0-1.026-0.027-2.079-0.079-3.159h1.875l0.119,1.521h0.04c0.711-1.146,1.79-1.718,3.238-1.718c1.132,0,2.077,0.447,2.833,1.342C64.284,23.949,64.662,25.127,64.662,26.588z M62.49,26.666c0-0.934-0.21-1.704-0.632-2.31c-0.461-0.632-1.08-0.948-1.856-0.948c-0.526,0-1.004,0.176-1.431,0.523c-0.428,0.35-0.708,0.807-0.839,1.373c-0.066,0.264-0.099,0.48-0.099,0.65v1.6c0,0.698,0.214,1.287,0.642,1.768s0.984,0.721,1.668,0.721c0.803,0,1.428-0.31,1.875-0.928C62.266,28.496,62.49,27.68,62.49,26.666z"/><path fill="#FFFFFF" d="M75.699,26.588c0,1.632-0.441,2.922-1.324,3.869c-0.789,0.843-1.77,1.264-2.941,1.264c-1.264,0-2.172-0.454-2.724-1.362H68.67v5.055h-2.132V25.067c0-1.026-0.027-2.079-0.079-3.159h1.875l0.119,1.521h0.04c0.71-1.146,1.789-1.718,3.238-1.718c1.131,0,2.076,0.447,2.834,1.342C75.32,23.949,75.699,25.127,75.699,26.588z M73.527,26.666c0-0.934-0.211-1.704-0.633-2.31c-0.461-0.632-1.078-0.948-1.855-0.948c-0.527,0-1.004,0.176-1.432,0.523c-0.428,0.35-0.707,0.807-0.838,1.373c-0.065,0.264-0.099,0.48-0.099,0.65v1.6c0,0.698,0.214,1.287,0.64,1.768c0.428,0.48,0.984,0.721,1.67,0.721c0.803,0,1.428-0.31,1.875-0.928C73.303,28.496,73.527,27.68,73.527,26.666z"/><path fill="#FFFFFF" d="M88.039,27.772c0,1.132-0.393,2.053-1.182,2.764c-0.867,0.777-2.074,1.165-3.625,1.165c-1.432,0-2.58-0.276-3.449-0.829l0.494-1.777c0.936,0.566,1.963,0.85,3.082,0.85c0.803,0,1.428-0.182,1.877-0.544c0.447-0.362,0.67-0.848,0.67-1.454c0-0.54-0.184-0.995-0.553-1.364c-0.367-0.369-0.98-0.712-1.836-1.029c-2.33-0.869-3.494-2.142-3.494-3.816c0-1.094,0.408-1.991,1.225-2.689c0.814-0.699,1.9-1.048,3.258-1.048c1.211,0,2.217,0.211,3.02,0.632l-0.533,1.738c-0.75-0.408-1.598-0.612-2.547-0.612c-0.75,0-1.336,0.185-1.756,0.553c-0.355,0.329-0.533,0.73-0.533,1.205c0,0.526,0.203,0.961,0.611,1.303c0.355,0.316,1,0.658,1.936,1.027c1.145,0.461,1.986,1,2.527,1.618C87.77,26.081,88.039,26.852,88.039,27.772z"/><path fill="#FFFFFF" d="M95.088,23.508h-2.35v4.659c0,1.185,0.414,1.777,1.244,1.777c0.381,0,0.697-0.033,0.947-0.099l0.059,1.619c-0.42,0.157-0.973,0.236-1.658,0.236c-0.842,0-1.5-0.257-1.975-0.77c-0.473-0.514-0.711-1.376-0.711-2.587v-4.837h-1.4v-1.6h1.4v-1.757l2.094-0.632v2.389h2.35V23.508z"/><path fill="#FFFFFF" d="M105.691,26.627c0,1.475-0.422,2.686-1.264,3.633c-0.883,0.975-2.055,1.461-3.516,1.461c-1.408,0-2.529-0.467-3.365-1.401s-1.254-2.113-1.254-3.534c0-1.487,0.43-2.705,1.293-3.652c0.861-0.948,2.023-1.422,3.484-1.422c1.408,0,2.541,0.467,3.396,1.402C105.283,24.021,105.691,25.192,105.691,26.627z M103.479,26.696c0-0.885-0.189-1.644-0.572-2.277c-0.447-0.766-1.086-1.148-1.914-1.148c-0.857,0-1.508,0.383-1.955,1.148c-0.383,0.634-0.572,1.405-0.572,2.317c0,0.885,0.189,1.644,0.572,2.276c0.461,0.766,1.105,1.148,1.936,1.148c0.814,0,1.453-0.39,1.914-1.168C103.281,28.347,103.479,27.58,103.479,26.696z"/><path fill="#FFFFFF" d="M112.621,23.783c-0.211-0.039-0.436-0.059-0.672-0.059c-0.75,0-1.33,0.283-1.738,0.85c-0.355,0.5-0.533,1.132-0.533,1.895v5.035h-2.131l0.02-6.574c0-1.106-0.027-2.113-0.08-3.021h1.857l0.078,1.836h0.059c0.225-0.631,0.58-1.139,1.066-1.52c0.475-0.343,0.988-0.514,1.541-0.514c0.197,0,0.375,0.014,0.533,0.039V23.783z"/><path fill="#FFFFFF" d="M122.156,26.252c0,0.382-0.025,0.704-0.078,0.967h-6.396c0.025,0.948,0.334,1.673,0.928,2.173c0.539,0.447,1.236,0.671,2.092,0.671c0.947,0,1.811-0.151,2.588-0.454l0.334,1.48c-0.908,0.396-1.98,0.593-3.217,0.593c-1.488,0-2.656-0.438-3.506-1.313c-0.848-0.875-1.273-2.05-1.273-3.524c0-1.447,0.395-2.652,1.186-3.613c0.828-1.026,1.947-1.539,3.355-1.539c1.383,0,2.43,0.513,3.141,1.539C121.873,24.047,122.156,25.055,122.156,26.252z M120.123,25.699c0.014-0.632-0.125-1.178-0.414-1.639c-0.369-0.593-0.936-0.889-1.699-0.889c-0.697,0-1.264,0.289-1.697,0.869c-0.355,0.461-0.566,1.014-0.631,1.658H120.123z"/></g><g><g><path fill="#FFFFFF" d="M49.05,10.009c0,1.177-0.353,2.063-1.058,2.658c-0.653,0.549-1.581,0.824-2.783,0.824c-0.596,0-1.106-0.026-1.533-0.078V6.982c0.557-0.09,1.157-0.136,1.805-0.136c1.145,0,2.008,0.249,2.59,0.747C48.723,8.156,49.05,8.961,49.05,10.009z M47.945,10.038c0-0.763-0.202-1.348-0.606-1.756c-0.404-0.407-0.994-0.611-1.771-0.611c-0.33,0-0.611,0.022-0.844,0.068v4.889c0.129,0.02,0.365,0.029,0.708,0.029c0.802,0,1.421-0.223,1.857-0.669S47.945,10.892,47.945,10.038z"/><path fill="#FFFFFF" d="M54.909,11.037c0,0.725-0.207,1.319-0.621,1.785c-0.434,0.479-1.009,0.718-1.727,0.718c-0.692,0-1.243-0.229-1.654-0.689c-0.41-0.459-0.615-1.038-0.615-1.736c0-0.73,0.211-1.329,0.635-1.794s0.994-0.698,1.712-0.698c0.692,0,1.248,0.229,1.669,0.688C54.708,9.757,54.909,10.333,54.909,11.037z M53.822,11.071c0-0.435-0.094-0.808-0.281-1.119c-0.22-0.376-0.533-0.564-0.94-0.564c-0.421,0-0.741,0.188-0.961,0.564c-0.188,0.311-0.281,0.69-0.281,1.138c0,0.435,0.094,0.808,0.281,1.119c0.227,0.376,0.543,0.564,0.951,0.564c0.4,0,0.714-0.191,0.94-0.574C53.725,11.882,53.822,11.506,53.822,11.071z"/><path fill="#FFFFFF" d="M62.765,8.719l-1.475,4.714h-0.96l-0.611-2.047c-0.155-0.511-0.281-1.019-0.379-1.523h-0.019c-0.091,0.518-0.217,1.025-0.379,1.523l-0.649,2.047h-0.971l-1.387-4.714h1.077l0.533,2.241c0.129,0.53,0.235,1.035,0.32,1.513h0.019c0.078-0.394,0.207-0.896,0.389-1.503l0.669-2.25h0.854l0.641,2.202c0.155,0.537,0.281,1.054,0.378,1.552h0.029c0.071-0.485,0.178-1.002,0.32-1.552l0.572-2.202H62.765z"/><path fill="#FFFFFF" d="M68.198,13.433H67.15v-2.7c0-0.832-0.316-1.248-0.95-1.248c-0.311,0-0.562,0.114-0.757,0.343c-0.193,0.229-0.291,0.499-0.291,0.808v2.796h-1.048v-3.366c0-0.414-0.013-0.863-0.038-1.349h0.921l0.049,0.737h0.029c0.122-0.229,0.304-0.418,0.543-0.569c0.284-0.176,0.602-0.265,0.95-0.265c0.44,0,0.806,0.142,1.097,0.427c0.362,0.349,0.543,0.87,0.543,1.562V13.433z"/><path fill="#FFFFFF" d="M71.088,13.433h-1.047V6.556h1.047V13.433z"/><path fill="#FFFFFF" d="M77.258,11.037c0,0.725-0.207,1.319-0.621,1.785c-0.434,0.479-1.01,0.718-1.727,0.718c-0.693,0-1.244-0.229-1.654-0.689c-0.41-0.459-0.615-1.038-0.615-1.736c0-0.73,0.211-1.329,0.635-1.794s0.994-0.698,1.711-0.698c0.693,0,1.248,0.229,1.67,0.688C77.057,9.757,77.258,10.333,77.258,11.037z M76.17,11.071c0-0.435-0.094-0.808-0.281-1.119c-0.219-0.376-0.533-0.564-0.939-0.564c-0.422,0-0.742,0.188-0.961,0.564c-0.188,0.311-0.281,0.69-0.281,1.138c0,0.435,0.094,0.808,0.281,1.119c0.227,0.376,0.543,0.564,0.951,0.564c0.4,0,0.713-0.191,0.939-0.574C76.074,11.882,76.17,11.506,76.17,11.071z"/><path fill="#FFFFFF" d="M82.33,13.433h-0.941l-0.078-0.543h-0.029c-0.322,0.433-0.781,0.65-1.377,0.65c-0.445,0-0.805-0.143-1.076-0.427c-0.246-0.258-0.369-0.579-0.369-0.96c0-0.576,0.24-1.015,0.723-1.319c0.482-0.304,1.16-0.453,2.033-0.446V10.3c0-0.621-0.326-0.931-0.979-0.931c-0.465,0-0.875,0.117-1.229,0.349l-0.213-0.688c0.438-0.271,0.979-0.407,1.617-0.407c1.232,0,1.85,0.65,1.85,1.95v1.736C82.262,12.78,82.285,13.155,82.33,13.433z M81.242,11.813v-0.727c-1.156-0.02-1.734,0.297-1.734,0.95c0,0.246,0.066,0.43,0.201,0.553c0.135,0.123,0.307,0.184,0.512,0.184c0.23,0,0.445-0.073,0.641-0.218c0.197-0.146,0.318-0.331,0.363-0.558C81.236,11.946,81.242,11.884,81.242,11.813z"/><path fill="#FFFFFF" d="M88.285,13.433h-0.93l-0.049-0.757h-0.029c-0.297,0.576-0.803,0.864-1.514,0.864c-0.568,0-1.041-0.223-1.416-0.669s-0.562-1.025-0.562-1.736c0-0.763,0.203-1.381,0.611-1.853c0.395-0.44,0.879-0.66,1.455-0.66c0.633,0,1.076,0.213,1.328,0.64h0.02V6.556h1.049v5.607C88.248,12.622,88.26,13.045,88.285,13.433z M87.199,11.445v-0.786c0-0.136-0.01-0.246-0.029-0.33c-0.059-0.252-0.186-0.464-0.379-0.635c-0.195-0.171-0.43-0.257-0.701-0.257c-0.391,0-0.697,0.155-0.922,0.466c-0.223,0.311-0.336,0.708-0.336,1.193c0,0.466,0.107,0.844,0.322,1.135c0.227,0.31,0.533,0.465,0.916,0.465c0.344,0,0.619-0.129,0.828-0.388C87.1,12.069,87.199,11.781,87.199,11.445z"/><path fill="#FFFFFF" d="M97.248,11.037c0,0.725-0.207,1.319-0.621,1.785c-0.434,0.479-1.008,0.718-1.727,0.718c-0.691,0-1.242-0.229-1.654-0.689c-0.41-0.459-0.615-1.038-0.615-1.736c0-0.73,0.211-1.329,0.635-1.794s0.994-0.698,1.713-0.698c0.691,0,1.248,0.229,1.668,0.688C97.047,9.757,97.248,10.333,97.248,11.037z M96.162,11.071c0-0.435-0.094-0.808-0.281-1.119c-0.221-0.376-0.533-0.564-0.941-0.564c-0.42,0-0.74,0.188-0.961,0.564c-0.188,0.311-0.281,0.69-0.281,1.138c0,0.435,0.094,0.808,0.281,1.119c0.227,0.376,0.543,0.564,0.951,0.564c0.4,0,0.715-0.191,0.941-0.574C96.064,11.882,96.162,11.506,96.162,11.071z"/><path fill="#FFFFFF" d="M102.883,13.433h-1.047v-2.7c0-0.832-0.316-1.248-0.951-1.248c-0.311,0-0.562,0.114-0.756,0.343s-0.291,0.499-0.291,0.808v2.796h-1.049v-3.366c0-0.414-0.012-0.863-0.037-1.349h0.92l0.049,0.737h0.029c0.123-0.229,0.305-0.418,0.543-0.569c0.285-0.176,0.602-0.265,0.951-0.265c0.439,0,0.805,0.142,1.096,0.427c0.363,0.349,0.543,0.87,0.543,1.562V13.433z"/><path fill="#FFFFFF" d="M109.936,9.504h-1.154v2.29c0,0.582,0.205,0.873,0.611,0.873c0.188,0,0.344-0.016,0.467-0.049l0.027,0.795c-0.207,0.078-0.479,0.117-0.814,0.117c-0.414,0-0.736-0.126-0.969-0.378c-0.234-0.252-0.35-0.676-0.35-1.271V9.504h-0.689V8.719h0.689V7.855l1.027-0.31v1.173h1.154V9.504z"/><path fill="#FFFFFF" d="M115.484,13.433h-1.049v-2.68c0-0.845-0.316-1.268-0.949-1.268c-0.486,0-0.818,0.245-1,0.735c-0.031,0.103-0.049,0.229-0.049,0.377v2.835h-1.047V6.556h1.047v2.841h0.02c0.33-0.517,0.803-0.775,1.416-0.775c0.434,0,0.793,0.142,1.078,0.427c0.355,0.355,0.533,0.883,0.533,1.581V13.433z"/><path fill="#FFFFFF" d="M121.207,10.853c0,0.188-0.014,0.346-0.039,0.475h-3.143c0.014,0.466,0.164,0.821,0.455,1.067c0.266,0.22,0.609,0.33,1.029,0.33c0.465,0,0.889-0.074,1.271-0.223l0.164,0.728c-0.447,0.194-0.973,0.291-1.582,0.291c-0.73,0-1.305-0.215-1.721-0.645c-0.418-0.43-0.625-1.007-0.625-1.731c0-0.711,0.193-1.303,0.582-1.775c0.406-0.504,0.955-0.756,1.648-0.756c0.678,0,1.193,0.252,1.541,0.756C121.068,9.77,121.207,10.265,121.207,10.853z M120.207,10.582c0.008-0.311-0.061-0.579-0.203-0.805c-0.182-0.291-0.459-0.437-0.834-0.437c-0.342,0-0.621,0.142-0.834,0.427c-0.174,0.227-0.277,0.498-0.311,0.815H120.207z"/></g></g></g></svg>
@@ -2454,21 +2562,22 @@ s { text-decoration: line-through; opacity: 0.4; }
 
   // ─── MILESTONE DRAG SCROLL ───────────────────────
   const track = document.getElementById('milestoneTrack');
-  let isDown = false, startX, scrollLeft;
-
-  track.addEventListener('mousedown', e => {
-    isDown = true; track.style.cursor = 'grabbing';
-    startX = e.pageX - track.offsetLeft;
-    scrollLeft = track.scrollLeft;
-  });
-  track.addEventListener('mouseleave', () => { isDown = false; track.style.cursor = 'grab'; });
-  track.addEventListener('mouseup', () => { isDown = false; track.style.cursor = 'grab'; });
-  track.addEventListener('mousemove', e => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - track.offsetLeft;
-    track.scrollLeft = scrollLeft - (x - startX) * 1.5;
-  });
+  if (track) {
+    let isDown = false, startX, scrollLeft;
+    track.addEventListener('mousedown', e => {
+      isDown = true; track.style.cursor = 'grabbing';
+      startX = e.pageX - track.offsetLeft;
+      scrollLeft = track.scrollLeft;
+    });
+    track.addEventListener('mouseleave', () => { isDown = false; track.style.cursor = 'grab'; });
+    track.addEventListener('mouseup', () => { isDown = false; track.style.cursor = 'grab'; });
+    track.addEventListener('mousemove', e => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - track.offsetLeft;
+      track.scrollLeft = scrollLeft - (x - startX) * 1.5;
+    });
+  }
 
   // ─── FLAG CAROUSEL ───────────────────────────────
   const flags = ['\u{1F1EF}\u{1F1F5}', '\u{1F1EB}\u{1F1F7}', '\u{1F1EC}\u{1F1E7}', '\u{1F1E9}\u{1F1EA}', '\u{1F1EE}\u{1F1F9}', '\u{1F1E7}\u{1F1F7}', '\u{1F1F9}\u{1F1F7}', '\u{1F1E6}\u{1F1FA}'];
@@ -2527,6 +2636,36 @@ s { text-decoration: line-through; opacity: 0.4; }
     opScroll.addEventListener('scroll', update3DCards, { passive: true });
     update3DCards();
   }
+
+  // ─── MOBILE MENU ───────────────────────────────
+  const navBurger = document.getElementById('navBurger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const mobileBackdrop = document.getElementById('mobileBackdrop');
+  const mobileMenuClose = document.getElementById('mobileMenuClose');
+  const mobileCta = document.getElementById('mobileCta');
+  function openMobileMenu() {
+    mobileMenu.classList.add('open');
+    mobileBackdrop.classList.add('open');
+    document.body.classList.add('menu-open');
+    navBurger.setAttribute('aria-expanded', 'true');
+    mobileMenu.setAttribute('aria-hidden', 'false');
+  }
+  function closeMobileMenu() {
+    mobileMenu.classList.remove('open');
+    mobileBackdrop.classList.remove('open');
+    document.body.classList.remove('menu-open');
+    navBurger.setAttribute('aria-expanded', 'false');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+  }
+  if (navBurger) navBurger.addEventListener('click', openMobileMenu);
+  if (mobileMenuClose) mobileMenuClose.addEventListener('click', closeMobileMenu);
+  if (mobileBackdrop) mobileBackdrop.addEventListener('click', closeMobileMenu);
+  document.querySelectorAll('[data-mobile-link]').forEach(a => a.addEventListener('click', closeMobileMenu));
+  if (mobileCta) mobileCta.addEventListener('click', () => {
+    closeMobileMenu();
+    document.getElementById('eaOverlay').classList.add('open');
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobileMenu(); });
 
   // ─── CATEGORY PILL FILTERS ─────────────────────
   const opPills = document.querySelectorAll('#opPills .oneplace-pill');
